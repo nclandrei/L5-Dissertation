@@ -227,11 +227,21 @@ Explain why it would be worthwhile to solve this problem.
 \textbf{Recognizing Contextual Polarity}\cite{wilson2005recognizing}:
 \begin{itemize}
   \item \textbf{What were the goals?}
-    The paper's main goal is to experiment with automatically distinguishing
-    between contextual and prior polarity.
+    The paper's main goal is to find efficient ways to distinguish between 
+    contextual and prior polarity.
   \item \textbf{What was the method?}
+    They used a two step method that used machine learning and a variety of
+    features. The first step classified each phrase which had a clue as either
+    neutral or polar, followed by taking all phrases marked in the previous step
+    and giving them a contextual polarity (e.g.\ positive, negative, both, neutral).
   \item \textbf{What did they learn?}
-  \item \textbf{Relevance to our work}:
+    Through the method the authors employed, they managed to automatically identify
+    the contextual polarity. As most papers were only looking at the sentiment  
+    extracted from the overall document, they managed to get valuable results
+    from looking at specific words and phrases.
+  \item \textbf{Relevance to our work}: when analyzing the description and
+    comments of the ticket, we can use their method for accurately 
+    infering the sentiment transmitted.
 \end{itemize}
 
 \subsection{Conclusion}
