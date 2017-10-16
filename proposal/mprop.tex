@@ -224,6 +224,41 @@ Explain why it would be worthwhile to solve this problem.
 
 \subsection{Sentiment Analysis}
 
+\textbf{Thumbs Up or Thumbs Down}\cite{turney2002thumbs}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+  \item \textbf{What was the method?}
+  \item \textbf{What did they learn?}
+  \item \textbf{Relevance to our work}:
+\end{itemize}
+
+\textbf{Thumbs Up or Thumbs Down}\cite{turney2002thumbs}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The main goal of the paper is to detect the overall sentiment transmitted
+    through reviews of various types.
+  \item \textbf{What was the method?}
+    The author created an unsupervised machine learning algorithm that was 
+    evaluated on more than 400 reviews on Epinions on various kinds of markets 
+    (e.g.\ automobiles, movie). The algorithm implementation was divided 
+    into three steps:
+      \begin{itemize}
+        \item extract phrases containing adjectives or adverbs;
+        \item estimate the semantic orientation of the phrases;
+        \item classify the review as recommended or not recommended based on
+          the semantic orientation calculated at previous step.
+      \end{itemize}
+  \item \textbf{What did they learn?}
+    One thing the author learned that different categories will yield different 
+    results. For example, the automobile section on Epinions ranked much higher, 
+    84\%, compared to movie reviews, which had an accuracy of 65.83\%. Moreover, 
+    most pitfalls of the algorithm could be attributed to multiple factors, such 
+    as not using a supervised learning system or limitations of PMI-IR.
+  \item \textbf{Relevance to our work}: the method can be applied for extracting
+    sentiments from the tickets (description and comments) we will use 
+    in our own research.
+\end{itemize}
+
 \textbf{Recognizing Contextual Polarity}\cite{wilson2005recognizing}:
 \begin{itemize}
   \item \textbf{What were the goals?}
@@ -233,15 +268,17 @@ Explain why it would be worthwhile to solve this problem.
     They used a two step method that used machine learning and a variety of
     features. The first step classified each phrase which had a clue as either
     neutral or polar, followed by taking all phrases marked in the previous step
-    and giving them a contextual polarity (e.g.\ positive, negative, both, neutral).
+    and giving them a contextual polarity (e.g.\ positive, negative, 
+    both, neutral).
   \item \textbf{What did they learn?}
-    Through the method the authors employed, they managed to automatically identify
-    the contextual polarity. As most papers were only looking at the sentiment  
-    extracted from the overall document, they managed to get valuable results
-    from looking at specific words and phrases.
+    Through the method the authors employed, they managed to automatically 
+    identify the contextual polarity. As most papers were only looking at the 
+    sentiment extracted from the overall document, they managed to get valuable 
+    results from looking at specific words and phrases.
   \item \textbf{Relevance to our work}: when analyzing the description and
-    comments of the ticket, we can use their method for accurately 
-    infering the sentiment transmitted.
+    comments of the ticket, we can use their method for infering the sentiment 
+    transmitted probably more accurately than the technique used in 
+    Turney's paper\cite{turney2002thumbs}.
 \end{itemize}
 
 \subsection{Conclusion}
