@@ -139,7 +139,52 @@ Explain why it would be worthwhile to solve this problem.
     chosen as data sets.
 \end{itemize}
 
-\subsection{Measuring Cost and Waste in Software Projects}
+\textbf{Software Quality \- The Elusive Target}\cite{kitchenham1996software}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The main goal of the paper is to determine what makes for a good quality
+    software project, as well as who are the people in charge of this aspect
+    and how should they approach achieving it.
+  \item \textbf{What was the method?}
+    They tried to define quality in software projects and analyze techniques that 
+    measure such quality by looking at other models proposed in different other  
+    papers (e.g.\ McCall's quality model, ISO 9126).
+  \item \textbf{What did they learn?}
+    They learned that quality is very hard to define and there are various 
+    factors which need to be taken into consideration, such as the business
+    model of the company, the type of the software project (e.g.\ safety
+    critical, financial) or the actors which are involved and how they
+    coordinate the software activities.
+  \item \textbf{Relevance to our work}: this paper is a key paper on software  
+    quality and it can prove beneficial in our research by
+    giving valuable insights into how software quality can be modeled, thus
+    helping us in selecting good quality open source repositories to work with 
+    (i.e.\ ticket selection and analysis).
+\end{itemize}
+
+\textbf{Code Quality Analysis in OSS}\cite{stamelos2002code}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The article tries to discuss and examine the quality of the source code
+    delivered by open source projects.
+  \item \textbf{What was the method?}
+    They used a set of tools that could automatically inspect various aspects
+    of source code. The authors analyzed the 6th release of the OpenSUSE project
+    and examined only the components, which are defined by C functions in the
+    programs.
+  \item \textbf{What did they learn?}
+    The research's results show that Linux applications have high quality 
+    code standards that one might expect in an open source repository, but 
+    the quality is lower than the one implied by the standard. More than half
+    of the components were in a high state of quality, but on the other hand, 
+    most lower quality components cannot be improved only by applying some
+    corrective actions. Thus, even though not all the source code was in 
+    an industrial standards shape, there is definitely room for further 
+    improvement and open source repositories proved to be of good quality.
+  \item \textbf{Relevance to our work}: this work completes the previous paper
+    on software quality in general by looking specifically at quality in
+    open source projects, which will be our main points for data collection.
+\end{itemize}
 
 \textbf{Analysis of Software Cost Estimation}\cite{grimstad2006framework}:
 \begin{itemize}
@@ -157,6 +202,8 @@ Explain why it would be worthwhile to solve this problem.
   \item \textbf{Relevance to our work}: it showed us that we need to be careful
     when selecting techniques for cost estimation in our own research.
 \end{itemize}
+
+\subsection{Measuring Cost and Waste in Software Projects}
 
 \textbf{Waste Identification}\cite{Korkala2014WasteIdentification}:
 \begin{itemize}
@@ -222,52 +269,41 @@ Explain why it would be worthwhile to solve this problem.
     \end{itemize}
 \end{itemize}
 
-\textbf{Software Quality \- The Elusive Target}\cite{kitchenham1996software}:
+\textbf{Waste in Kanban Projects}\cite{ikonen2010exploring}:
 \begin{itemize}
   \item \textbf{What were the goals?}
-    The main goal of the paper is to determine what makes for a good quality
-    software project, as well as who are the people in charge of this aspect
-    and how should they approach achieving it.
+    The authors are trying to find the main sources of waste in Kanban software
+    development projects and categorize/rank them based on severity.
   \item \textbf{What was the method?}
-    They tried to define quality in software projects and analyze techniques that 
-    measure such quality by looking at other models proposed in different other  
-    papers (e.g.\ McCall's quality model, ISO 9126).
+    A controlled case study research was employed in a company called Software
+    Factory. They conducted semi-structured interviews with 5 of the team
+    members both in the beginning in order to collect data as well as at the end 
+    of the whole process to categorize the seven types of waste found. Moreover,
+    they also measured the overall success of the project based on Shenar's
+    techniques (first-second-third-fourth; project efficiency-imapct on the
+    customer-business success-preparing for the future).
   \item \textbf{What did they learn?}
-    They learned that quality is very hard to define and there are various 
-    factors which need to be taken into consideration, such as the business
-    model of the company, the type of the software project (e.g.\ safety
-    critical, financial) or the actors which are involved and how they
-    coordinate the software activities.
-  \item \textbf{Relevance to our work}: this paper is a key paper on software  
-    quality and it can prove beneficial in our research by
-    giving valuable insights into how software quality can be modeled, thus
-    helping us in selecting good quality open source repositories to work with 
-    (i.e.\ ticket selection and analysis).
+    They reached two main findings:
+      \begin{itemize}
+        \item they found 7 types of waste throughout the project at various
+          development stages:
+            \begin{itemize}
+              \item partially done work;
+              \item extra processes;
+              \item extra features;
+              \item task switching;
+              \item waiting;
+              \item motion;
+              \item defects.
+            \end{itemize}
+        \item they reached the conclusion that they couldn't explain the success
+          of the project even though waste was found.
+      \end{itemize}
+  \item \textbf{Relevance to our work}: this work completes the findings 
+    from the previous work presented as most of the projects we will work with
+    will be Agile, thus Kanban-based in terms of issue management.
 \end{itemize}
 
-\textbf{Code Quality Analysis in OSS}\cite{stamelos2002code}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The article tries to discuss and examine the quality of the source code
-    delivered by open source projects.
-  \item \textbf{What was the method?}
-    They used a set of tools that could automatically inspect various aspects
-    of source code. The authors analyzed the 6th release of the OpenSUSE project
-    and examined only the components, which are defined by C functions in the
-    programs.
-  \item \textbf{What did they learn?}
-    The research's results show that Linux applications have high quality 
-    code standards that one might expect in an open source repository, but 
-    the quality is lower than the one implied by the standard. More than half
-    of the components were in a high state of quality, but on the other hand, 
-    most lower quality components cannot be improved only by applying some
-    corrective actions. Thus, even though not all the source code was in 
-    an industrial standards shape, there is definitely room for further 
-    improvement and open source repositories proved to be of good quality.
-  \item \textbf{Relevance to our work}: this work completes the previous paper
-    on software quality in general by looking specifically at quality in
-    open source projects, which will be our main points for data collection.
-\end{itemize}
 
 \subsection{Sentiment Analysis}
 
