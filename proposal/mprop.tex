@@ -80,10 +80,36 @@ Activity Profiles}\cite{Naguib2013BugReportAssignee}:
 \textbf{Modeling Bug Report Quality}\cite{hooimeijer2007modeling}
 \begin{itemize}
   \item \textbf{What were the goals?}
-    The authors' goal is to present a method which would 
+    The authors' goal is to present a model that would determine if a bug
+    report will be triaged in a given amount of time. Moreover, they are 
+    trying to propose features that could help composing a good quality
+    bug report.
   \item \textbf{What was the method?}
+    They run an analysis on over 27000 bug reports from the Mozilla Firefox
+    project, selecting a couple of surface features that could be applied:
+      \begin{itemize}
+        \item self-reported severity;
+        \item readability;
+        \item daily load (i.e.\ total number of bug reports that need to be
+          dealt with at that point in time);
+        \item submitter reputation;
+        \item changes over time.
+      \end{itemize}
+    Afterwards, they ran 4 experiments (i.e.\ validate the assumptions, find
+    how much post-submission data is necessary, find the optimal resolved by
+    cutoff, evaluate the hypothetical benefit) and analyzed the results to
+    see if their model would be beneficial.
   \item \textbf{What did they learn?}
-  \item \textbf{Relevance to our work}:
+    They found out that linear model, even a simple one, can have 
+    better-than-chance predictive power. Also, they came to the conclusion that 
+    attachment and comment counts are really valuable for triaging the bug faster,
+    compared to, for example, patch count. Moreover, the readability of a bug is
+    important as it proved to influence the duration of the triaging process. 
+  \item \textbf{Relevance to our work}: the authors' goal was quite similar to ours
+    as they are trying to find out which features make for a good quality bug 
+    report. Moreover, they are also using programmatic analysis instead of
+    interviews with developers to produce the results, which is the same approach
+    we are aiming for in our research.
 \end{itemize}
 
 \textbf{Secret Life of Bugs}\cite{aranda2009secret}:
