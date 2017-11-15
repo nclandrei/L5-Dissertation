@@ -404,14 +404,17 @@ Explain why it would be worthwhile to solve this problem.
   This is an important paper to our research as it presents, from open source developers’ perspective, how bug reporting and bug tracking systems should behave. This research gives us various topics to concentrate on when analyzing the quality of tickets. 
 \end{itemize}
 
-\textbf{}\cite{}:
+\textbf{Quality of Bug Reports in Eclipse}\cite{bettenburg2007quality}:
 \begin{itemize}
   \item \textbf{What were the goals?}
+  The authors were looking to find the most important factors that determine the quality of a bug report. 
   \item \textbf{What was the method?}
+  They conducted a survey with Eclipse developers on what they find most important and helpful in a bug report. Another goal was to develop a tool that could  automatically measure the quality in bug reports based on the best practices for writing such reports (Eclipse guidelines). 
   \item \textbf{What did they learn?}
+  They learned that well written bug reports will most likely get more attention from developers. Moreover, the most important factors which influence  ticket quality are stack traces and steps to reproduce. On the other hand, the most harmful information in bug reports are errors in steps to reproduce, incomplete information and wrong observed behavior. Regarding quzilla, they measured that the tool achieved an accuracy of 42\% which indicates that it could, on the long term, ensure some standard quality when reporting and creating new tickets. 
   \item \textbf{Relevance to our work}:
+  It is mostly the same topic as our research, but we want to use statistical analysis instead of interviews/questionnaires as well as investigate tickets from multiple open source repositories, not just one. However, the findings presented here could serve as clues on where to search for factors that influence ticket quality. 
 \end{itemize}
-
 
 \textbf{Bug Report Assignee Recommendation using 
 Activity Profiles}\cite{Naguib2013BugReportAssignee}:
