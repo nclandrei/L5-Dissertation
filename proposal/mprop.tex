@@ -308,6 +308,91 @@ Explain why it would be worthwhile to solve this problem.
   Another project that we can use to learn about bug triaging; also we can contact maybe the author and receive either an executable or the source code for the application. 
 \end{itemize}
 
+\textbf{Reducing the effort of bug report triage}\cite{anvik2011reducing}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+  The authors had one main goal, and that was to find out if costs related to bug triaging can be reduced if ML algorithms were to be introduced. This hypothesis was backed by 2 research questions, which were if the approach would create recommenders that make accurate recommendations and if the humans can make use of the information provided by the approach. 
+  \item \textbf{What was the method?}
+  They created a bug triager which can present a list of developers from which someone can choose who is the most suitable to fix that specific issue. Also, they improved a previous research the same authors worked on, thus increasing the precision and recall of the algorithm. They employed machine learning techniques to create the algorithm. Then, in order to test it, they implemented a proxy to the actual web service that’s providing the issue repository, thus visualizing results helped conduct the evaluation process.
+  \item \textbf{What did they learn?}
+  The authors learned that their approach could actually be used in software projects as its accuracy is reasonable. They also learned that the impact of poor software project management, including bug triaging, on software projects can be  quite high.
+  \item \textbf{Relevance to our work}:
+  The research presented can help us in understanding better if statistical expetiments are helpful in analyzing tickets, as well as give an insight into how important ticket quality and proper triaging are for any software projct. 
+\end{itemize}
+
+\textbf{Effects of process maturity on quality, cycle time and effort in software product development}\cite{harter2000effects}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+  The research tries to investigate the relationship between process maturity, quality, cycle time and effort in software projects. The authors are mainly trying to prove/reject a couple of hypotheses: higher levels of process maturity lead to higher product quality in software projects, higher levels of process maturity are associated with increased cycle time in software products, higher product quality is associated with lower cycle time, higher levels of process maturity lead to increased development efforts in the project and higher product quality is associated with lower development effort.
+  \item \textbf{What was the method?}
+  In order to test their hypotheses, the authors examined data coming from 30 projects belonging to the systems integration division from a large IT company. The process improvement data was collected via external divisions and by government agencies to provide independent assessments of the firm’s software development processes. Then, they analyzed a couple of key variables and see how they interact: process maturity, product quality, cycle time, development effort, product size, domain/data/decision complexity and requirements ambiguity.
+  \item \textbf{What did they learn?}
+  They learned that the main features they inspected are additively separable and linear. Moreover, they found out that higher levels of process maturity are associated with significantly higher quality, but also with increased cycle times and development efforts. On the other hand, the reductions in cycle time and effort resulting from improved quality outweigh the marginal increases from achieving more process maturity.
+  \item \textbf{Relevance to our work}:
+  It can aid our research through better understanding of how various factors can influence the software development processes, thus giving more value to our own research (i.e. being able to automatically determine issue quality could improve better issue writing guidelines/better rules to be enforced, thus reduced triaging and development costs). 
+\end{itemize}
+
+\textbf{Where should the bugs be fixed?-more accurate information retrieval-based bug localization based on bug reports}\cite{zhou2012should}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+  The main goal of the paper was to implement a tool that, based on a bug report, could accurately select a number of files where the developer needs to make the necessary changes to fix the issue. They tried to answer 4 main research questions: how many bugs can be successfully lovated by BugLocator, does the revised VSM improve bug localization accuracy, does considering similar bugs improve localization accuracy, can bugLocator outperform other similar methods. 
+  \item \textbf{What was the method?}
+  The tool firstly performed a textual analysis, looking for similarities between the bug report description and the source code files. Then, it analyzed previous bugs in the repository to find the most similar ones, thus being able to find which files ought to be changed. Lastly, it assigned scores to similar files, the ones with bigger sizes obtaining higher scores as they are more likely to contain bugs. They collected the necessary data from Bugzilla projects and then performed the evaluation. 
+  \item \textbf{What did they learn?}
+  The buglocator can locate a large percentage of bugs analysing just a small set of source code files. Secondly, the revised VSM outperforms the standard VSM. Moreover, similar bugs can improve the localization accuracy only to a certain extent, while the locator outperformed every other competitor on a multitude of projects. 
+  \item \textbf{Relevance to our work}:
+  We can try to use BugLocator and even include it in our research as it gives a direct correlation between bug reports and development effort (thus reduced costs). Thus, we can infer even more possible hypotheses regarding our issues’ quality. 
+\end{itemize}
+
+\textbf{}\cite{}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+  \item \textbf{What was the method?}
+  \item \textbf{What did they learn?}
+  \item \textbf{Relevance to our work}:
+\end{itemize}
+
+\textbf{}\cite{}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+  \item \textbf{What was the method?}
+  \item \textbf{What did they learn?}
+  \item \textbf{Relevance to our work}:
+\end{itemize}
+
+\textbf{}\cite{}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+  \item \textbf{What was the method?}
+  \item \textbf{What did they learn?}
+  \item \textbf{Relevance to our work}:
+\end{itemize}
+
+\textbf{}\cite{}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+  \item \textbf{What was the method?}
+  \item \textbf{What did they learn?}
+  \item \textbf{Relevance to our work}:
+\end{itemize}
+
+\textbf{}\cite{}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+  \item \textbf{What was the method?}
+  \item \textbf{What did they learn?}
+  \item \textbf{Relevance to our work}:
+\end{itemize}
+
+\textbf{}\cite{}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+  \item \textbf{What was the method?}
+  \item \textbf{What did they learn?}
+  \item \textbf{Relevance to our work}:
+\end{itemize}
+
+
 \textbf{Bug Report Assignee Recommendation using 
 Activity Profiles}\cite{Naguib2013BugReportAssignee}:
 \begin{itemize}
