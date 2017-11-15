@@ -134,6 +134,7 @@ Explain why it would be worthwhile to solve this problem.
     the tickets we are analysing.
 \end{itemize}
 
+% TODO: complete this paper
 \textbf{Product perspective on total 
         Data Quality Assessment}\cite{wang1998product}:
 \begin{itemize}
@@ -323,6 +324,33 @@ Explain why it would be worthwhile to solve this problem.
 \end{itemize}
 
 \subsection{Issue Quality}
+
+\textbf{Extracting Structural Information from Bug Reports}\cite{bettenburg2008extracting}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The authors try to present a tool called infoZilla that can accurately
+    extract different types of information (e.g. stack traces, source code
+    fragments) from bug reports.
+  \item \textbf{What was the method?}
+    They selected a few categories of information that both infoZilla could
+    successfully extract from bug reports and that are of most interest to developers. Thus,
+    the categories selected are:
+      \begin{itemize}
+        \item patches;
+        \item stack traces;
+        \item source code;
+        \item enumerations.
+      \end{itemize}
+    Then, they ran the tool on tickets and evaluated the overall accuracy.
+  \item \textbf{What did they learn?}
+    After developing the tool to inspect such elements and retrieve them, 
+    they evaluated it on over 160000 Eclipse bug reports. For all categories, infoZilla
+    achieved over 97\% accuracy. 
+  \item \textbf{Relevance to our work}:
+    If we could manage to get this tool and use it in our own research, it would be
+    beneficial as we could extract efficiently different types of information we are
+    interested in testing ticket quality (e.g. stack traces).
+\end{itemize}
 
 \textbf{Automatic Bug Report Assignment}\cite{anvik2006automating}:
 \begin{itemize}
