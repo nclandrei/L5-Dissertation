@@ -61,6 +61,35 @@ Explain why it would be worthwhile to solve this problem.
 
 \subsection{Data Quality Metrics}
 
+\textbf{Software Process Data Quality and Characteristics}\cite{bachmann2009software}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The authors are trying to investigate different software process data
+    (e.g. bug tracking databases, version control systems logs) in order to
+    infer quality and characteristics. Then, they want to compute measures
+    and discuss the issues that arise from these observations.
+  \item \textbf{What was the method?}
+    They examined 6 software projects, 5 of which were open source, by extracting
+    the SVN and CSV logs, as well as the content of the bug tracker databases. Then,
+    they tried to link the logs with the contents of the bug tracker databases as they
+    are not integrated by default. 
+  \item \textbf{What did they learn?}
+    Firstly, the closed source project the authors examined showed much more data
+    quality as the open source counterparts, among which better average attachments 
+    per bug report, better average status changes per bug report or average commits
+    per bug report/developer. Moreover, the authors found that there is little linkage
+    between bug reports and version control logs, thus reducing the overall traceability.
+    Also, there is reduced quality in change logs as, for example, the Eclipse project
+    has more than 20\% empty commit messages. In conclusion, closed source projects will
+    probably exhibit improved data quality than open source ones, but data quality in general
+    differs from project to project.
+  \item \textbf{Relevance to our work}:
+    The analysis on data quality in open/closed source projects presented in this 
+    research is valuable to us as it presents various statistics on commits, bug report
+    structure and quality, as well as linkage between the two. We might apply the techniques
+    in our own research on ticket quality.
+\end{itemize}
+
 \textbf{Data Quality in Context}\cite{strong1997data}:
 \begin{itemize}
   \item \textbf{What were the goals?}
@@ -720,9 +749,7 @@ Activity Profiles}\cite{Naguib2013BugReportAssignee}:
     will be Agile, thus Kanban-based in terms of issue management.
 \end{itemize}
 
-
 \subsection{Sentiment Analysis}
-
 
 \textbf{Thumbs Up or Thumbs Down}\cite{turney2002thumbs}:
 \begin{itemize}
