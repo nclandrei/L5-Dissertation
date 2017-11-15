@@ -341,6 +341,44 @@ Explain why it would be worthwhile to solve this problem.
 
 \subsection{Issue Quality}
 
+\textbf{Where should we fix this bug?}\cite{kim2013should}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The main goal of the paper was to aid developers in easily finding where to
+    apply the necessary changes in order to fix a bug. The authors wanted to bridge
+    this gap by creating a two-phase recommendation model that would locate the locations
+    where the fixes need to be applied based on the corresponding bug reports.
+  \item \textbf{What was the method?}
+    They divided the work into multiple stages:
+      \begin{itemize}
+        \item firstly, they did a feature extraction on the bug reports (e.g. extract
+        description, metadata, summary);
+        \item in order to predict the locations of the necessary fixes, the one-phase
+        recommendation model was put into place - this model would be trained on collected
+        bug reports and then, when given a new bug report, it would try to localize the 
+        files that need to be changed automatically;
+        \item last step was to implement the two-phase recommendation model which basically
+        has two classification phases - binary and multiclass:
+          \begin{itemize}
+            \item binary phase filters out uninformative bug reports before predicting the
+            files to fix;
+            \item multiclass phase where the previously filtered bug reports are used as
+            training data and only after that new bug reports can be analyzed and files to be
+            changed recommended.
+          \end{itemize}
+      \end{itemize}
+  \item \textbf{What did they learn?}
+    Evaluating the model yielded a 70\% accuracy in pointing to the correct files
+    to be fixed, as long as the algorithm actually recommended any locations. However, the authors
+    acknowledge that the approach needs extra work, especially in fine-grained defect 
+    localization, performance improvement and bug triaging.
+  \item \textbf{Relevance to our work}:
+    The research shows interesting points regarding time-to-fix-bug and bug report
+    contents, thus it can give us an insight into how ticket quality can affect that 
+    time to fix the bug (in the case of this paper it would mean to successfully pass the first
+    phase of the recommendation model so that fix locations could be proposed).
+\end{itemize}
+
 \textbf{Do Stack Traces Help Developers Fix Bugs?}\cite{schroter2010stack}:
 \begin{itemize}
   \item \textbf{What were the goals?}
