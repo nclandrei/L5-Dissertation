@@ -344,20 +344,28 @@ Explain why it would be worthwhile to solve this problem.
   We can try to use BugLocator and even include it in our research as it gives a direct correlation between bug reports and development effort (thus reduced costs). Thus, we can infer even more possible hypotheses regarding our issues’ quality. 
 \end{itemize}
 
-\textbf{}\cite{}:
+\textbf{Analyzing and Relating Bug Report Data for Feature Tracking}\cite{fischer2003analyzing}:
 \begin{itemize}
   \item \textbf{What were the goals?}
+  The main goal of the paper was to analyze the proximity of software features based on modification and problem report data.
   \item \textbf{What was the method?}
+  They employed a method to track features by analyzing and relating bug report data filtered from a release history database. Features are instrumented and tracked, relationships of modification and problem reports to these features are established, and tracked features are visualized to illustrate their otherwise hidden dependencies. 
   \item \textbf{What did they learn?}
+  The authors’ approach suggest first to instrument and track features, then establish the relationships of modification and problem reports to these features and lastly visualize the tracked features for illustrating their non apparent dependencies. 
   \item \textbf{Relevance to our work}:
+  This paper can give us insight into how bug reports can influence feature implementation throughout the lifetime of the ticket. 
 \end{itemize}
 
-\textbf{}\cite{}:
+\textbf{Duplicate Bug Reports Considered Harmful... Really?}\cite{bettenburg2008duplicate}:
 \begin{itemize}
   \item \textbf{What were the goals?}
+  The authors wanted to test two main hypotheses, and these were: duplicate bug reports provide developers with information that was not present in the original report and the information in bug duplicates can improve automated triaging techniques. 
   \item \textbf{What was the method?}
+  They collected big amounts of data from the Eclipse open source project in XML form. Then, they ran different kinds of textual and statistical analysis on the data to find answers to their research questions. 
   \item \textbf{What did they learn?}
+  They reached the conclusion that bug duplicates contain information that is not present in the master reports. This additional data can be helpful for developers and it can also aid automated triaging techniques (e.g. decide who to assign a bug to). 
   \item \textbf{Relevance to our work}:
+  The findings presented in this paper could potentially make us consider duplicate tickets in a different way (i.e. do not treat it as disposable but analyze it and see if it maybe adds more information to the original/master report). 
 \end{itemize}
 
 \textbf{}\cite{}:
