@@ -368,20 +368,28 @@ Explain why it would be worthwhile to solve this problem.
   The findings presented in this paper could potentially make us consider duplicate tickets in a different way (i.e. do not treat it as disposable but analyze it and see if it maybe adds more information to the original/master report). 
 \end{itemize}
 
-\textbf{}\cite{}:
+\textbf{Summarizing Software Artifacts: A Case Study of Bug Reports}\cite{rastkar2010summarizing}:
 \begin{itemize}
   \item \textbf{What were the goals?}
+  The main goal of the research was to determine if software artifacts could be summarized effectively and automatically so that developers would need only to analyze summaries instead of full software artifacts (i.e. in our case, bug reports). 
   \item \textbf{What was the method?}
+  Firstly, they collected data to analyze from 4 different open source projects (Eclipse, Mozilla, Gnome, KDE). Then, they asked the volunteers (i.e. university students) to annotate the bug reports - write a summary of maximum 250 words in their own sentences. These human-produced annotations were then used by algorithms to learn how to effectively summarize a bug report.  Afterwards, the authors asked the end users of these bug reports, the software developers, to rate the summaries against the original bug reports. 
   \item \textbf{What did they learn?}
+  They learned that existing conversation-based extractive summary generators trained on bug reports produce the best results. 
   \item \textbf{Relevance to our work}:
+  As the paper revolves around conversations that are attached to a bug (i.e. comments) instead of the actual description of the bug, we can apply the technique described here maybe to generate summaries and analyze them as well in the overall context of ticket quality (maybe together with some sentiment analysis). 
 \end{itemize}
 
-\textbf{}\cite{}:
+\textbf{Improving Bug Triage with Bug Tossing Graphs}\cite{jeong2009improving}:
 \begin{itemize}
   \item \textbf{What were the goals?}
+  The two main goals of the authors, through their bug tossing graph idea (based on the Markov property), were to discover developer networks and team structures, as well as help to better assign developers to bug reports. 
   \item \textbf{What was the method?}
+  They analyzed 145.000 bug reports from Eclipse and 300.000 from Mozilla. Then, using statistical analysis on the bug reports in order to find evolution histories and changes throughout the lifetime of the reports, they created the bug tossing graph. 
   \item \textbf{What did they learn?}
+  They learned that it takes a long time to assign and toss bugs. Additionally, they learned that their model reduces tossing steps by up to 72\% and improved the automatic bug assignment by up to 23\%. 
   \item \textbf{Relevance to our work}:
+  First paper on importance of tossing and its impact on the software development process. It might prove useful as we shall also inspect tossing and bug assignment in our own research in order to determine ticket quality (i.e. maybe tossing actually reduces the quality of the ticket?). 
 \end{itemize}
 
 \textbf{}\cite{}:
