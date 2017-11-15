@@ -70,7 +70,7 @@ Explain why it would be worthwhile to solve this problem.
     and discuss the issues that arise from these observations.
   \item \textbf{What was the method?}
     They examined 6 software projects, 5 of which were open source, by extracting
-    the SVN and CSV logs, as well as the content of the bug tracker databases. Then,
+    the SVN and CVS logs, as well as the content of the bug tracker databases. Then,
     they tried to link the logs with the contents of the bug tracker databases as they
     are not integrated by default. 
   \item \textbf{What did they learn?}
@@ -324,6 +324,40 @@ Explain why it would be worthwhile to solve this problem.
 \end{itemize}
 
 \subsection{Issue Quality}
+
+\textbf{Do Stack Traces Help Developers Fix Bugs?}\cite{schroter2010stack}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The main goal of the paper was to identify if including a stack trace in a 
+    bug report would help the developers fix the issue quicker. They divided their
+    investigations in order to follow 4 research questions:
+      \begin{itemize}
+        \item are bugs fixed in methods in stack traces;
+        \item how far down the stack to trace;
+        \item are two or more stack traces better than one;
+        \item do stack traces help speed up debugging.
+  \item \textbf{What was the method?}
+    They conducted their investigation on the Eclipse project which is developed in
+    Java. Then, they extracted stack traces from bug reports using the infoZilla tool.
+    Afterwards, they linked the stack traces (and thus the corresponding bug report)
+    to changes in the source code (change logs) by mining the version repository of the
+    Eclipse project.
+  \item \textbf{What did they learn?}
+    They found answers to all their research questions, and are as follows:
+      \begin{itemize}
+        \item around 60\% of the bugs that contained stack traces were fixed in 
+        one of the methods in the frames;
+        \item around 40\% were fixed in the first stack frame, around 80\% were fixed
+        within the top 6 frames, while close to 90\% of the bugs were fixed within top 10 stack frames;
+        \item having more than one stack trace usually helped more than only a single one;
+        \item bug reports containing stack traces usually have a shorter lifetime, thus
+        speeding up the debugging process.
+      \end{itemize}
+  \item \textbf{Relevance to our work}:
+    Stack traces are one of the types of information we are investigating in our research
+    and it is very useful to have such a study back up the statement that stack traces are
+    valuable for developers so that they speed up the issue fixing process.
+\end{itemize}
 
 \textbf{Extracting Structural Information from Bug Reports}\cite{bettenburg2008extracting}:
 \begin{itemize}
