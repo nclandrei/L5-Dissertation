@@ -1,6 +1,8 @@
 \documentclass{mprop}
 \usepackage{graphicx}
 
+\usepackage{natbib}
+
 % alternative font if you prefer
 %\usepackage{times}
 
@@ -30,8 +32,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Introduction}\label{intro}
-briefly explain the context of the project problem
+
+% 2 - 3 pages tops
+
+\begin{itemize}
+\item Background briefly explain the context of the project problem
+\item Problem statement and justification. Clearly state the problem to be addressed in your forthcoming project.
+  Explain why it would be worthwhile to solve this problem.
+
+\item Research questions and contributions
+\item Structure of the rest of the document
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Background Survey}
+
+% 10 - 12 pages
 
 % \textbf{}\cite{}:
 % \begin{itemize}
@@ -41,25 +62,22 @@ briefly explain the context of the project problem
 %   \item \textbf{Relevance to our work}:
 % \end{itemize}
 
-\subsection{A subsection}
-Please note your proposal need not follow the included section headings; this is only a suggested structure. Also add subsections etc as required
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Statement of Problem}
+\subsection{Study Design}
 
-Clearly state the problem to be addressed in your forthcoming project.
-Explain why it would be worthwhile to solve this problem.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Background Survey}
-
-\subsection{Introduction}
-
-\subsection{What was covered and why}
-
-\subsection{How papers were found; what terms were searched for + snowballing}
+What was covered and why; How papers were found; what terms were searched for + snowballing.
 
 \subsection{Data Quality Metrics}
+
+2nd and 3rd papers both investigate what quality means.
+
+Several authors have investigated the \emph{meaning} of quality.   \cite{sucansuch2018} said ..
+
+Several authors have investigated the application quality metrics to ticket data.
+
+\citet{bachmann2009software} attempted to compute quality metrics for a range of project data sources, including bug tracking databases, version control logs.  They attempted to link bug tracking and change logs and showed that the closed source project investigated reported higher quality metrics.
+
+\citet{}
 
 \textbf{Software Process Data Quality and Characteristics}\cite{bachmann2009software}:
 \begin{itemize}
@@ -1018,14 +1036,24 @@ Activity Profiles}\cite{Naguib2013BugReportAssignee}:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}
 
+% 3- 4 pages 
+
+What are we actually going to do?
+
+Research questions, outline experimental design, independent variables, dependent variables.
+
+
+
 state how you propose to solve the software development problem. Show that your proposed approach is feasible, but identify any risks.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Work Plan}
 
+% 1 - 2 pages  structure as work packages (don't bother with a chart).
+
 show how you plan to organize your work, identifying intermediate deliverables and dates.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 \bibliography{mprop}
 \end{document}
