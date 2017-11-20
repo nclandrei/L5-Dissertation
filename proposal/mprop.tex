@@ -347,10 +347,35 @@ Explain why it would be worthwhile to solve this problem.
     The main goal of the paper is to find an approach that improves on
     previous methods to link source code fragments in discussions to source code.
     These previous methods were mainly based on information retrieval or 
-    change log analysis.
+    change log analysis. The main reason behind the authors' goal was
+    that a successful tool which could accomplish the goal would drastically
+    improve traceability in a project.
   \item \textbf{What was the method?}
+    They created a tool based on fuzzy code search that could parse bug reports
+    discussions and, then, match the locations in the source code where those
+    code fragments belong to. The authors conducted the evaluation on the Eclipse
+    open source project after developing the 2 stages of the algorithm:
+      \begin{itemize}
+        \item they first use infoZilla, presented in \cite{bettenburg2008extracting},
+        to extract source code from documents belonging to a document archive;
+        \item then they perform a fuzzy textual search using a token-based clone
+        detection tool;
+        \item finally, they analyze all clone groups that associate clone pairs with
+        extracted code fragments to source code files; then, a traceability link is created,
+        which is basically a tuple containing a clone group ID and file paths corresponding
+        to the corresponding source code files.
+      \end{itemize}
   \item \textbf{What did they learn?}
+    First of all, as many software projects have large code bases, creating such 
+    traceability links is no trivial task. Moreover, they noticed an increase of 20.01\%
+    in total traceability links between issue reports and source code compared to state of the art
+    technique (which is also most used one), change log analysis. Thus, there is room for
+    improvement in this area.
   \item \textbf{Relevance to our work}:
+    If we'd decide to use this approach, we can find out even more information about
+    quality in issue reports/tickets as we can also analyze the source code files necessary
+    to fix that specific issue. This, combined with infoZilla, could prove valuable for our
+    mining and extraction processes.
 \end{itemize}
 
 % \textbf{}\cite{}:
