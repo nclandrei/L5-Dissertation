@@ -378,13 +378,55 @@ Explain why it would be worthwhile to solve this problem.
     mining and extraction processes.
 \end{itemize}
 
-% \textbf{}\cite{}:
-% \begin{itemize}
-%   \item \textbf{What were the goals?}
-%   \item \textbf{What was the method?}
-%   \item \textbf{What did they learn?}
-%   \item \textbf{Relevance to our work}:
-% \end{itemize}
+\textbf{Predicting the severity of a reported bug}\cite{lamkanfi2010predicting}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The main goal of the research was to determine if, using textual analysis, one can
+    predict the severity of a bug. This main research question was further divided into
+    4 RQs:
+      \begin{itemize}
+        \item which terms in the textual description could serve as good indicators for
+        the bug severity;
+        \item what types of textual fields (e.g. summary, description) serve indicate the
+        bug severity best;
+        \item how many sample does one need to train an accurate predictor;
+        \item is it better to have a specialized predictor for each component or combine
+        bug reports over multiple components.
+      \end{itemize}
+  \item \textbf{What was the method?}
+    The authors conducted their research on the Mozilla, Eclipse and GNOME project. The 
+    approach can be divided into 5 steps:
+      \begin{itemize}
+        \item extract and organize bug reports;
+        \item preprocess bug reports (i.e. tokenization, stop word removal and stemming);
+        \item train the classifier on multiple datasets of bug reports (they used a ratio of
+        70\% - training, 30\% - evaluation);
+        \item apply the trained classifier on the evaluation set.
+      \end{itemize}
+        Then, they used precision and recall to evaluate their results.
+  \item \textbf{What did they learn?}
+    The authors managed to answer all their 4 research questions:
+      \begin{itemize}
+        \item terms such as deadlock, hand, crash, memory or segfault usually indicate a severe bug;
+        however, there are other terms that can indicate the opposite (i.e. non-severe bugs),
+        such as typo;
+        \item they switched from analysing only the one-line summary to analysing the whole
+        textual description as it contains more detailed information, thus the model can be
+        trained better; however, when they analysed the results and noticed that they had a large
+        number of false positives, which made them switch back to one-line summaries;
+        \item the classifier needs a large number of datasets in order to predict better on the
+        evaluation set;
+        \item it mainly depends on the type of project and how it is structured; thus, in Mozilla
+        and GNOME, which share problem-specific characteristics over different components, using a 
+        predictor across components sees improvements; however, the dataset needs to be even larger,
+        otherwise the performance starts to decrease.
+      \end{itemize}
+  \item \textbf{Relevance to our work}:
+    The authors' findings could help us in better understanding textual description analysis and how
+    it can indicate various aspects about a ticket, such as severity. Thus, we can apply the technique
+    described in order to differentiate between severe and non-severe bug reports so that we can 
+    focus on a specific category in our own research, if we want that.
+\end{itemize}
 
 % \textbf{}\cite{}:
 % \begin{itemize}
@@ -393,7 +435,6 @@ Explain why it would be worthwhile to solve this problem.
 %   \item \textbf{What did they learn?}
 %   \item \textbf{Relevance to our work}:
 % \end{itemize}
-
 
 \textbf{Where should we fix this bug?}\cite{kim2013should}:
 \begin{itemize}
