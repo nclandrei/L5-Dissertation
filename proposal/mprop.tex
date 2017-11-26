@@ -352,6 +352,48 @@ parse bug reports and correctly extract patches, stack traces, source code and
 enumerations. When evaluating it on over 160.000 Eclipse bug reports, it proved to 
 have a very high rate of over 97\% accuracy.
 
+However, \citet{kim2013should} propose a rather different technique than the one
+exposed in \citet{bettenburg2012using}. The authors have employed a two-phase
+recommendation model that would locate the necessary fixes based on information
+in bug reports. Firstly, they did a feature extraction on the bug reports (e.g. 
+extract description, summary, metadata). Then, in order to successfully predict
+locations, this model was trained on collected bug reports and then, when given
+a new bug report, it would try to localize the files that need to be changed 
+automatically. Finally, the actual implementation was put into place, and that
+is the two phase recommendation model, composed of binary (filters out 
+uninformative bug reports before predicting the files to fix) and multiclass (
+previously filtered bug reports are used as training data and only after that
+new bug reports can be analyzed and files to be changed recommended). The 
+overall accuracy was above the one achieved by \citet{bettenburg2012using}, 
+being able to rank over 70\%, but only as long as it recommended \emph{any} 
+locations.
+
+Even though we have discussed about quality in bug reports and how it can be
+identified, we must also investigate if the platform where these bug reports 
+reside (i.e. bug trackers) are properly fitting the software environment. 
+The work of \citet{just2008towards} tries to find the answer to this question.
+The authors launched a survey to developers from Eclipse, Mozilla and Apache
+open source projects from which they received 175 comments back. Then, they
+applied a card sort in order to organize the comments into hierarchies to 
+deduce a higher level of abstraction and identify common patterns. In the end,
+they ranked the top suggestions as follows:
+  \begin{itemize}
+    \item provide tool support for users to collect and prepare information that 
+      developers need;
+    \item find volunteers to translate bug reports filed in foreign languages;
+    \item provide different user interfaces for each user level and give cues to 
+      inexperienced reporters on what to report and best practices;
+    \item reward reporters when they do a good job;
+    \item integrate reputation into user profiles to mark experienced reporters;
+    \item provide powerful and easy to use tools to search bug reports;
+    \item encourage users to submit additional details (provide tools for merging 
+      bugs).
+  \end{itemize}
+
+One other important aspect when analyzing the quality of a bug report is the
+time it takes to triage it. Triaging is the process of analyzing issues and 
+based on the information available, assign it to 
+
 \textbf{Predicting the severity of a reported bug}\cite{lamkanfi2010predicting}:
 \begin{itemize}
   \item \textbf{What were the goals?}
@@ -402,44 +444,6 @@ have a very high rate of over 97\% accuracy.
     focus on a specific category in our own research, if we want that.
 \end{itemize}
 
-\textbf{Where should we fix this bug?}\cite{kim2013should}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The main goal of the paper was to aid developers in easily finding where to
-    apply the necessary changes in order to fix a bug. The authors wanted to bridge
-    this gap by creating a two-phase recommendation model that would locate the locations
-    where the fixes need to be applied based on the corresponding bug reports.
-  \item \textbf{What was the method?}
-    They divided the work into multiple stages:
-      \begin{itemize}
-        \item firstly, they did a feature extraction on the bug reports (e.g. extract
-        description, metadata, summary);
-        \item in order to predict the locations of the necessary fixes, the one-phase
-        recommendation model was put into place - this model would be trained on collected
-        bug reports and then, when given a new bug report, it would try to localize the 
-        files that need to be changed automatically;
-        \item last step was to implement the two-phase recommendation model which basically
-        has two classification phases - binary and multiclass:
-          \begin{itemize}
-            \item binary phase filters out uninformative bug reports before predicting the
-            files to fix;
-            \item multiclass phase where the previously filtered bug reports are used as
-            training data and only after that new bug reports can be analyzed and files to be
-            changed recommended.
-          \end{itemize}
-      \end{itemize}
-  \item \textbf{What did they learn?}
-    Evaluating the model yielded a 70\% accuracy in pointing to the correct files
-    to be fixed, as long as the algorithm actually recommended any locations. However, the authors
-    acknowledge that the approach needs extra work, especially in fine-grained defect 
-    localization, performance improvement and bug triaging.
-  \item \textbf{Relevance to our work}:
-    The research shows interesting points regarding time-to-fix-bug and bug report
-    contents, thus it can give us an insight into how ticket quality can affect that 
-    time to fix the bug (in the case of this paper it would mean to successfully pass the first
-    phase of the recommendation model so that fix locations could be proposed).
-\end{itemize}
-
 \textbf{Automatic Bug Report Assignment}\cite{anvik2006automating}:
 \begin{itemize}
   \item \textbf{What were the goals?}
@@ -465,17 +469,6 @@ have a very high rate of over 97\% accuracy.
   The research presented can help us in understanding better if statistical expetiments are helpful in analyzing tickets, as well as give an insight into how important ticket quality and proper triaging are for any software projct. 
 \end{itemize}
 
-\textbf{Effects of process maturity on quality, cycle time and effort in software product development}\cite{harter2000effects}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-  The research tries to investigate the relationship between process maturity, quality, cycle time and effort in software projects. The authors are mainly trying to prove/reject a couple of hypotheses: higher levels of process maturity lead to higher product quality in software projects, higher levels of process maturity are associated with increased cycle time in software products, higher product quality is associated with lower cycle time, higher levels of process maturity lead to increased development efforts in the project and higher product quality is associated with lower development effort.
-  \item \textbf{What was the method?}
-  In order to test their hypotheses, the authors examined data coming from 30 projects belonging to the systems integration division from a large IT company. The process improvement data was collected via external divisions and by government agencies to provide independent assessments of the firm’s software development processes. Then, they analyzed a couple of key variables and see how they interact: process maturity, product quality, cycle time, development effort, product size, domain/data/decision complexity and requirements ambiguity.
-  \item \textbf{What did they learn?}
-  They learned that the main features they inspected are additively separable and linear. Moreover, they found out that higher levels of process maturity are associated with significantly higher quality, but also with increased cycle times and development efforts. On the other hand, the reductions in cycle time and effort resulting from improved quality outweigh the marginal increases from achieving more process maturity.
-  \item \textbf{Relevance to our work}:
-  It can aid our research through better understanding of how various factors can influence the software development processes, thus giving more value to our own research (i.e. being able to automatically determine issue quality could improve better issue writing guidelines/better rules to be enforced, thus reduced triaging and development costs). 
-\end{itemize}
 
 \textbf{Where should the bugs be fixed?-more accurate information retrieval-based bug localization based on bug reports}\cite{zhou2012should}:
 \begin{itemize}
@@ -537,18 +530,6 @@ have a very high rate of over 97\% accuracy.
   First paper on importance of tossing and its impact on the software development process. It might prove useful as we shall also inspect tossing and bug assignment in our own research in order to determine ticket quality (i.e. maybe tossing actually reduces the quality of the ticket?). 
 \end{itemize}
 
-\textbf{Towards the Next Generation of Bug Tracking Systems}\cite{just2008towards}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-  The authors wanted to determine what makes for good bug reports and, more specifically, how the reporting environment can be changed to best suit the developers’ needs (and everyone else involved in the software project). 
-  \item \textbf{What was the method?}
-  They first launched a survey to developers from Eclipse, Mozilla and Apache open source projects from which they received 175 comments back. Then, they applied a card sort in order to organize the comments into hierarchies to deduce a higher level of abstraction and identify common patterns. 
-  \item \textbf{What did they learn?}
-  They found 7 main topics of improvement for bug tracking systems: provide tool support for users to collect and prepare information that developers need, find volunteers to translate bug reports filed in foreign languages, provide different user interfaces for each user level and give cues to inexperienced reporters on what to report and best practices, reward reporters when they do a good job, integrate reputation into user profiles to mark experienced reporters, provide powerful and easy to use tools to search bug reports, encourage users to submit additional details (provide tools for merging bugs). 
-  \item \textbf{Relevance to our work}:
-  This is an important paper to our research as it presents, from open source developers’ perspective, how bug reporting and bug tracking systems should behave. This research gives us various topics to concentrate on when analyzing the quality of tickets. 
-\end{itemize}
-
 \textbf{Bug Report Assignee Recommendation using 
 Activity Profiles}\cite{Naguib2013BugReportAssignee}:
 \begin{itemize}
@@ -568,43 +549,6 @@ Activity Profiles}\cite{Naguib2013BugReportAssignee}:
   \item \textbf{Relevance to our work}: this work complements the research
     presented in Anvik et al. \cite{anvik2006should} and it will provide us
     with valuable insight into how automatic triaging should be performed.
-\end{itemize}
-
-\textbf{Secret Life of Bugs}\cite{aranda2009secret}:
-\begin{itemize}
-\item What were the goals?
-  The paper tries to understand and analyze common bug fixing coordination
-  activities. Another goal of the paper was to analyze the reliability of
-  repositories in terms of software projects coordination and propose
-  different directions on how to implement proper tools.
-\item What was the method?
-  They executed a field study which was split into two parts:
-  \begin{itemize}
-  \item firstly, they did an exploratory case study of bug repos histories;
-  \item secondly, they conducted a survey with professionals (i.e.\ testers,
-    developers).
-  \end{itemize}
-  All data and interviews were conducted using Microsoft bug repositories and
-  employees.
-\item What did they learn?
-  They learned that there are multiple factors which influence the coordination
-  activities that revolve around bug fixing, such as organizational, social and
-  technical knowledge, thus one cannot infer any conclusions only by automatic
-  analysis of the bug repositories. Also, through surverying the professionals,
-  they reached the conclusion that there are 8 main goals which can be used for
-  better tools and practices:
-  \begin{itemize}
-  \item probing for ownership;
-  \item summit;
-  \item probing for expertise;
-  \item code review;
-  \item triaging;
-  \item rapid-fire emailing;
-  \item infrequent, direct email;
-  \item shotgun emails.
-  \end{itemize}
-\item Relevance to our work: this paper is one of the key papers for our
-  research paper.
 \end{itemize}
 
 \textbf{Who should fix this bug?}\cite{anvik2006should}:
@@ -700,6 +644,56 @@ Activity Profiles}\cite{Naguib2013BugReportAssignee}:
 \end{itemize}
 
 \subsection{Measuring Cost and Waste in Software Projects}
+
+\textbf{Secret Life of Bugs}\cite{aranda2009secret}:
+\begin{itemize}
+\item What were the goals?
+  The paper tries to understand and analyze common bug fixing coordination
+  activities. Another goal of the paper was to analyze the reliability of
+  repositories in terms of software projects coordination and propose
+  different directions on how to implement proper tools.
+\item What was the method?
+  They executed a field study which was split into two parts:
+  \begin{itemize}
+  \item firstly, they did an exploratory case study of bug repos histories;
+  \item secondly, they conducted a survey with professionals (i.e.\ testers,
+    developers).
+  \end{itemize}
+  All data and interviews were conducted using Microsoft bug repositories and
+  employees.
+\item What did they learn?
+  They learned that there are multiple factors which influence the coordination
+  activities that revolve around bug fixing, such as organizational, social and
+  technical knowledge, thus one cannot infer any conclusions only by automatic
+  analysis of the bug repositories. Also, through surverying the professionals,
+  they reached the conclusion that there are 8 main goals which can be used for
+  better tools and practices:
+  \begin{itemize}
+  \item probing for ownership;
+  \item summit;
+  \item probing for expertise;
+  \item code review;
+  \item triaging;
+  \item rapid-fire emailing;
+  \item infrequent, direct email;
+  \item shotgun emails.
+  \end{itemize}
+\item Relevance to our work: this paper is one of the key papers for our
+  research paper.
+\end{itemize}
+
+
+\textbf{Effects of process maturity on quality, cycle time and effort in software product development}\cite{harter2000effects}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+  The research tries to investigate the relationship between process maturity, quality, cycle time and effort in software projects. The authors are mainly trying to prove/reject a couple of hypotheses: higher levels of process maturity lead to higher product quality in software projects, higher levels of process maturity are associated with increased cycle time in software products, higher product quality is associated with lower cycle time, higher levels of process maturity lead to increased development efforts in the project and higher product quality is associated with lower development effort.
+  \item \textbf{What was the method?}
+  In order to test their hypotheses, the authors examined data coming from 30 projects belonging to the systems integration division from a large IT company. The process improvement data was collected via external divisions and by government agencies to provide independent assessments of the firm’s software development processes. Then, they analyzed a couple of key variables and see how they interact: process maturity, product quality, cycle time, development effort, product size, domain/data/decision complexity and requirements ambiguity.
+  \item \textbf{What did they learn?}
+  They learned that the main features they inspected are additively separable and linear. Moreover, they found out that higher levels of process maturity are associated with significantly higher quality, but also with increased cycle times and development efforts. On the other hand, the reductions in cycle time and effort resulting from improved quality outweigh the marginal increases from achieving more process maturity.
+  \item \textbf{Relevance to our work}:
+  It can aid our research through better understanding of how various factors can influence the software development processes, thus giving more value to our own research (i.e. being able to automatically determine issue quality could improve better issue writing guidelines/better rules to be enforced, thus reduced triaging and development costs). 
+\end{itemize}
 
 \textbf{Waste Identification}\cite{Korkala2014WasteIdentification}:
 \begin{itemize}
