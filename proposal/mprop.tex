@@ -286,6 +286,37 @@ bridged it might lead to decrased data quality.
 
 \subsection{Issue Quality}
 
+Issue quality is the main topic of this literature review as it revolves around
+software tickets and what are the characteristics of a well-written and 
+informative bug report, how efficient are bug tracking systems, what defines
+an efficient bug triaging process etc. 
+
+The first and most important sub-topic of issue quality, which is the one
+we will address in our own research as well, is the quality of bug reports.
+There are several authors that have tried to defined what makes for a good bug
+report and what components actually improve the overall quality.
+
+\citet{bettenburg2008makes} have tried, through their work, to analyze what 
+makes for a good bug report through qualitative analysis. They interviewed over
+450 developers and asked them what are the most important features for them in
+a bug report that help them solve the issue quicker. They reached the conclusion 
+that stack traces and steps to reproduce increased the quality of a bug report 
+the most, followed by well-written, grammar error free summaries and 
+descriptions. Last but not least, they also created a tool called CueZilla that 
+could with an accuracy rate between 31 and 48\% predict the quality of a bug 
+report. 
+
+Strengthening the argument that readability matters considerably in bug report 
+quality is the work of \citet{hooimeijer2007modeling}. They ran an analysis over
+27000 bug reports from the Mozilla Firefox project, looking at self-reported 
+severity, readability, daily load, submitter reputation and changes over time. 
+After running the evaluation, they not only found out about the importance of
+readability in bug reports, but also that attachment and comment counts are 
+valuable for faster triaging and that patch count, for example, does not
+contribute in the same manner as the previous two.
+
+
+
 \textbf{Using fuzzy code search to link code fragments in discussions to source code}\cite{bettenburg2012using}:
 \begin{itemize}
   \item \textbf{What were the goals?}
@@ -624,41 +655,6 @@ Activity Profiles}\cite{Naguib2013BugReportAssignee}:
     with valuable insight into how automatic triaging should be performed.
 \end{itemize}
 
-\textbf{Modeling Bug Report Quality}\cite{hooimeijer2007modeling}
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The authors' goal is to present a model that would determine if a bug
-    report will be triaged in a given amount of time. Moreover, they are 
-    trying to propose features that could help composing a good quality
-    bug report.
-  \item \textbf{What was the method?}
-    They run an analysis on over 27000 bug reports from the Mozilla Firefox
-    project, selecting a couple of surface features that could be applied:
-      \begin{itemize}
-        \item self-reported severity;
-        \item readability;
-        \item daily load (i.e.\ total number of bug reports that need to be
-          dealt with at that point in time);
-        \item submitter reputation;
-        \item changes over time.
-      \end{itemize}
-    Afterwards, they ran 4 experiments (i.e.\ validate the assumptions, find
-    how much post-submission data is necessary, find the optimal resolved by
-    cutoff, evaluate the hypothetical benefit) and analyzed the results to
-    see if their model would be beneficial.
-  \item \textbf{What did they learn?}
-    They found out that linear model, even a simple one, can have 
-    better-than-chance predictive power. Also, they came to the conclusion that 
-    attachment and comment counts are really valuable for triaging the bug faster,
-    compared to, for example, patch count. Moreover, the readability of a bug is
-    important as it proved to influence the duration of the triaging process. 
-  \item \textbf{Relevance to our work}: the authors' goal was quite similar to ours
-    as they are trying to find out which features make for a good quality bug 
-    report. Moreover, they are also using programmatic analysis instead of
-    interviews with developers to produce the results, which is the same approach
-    we are aiming for in our research.
-\end{itemize}
-
 \textbf{Secret Life of Bugs}\cite{aranda2009secret}:
 \begin{itemize}
 \item What were the goals?
@@ -694,24 +690,6 @@ Activity Profiles}\cite{Naguib2013BugReportAssignee}:
   \end{itemize}
 \item Relevance to our work: this paper is one of the key papers for our
   research paper.
-\end{itemize}
-
-\textbf{What makes a good bug report}\cite{bettenburg2008makes}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-  The main goal of the paper was to investigate the \textbf{quality of bug reports} from a developer's
-  point of view, based on the typical information found in such a report (e.g.\ stack traces, screenshots).
-\item \textbf{What was the method?}
-  The authors conducted a massive survey with over 450 respondents. The survey was online and it targeted
-  developers from Mozilla, Apache and Eclipse.
-\item \textbf{What did they learn?}
-  The main conclusion of this research paper was that well written bug reports will more likely get the 
-  attention of the developers. Thus, including steps to reproduce the bugs or stack traces proved to increase
-  the quality of the bug report. Also, an important achievement reached by the authors was the development of
-  a prototype tool called Cuezilla that could estimate, with an accuracy rate of 31\-48\%, the quality of a bug
-  report.
-\item \textbf{Relevance to our work}: it is relevant to our research in that it provides valuable insight into 
-  what makes for a good bug report based on actual professionals' opinions.
 \end{itemize}
 
 \textbf{Who should fix this bug?}\cite{anvik2006should}:
