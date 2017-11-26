@@ -1,0 +1,57 @@
+DATA QUALITY
+
+\textbf{Software Process Data Quality and Characteristics}\cite{bachmann2009software}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The authors are trying to investigate different software process data
+    (e.g. bug tracking databases, version control systems logs) in order to
+    infer quality and characteristics. Then, they want to compute measures
+    and discuss the issues that arise from these observations.
+  \item \textbf{What was the method?}
+    They examined 6 software projects, 5 of which were open source, by extracting
+    the SVN and CVS logs, as well as the content of the bug tracker databases. Then,
+    they tried to link the logs with the contents of the bug tracker databases as they
+    are not integrated by default. 
+  \item \textbf{What did they learn?}
+    Firstly, the closed source project the authors examined showed much more data
+    quality as the open source counterparts, among which better average attachments 
+    per bug report, better average status changes per bug report or average commits
+    per bug report/developer. Moreover, the authors found that there is little linkage
+    between bug reports and version control logs, thus reducing the overall traceability.
+    Also, there is reduced quality in change logs as, for example, the Eclipse project
+    has more than 20\% empty commit messages. In conclusion, closed source projects will
+    probably exhibit improved data quality than open source ones, but data quality in general
+    differs from project to project.
+  \item \textbf{Relevance to our work}:
+    The analysis on data quality in open/closed source projects presented in this 
+    research is valuable to us as it presents various statistics on commits, bug report
+    structure and quality, as well as linkage between the two. We might apply the techniques
+    in our own research on ticket quality.
+\end{itemize}
+
+\textbf{Data Quality in Context}\cite{strong1997data}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The main goal of the authors was to analyze data quality in different 
+    organizations, observe data quality problem patterns as well as see 
+    its implications.
+  \item \textbf{What was the method?}
+    They performed a qualitative analysis, examining 42 data quality projects 
+    from 3 organizations. They collected data via interviews of data procedures,
+    custodians, customers and managers. The authors analysed each project using
+    the data quality dimensions as content analysis codes. 
+  \item \textbf{What did they learn?}
+    One thing that the authors learned is that representational data quality 
+    dimensions are underlying causes of accessibility data quality problem 
+    patterns. Also, they observed three underlying causes for users' complaints
+    regarding data not supporting their tasks:
+      \begin{itemize}
+        \item incomplete data;
+        \item inadequately defined or measured data;
+        \item data that could not be appropriately aggregated.
+      \end{itemize}
+  \item \textbf{Relevance to our work}: this paper brings valuable insight into
+    major data quality issues and patterns, information which we can apply in 
+    our own research.
+\end{itemize}
+
