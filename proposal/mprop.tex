@@ -315,44 +315,42 @@ readability in bug reports, but also that attachment and comment counts are
 valuable for faster triaging and that patch count, for example, does not
 contribute in the same manner as the previous two.
 
+Another research that agrees that stack traces are helpful in solving bug
+reports faster is the one performed by \citet{schroter2010stack}. They conducted
+the whole experiment on the Eclipse project. They first extracted the stack
+traces using the infoZilla tool(\citep{bettenburg2008extracting}), followed by
+linking the stack traces to changes in the source code (change logs) by mining
+the version repository of the Eclipse project. The results were that 
+around 60\% of the bugs that contained stack traces in their reports were fixed
+in one of the methods in the frame, with 40\% being fixed in exactly the first
+stack frame.
 
+Following on the conclusions of \citet{bettenburg2008makes} we have found out
+that the investigations undertaken by \citet{bettenburg2007quality} reveal 
+very similar results. They performed the same type of evaluation method (i.e. 
+interviews with developers) and confirmed that steps to reproduce and stack traces
+are the most important features in a bug report that help developers solve the
+issue quicker.
 
-\textbf{Using fuzzy code search to link code fragments in discussions to source code}\cite{bettenburg2012using}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The main goal of the paper is to find an approach that improves on
-    previous methods to link source code fragments in discussions to source code.
-    These previous methods were mainly based on information retrieval or 
-    change log analysis. The main reason behind the authors' goal was
-    that a successful tool which could accomplish the goal would drastically
-    improve traceability in a project.
-  \item \textbf{What was the method?}
-    They created a tool based on fuzzy code search that could parse bug reports
-    discussions and, then, match the locations in the source code where those
-    code fragments belong to. The authors conducted the evaluation on the Eclipse
-    open source project after developing the 2 stages of the algorithm:
-      \begin{itemize}
-        \item they first use infoZilla, presented in \cite{bettenburg2008extracting},
-        to extract source code from documents belonging to a document archive;
-        \item then they perform a fuzzy textual search using a token-based clone
-        detection tool;
-        \item finally, they analyze all clone groups that associate clone pairs with
-        extracted code fragments to source code files; then, a traceability link is created,
-        which is basically a tuple containing a clone group ID and file paths corresponding
-        to the corresponding source code files.
-      \end{itemize}
-  \item \textbf{What did they learn?}
-    First of all, as many software projects have large code bases, creating such 
-    traceability links is no trivial task. Moreover, they noticed an increase of 20.01\%
-    in total traceability links between issue reports and source code compared to state of the art
-    technique (which is also most used one), change log analysis. Thus, there is room for
-    improvement in this area.
-  \item \textbf{Relevance to our work}:
-    If we'd decide to use this approach, we can find out even more information about
-    quality in issue reports/tickets as we can also analyze the source code files necessary
-    to fix that specific issue. This, combined with infoZilla, could prove valuable for our
-    mining and extraction processes.
-\end{itemize}
+However, in order to model the quality of a bug report, one needs to be able to
+successfully extract various types of information from such a report and, if 
+possible, link them to the source code of the project (i.e. source code fragments
+in bug report discussions should be linked to the corresponding sections in the 
+actual code) or other software artifacts. There are several researches that tried 
+to analyze such techniques and one of them is the work of 
+\citet{bettenburg2012using}. The authors created a tool that could parse a bug 
+report (using fuzzy code search) and extract source code that could then be
+matched with exact locations in the source code, in the end producing a 
+traceability link (i.e. tuple containing a clone group ID and file paths 
+corresponding to the source code files). Evaluation showed an increase of
+roughly 20\% in total traceability links between issue reports and source code 
+when compared to the current state-of-the-art technique, change log analysis.
+
+\citet{bettenburg2012using} also made use of a tool developed by 
+\citet{bettenburg2008extracting} called infoZilla. This application can
+parse bug reports and correctly extract patches, stack traces, source code and
+enumerations. When evaluating it on over 160.000 Eclipse bug reports, it proved to 
+have a very high rate of over 97\% accuracy.
 
 \textbf{Predicting the severity of a reported bug}\cite{lamkanfi2010predicting}:
 \begin{itemize}
@@ -404,15 +402,6 @@ contribute in the same manner as the previous two.
     focus on a specific category in our own research, if we want that.
 \end{itemize}
 
-\textbf{Information needs in bug reports: improving cooperation between developers and users}\cite{breu2010information}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-
-  \item \textbf{What was the method?}
-  \item \textbf{What did they learn?}
-  \item \textbf{Relevance to our work}:
-\end{itemize}
-
 \textbf{Where should we fix this bug?}\cite{kim2013should}:
 \begin{itemize}
   \item \textbf{What were the goals?}
@@ -449,68 +438,6 @@ contribute in the same manner as the previous two.
     contents, thus it can give us an insight into how ticket quality can affect that 
     time to fix the bug (in the case of this paper it would mean to successfully pass the first
     phase of the recommendation model so that fix locations could be proposed).
-\end{itemize}
-
-\textbf{Do Stack Traces Help Developers Fix Bugs?}\cite{schroter2010stack}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The main goal of the paper was to identify if including a stack trace in a 
-    bug report would help the developers fix the issue quicker. They divided their
-    investigations in order to follow 4 research questions:
-      \begin{itemize}
-        \item are bugs fixed in methods in stack traces;
-        \item how far down the stack to trace;
-        \item are two or more stack traces better than one;
-        \item do stack traces help speed up debugging.
-      \end{itemize}
-  \item \textbf{What was the method?}
-    They conducted their investigation on the Eclipse project which is developed in
-    Java. Then, they extracted stack traces from bug reports using the infoZilla tool.
-    Afterwards, they linked the stack traces (and thus the corresponding bug report)
-    to changes in the source code (change logs) by mining the version repository of the
-    Eclipse project.
-  \item \textbf{What did they learn?}
-    They found answers to all their research questions, and are as follows:
-      \begin{itemize}
-        \item around 60\% of the bugs that contained stack traces were fixed in 
-        one of the methods in the frames;
-        \item around 40\% were fixed in the first stack frame, around 80\% were fixed
-        within the top 6 frames, while close to 90\% of the bugs were fixed within top 10 stack frames;
-        \item having more than one stack trace usually helped more than only a single one;
-        \item bug reports containing stack traces usually have a shorter lifetime, thus
-        speeding up the debugging process.
-      \end{itemize}
-  \item \textbf{Relevance to our work}:
-    Stack traces are one of the types of information we are investigating in our research
-    and it is very useful to have such a study back up the statement that stack traces are
-    valuable for developers so that they speed up the issue fixing process.
-\end{itemize}
-
-\textbf{Extracting Structural Information from Bug Reports}\cite{bettenburg2008extracting}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The authors try to present a tool called infoZilla that can accurately
-    extract different types of information (e.g. stack traces, source code
-    fragments) from bug reports.
-  \item \textbf{What was the method?}
-    They selected a few categories of information that both infoZilla could
-    successfully extract from bug reports and that are of most interest to developers. Thus,
-    the categories selected are:
-      \begin{itemize}
-        \item patches;
-        \item stack traces;
-        \item source code;
-        \item enumerations.
-      \end{itemize}
-    Then, they ran the tool on tickets and evaluated the overall accuracy.
-  \item \textbf{What did they learn?}
-    After developing the tool to inspect such elements and retrieve them, 
-    they evaluated it on over 160000 Eclipse bug reports. For all categories, infoZilla
-    achieved over 97\% accuracy. 
-  \item \textbf{Relevance to our work}:
-    If we could manage to get this tool and use it in our own research, it would be
-    beneficial as we could extract efficiently different types of information we are
-    interested in testing ticket quality (e.g. stack traces).
 \end{itemize}
 
 \textbf{Automatic Bug Report Assignment}\cite{anvik2006automating}:
@@ -620,18 +547,6 @@ contribute in the same manner as the previous two.
   They found 7 main topics of improvement for bug tracking systems: provide tool support for users to collect and prepare information that developers need, find volunteers to translate bug reports filed in foreign languages, provide different user interfaces for each user level and give cues to inexperienced reporters on what to report and best practices, reward reporters when they do a good job, integrate reputation into user profiles to mark experienced reporters, provide powerful and easy to use tools to search bug reports, encourage users to submit additional details (provide tools for merging bugs). 
   \item \textbf{Relevance to our work}:
   This is an important paper to our research as it presents, from open source developers’ perspective, how bug reporting and bug tracking systems should behave. This research gives us various topics to concentrate on when analyzing the quality of tickets. 
-\end{itemize}
-
-\textbf{Quality of Bug Reports in Eclipse}\cite{bettenburg2007quality}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-  The authors were looking to find the most important factors that determine the quality of a bug report. 
-  \item \textbf{What was the method?}
-  They conducted a survey with Eclipse developers on what they find most important and helpful in a bug report. Another goal was to develop a tool that could  automatically measure the quality in bug reports based on the best practices for writing such reports (Eclipse guidelines). 
-  \item \textbf{What did they learn?}
-  They learned that well written bug reports will most likely get more attention from developers. Moreover, the most important factors which influence  ticket quality are stack traces and steps to reproduce. On the other hand, the most harmful information in bug reports are errors in steps to reproduce, incomplete information and wrong observed behavior. Regarding quzilla, they measured that the tool achieved an accuracy of 42\% which indicates that it could, on the long term, ensure some standard quality when reporting and creating new tickets. 
-  \item \textbf{Relevance to our work}:
-  It is mostly the same topic as our research, but we want to use statistical analysis instead of interviews/questionnaires as well as investigate tickets from multiple open source repositories, not just one. However, the findings presented here could serve as clues on where to search for factors that influence ticket quality. 
 \end{itemize}
 
 \textbf{Bug Report Assignee Recommendation using 
