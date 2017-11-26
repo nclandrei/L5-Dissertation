@@ -368,6 +368,20 @@ overall accuracy was above the one achieved by \citet{bettenburg2012using},
 being able to rank over 70\%, but only as long as it recommended \emph{any} 
 locations.
 
+A third technique for linking source code files from the textual description of a 
+bug report is the one proposed by \citet{zhou2012should}. The authors
+firstly performed a textual analysis, looking for similarities between the bug 
+report description and the source code files. Then, it analyzed previous bugs in 
+the repository to find the most similar ones, thus being able to find which files 
+ought to be changed. Lastly, it assigned scores to similar files, the ones with 
+bigger sizes obtaining higher scores as they are more likely to contain bugs. They 
+collected the necessary data from Bugzilla projects and then performed the 
+evaluation. The results of the evaluation phase were positive: the bug locator
+can locate a large percentage of bugs analyzing just a small set of source code
+files. Moreover, similar bugs can improve the localization accuracy only to a 
+certain extent, while the locator outperformed every other competitor on a 
+multitude of projects. 
+
 Even though we have discussed about quality in bug reports and how it can be
 identified, we must also investigate if the platform where these bug reports 
 reside (i.e. bug trackers) are properly fitting the software environment. 
@@ -392,7 +406,62 @@ they ranked the top suggestions as follows:
 
 One other important aspect when analyzing the quality of a bug report is the
 time it takes to triage it. Triaging is the process of analyzing issues and 
-based on the information available, assign it to 
+based on the information available, determine their severity and assign them to the
+most qualified available developer to fix them. If the ticket would be valuable
+and have an increased index of quality, the triaging process would be quicker and,
+thus, reduce the cost for the organization. There are several researches that 
+are concerned with this field and how gaps can be bridged.
+
+One such example is the work of \citet{anvik2006automating}. The authors tried
+to automate the process of bug report assignment by employing a machine learning 
+algorithm which, after receiving as input various types of information (e.g. 
+textual description of bug, bug component, OS, hardware, software version, 
+developer who owns the code, current workload of developers, list of developers 
+actively contributing), would recommend the best developers to work on the ticket. 
+After the tool was evaluated, it was found that it could actually be deployed
+in the software industry so that it could be used by organizations.
+
+Working on the previous tool, the same authors proposed a new solution to automatic
+bug report assignment through the work presented in \citet{anvik2011reducing}.
+They increased the precision and recall of the algorithm and then, in order to 
+test it, they implemented a proxy to the actual web service that's providing the
+issue repository. Eventually, they also found out that the impact of poor
+software project management, including bug triaging, on software projects can
+reach alarming levels.
+
+A similar research, but which looks at the free form of the ticket only, is
+the technique presented in \citet{anvik2006should}. The authors applied a 
+supervised machine learning algorithm on the repositories to learn which 
+developers were best suited for specific tasks, thus when a new bug report would 
+come in, a small set of people would be selected. In order to train the algorithm,
+they looked at Bugzilla repositories and selected the free text form of tickets, 
+trying to label similar ones based on textual similarities. Once the tickets were
+labeled and grouped for specific developers, the algorithm would then be able
+to present the triager the set of developers suitable to fix the bug. Even though
+this approach, compared to \citet{anvik2006automating} or 
+\citet{anvik2011reducing}, does not reach the same levels of accuracy, it is much
+simpler to implement and evaluate.
+
+However, a completely different approach is the one presented by 
+\citet{jeong2009improving} that looks at both bug report assignment as well as bug 
+tossing (i.e. re-assign tickets from one developer to another). They wanted, 
+through their tossing graph approach based on the Markov property, to both 
+discover developer networks and team structures, as well as help to better assign 
+developers to bug reports. They analyzed 145.000 bug reports from Eclipse and 
+300000 from Mozilla and then, using statistical analysis on the bug reports in 
+order to find evolution histories and changes throughout the lifetime of the 
+reports, they created the bug tossing graph. The research shows that it takes a 
+long time to assign and toss bugs and, additionally, they learned that their model 
+reduces tossing steps by up to 72\% and improved the automatic bug assignment by 
+up to 23\%.
+
+Another approach to bug report assignee recommendation is the one based on
+activity profiles, proposed by \citet{Naguib2013BugReportAssignee}. The authors 
+employed an algorithm using activity profiles (i.e. assign, review, resolve 
+activity of the developer) such that, after detecting the prior
+experience, developer's role, and involvement in the project, it could
+recommend who should fix a specific bug. The average accuracy was around
+88\%, much higher than other techniques, including the ones mentioned previously. 
 
 \textbf{Predicting the severity of a reported bug}\cite{lamkanfi2010predicting}:
 \begin{itemize}
@@ -444,44 +513,6 @@ based on the information available, assign it to
     focus on a specific category in our own research, if we want that.
 \end{itemize}
 
-\textbf{Automatic Bug Report Assignment}\cite{anvik2006automating}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The author’s main goal was to determine a way through which bug triaging can be made 
-    easier using automatization approaches. 
-  \item \textbf{What was the method?}
-    The research’s output was an algorithm that can automatically assign bugs to developers based on various types of information fed. The author looked exclusively at ML approaches, examining 8 main types of information (textual description of bug, bug component, OS, hardware, software version, developer who owns the code, current workload of developers, list of devs actively contributing). Moreover, the author considers launching a Firefox extension to test the app even further through human evaluation as well. 
-  \item \textbf{What did they learn?}
-  The research brings 3 main contributions: methodology for creating semi-automated bug triaging algorithms, a characterization of performance of different approaches, as well as an actual implementation for such a semi-automated big triaget. The author discovered that with further improvements and tweaking, we can reach an even further bug triager.   
-  \item \textbf{Relevance to our work}:
-  Another project that we can use to learn about bug triaging; also we can contact maybe the author and receive either an executable or the source code for the application. 
-\end{itemize}
-
-\textbf{Reducing the effort of bug report triage}\cite{anvik2011reducing}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-  The authors had one main goal, and that was to find out if costs related to bug triaging can be reduced if ML algorithms were to be introduced. This hypothesis was backed by 2 research questions, which were if the approach would create recommenders that make accurate recommendations and if the humans can make use of the information provided by the approach. 
-  \item \textbf{What was the method?}
-  They created a bug triager which can present a list of developers from which someone can choose who is the most suitable to fix that specific issue. Also, they improved a previous research the same authors worked on, thus increasing the precision and recall of the algorithm. They employed machine learning techniques to create the algorithm. Then, in order to test it, they implemented a proxy to the actual web service that’s providing the issue repository, thus visualizing results helped conduct the evaluation process.
-  \item \textbf{What did they learn?}
-  The authors learned that their approach could actually be used in software projects as its accuracy is reasonable. They also learned that the impact of poor software project management, including bug triaging, on software projects can be  quite high.
-  \item \textbf{Relevance to our work}:
-  The research presented can help us in understanding better if statistical expetiments are helpful in analyzing tickets, as well as give an insight into how important ticket quality and proper triaging are for any software projct. 
-\end{itemize}
-
-
-\textbf{Where should the bugs be fixed?-more accurate information retrieval-based bug localization based on bug reports}\cite{zhou2012should}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-  The main goal of the paper was to implement a tool that, based on a bug report, could accurately select a number of files where the developer needs to make the necessary changes to fix the issue. They tried to answer 4 main research questions: how many bugs can be successfully lovated by BugLocator, does the revised VSM improve bug localization accuracy, does considering similar bugs improve localization accuracy, can bugLocator outperform other similar methods. 
-  \item \textbf{What was the method?}
-  The tool firstly performed a textual analysis, looking for similarities between the bug report description and the source code files. Then, it analyzed previous bugs in the repository to find the most similar ones, thus being able to find which files ought to be changed. Lastly, it assigned scores to similar files, the ones with bigger sizes obtaining higher scores as they are more likely to contain bugs. They collected the necessary data from Bugzilla projects and then performed the evaluation. 
-  \item \textbf{What did they learn?}
-  The buglocator can locate a large percentage of bugs analysing just a small set of source code files. Secondly, the revised VSM outperforms the standard VSM. Moreover, similar bugs can improve the localization accuracy only to a certain extent, while the locator outperformed every other competitor on a multitude of projects. 
-  \item \textbf{Relevance to our work}:
-  We can try to use BugLocator and even include it in our research as it gives a direct correlation between bug reports and development effort (thus reduced costs). Thus, we can infer even more possible hypotheses regarding our issues’ quality. 
-\end{itemize}
-
 \textbf{Analyzing and Relating Bug Report Data for Feature Tracking}\cite{fischer2003analyzing}:
 \begin{itemize}
   \item \textbf{What were the goals?}
@@ -494,7 +525,8 @@ based on the information available, assign it to
   This paper can give us insight into how bug reports can influence feature implementation throughout the lifetime of the ticket. 
 \end{itemize}
 
-\textbf{Duplicate Bug Reports Considered Harmful... Really?}\cite{bettenburg2008duplicate}:
+\textbf{Duplicate Bug Reports Considered Harmful... 
+Really}\cite{bettenburg2008duplicate}:
 \begin{itemize}
   \item \textbf{What were the goals?}
   The authors wanted to test two main hypotheses, and these were: duplicate bug reports provide developers with information that was not present in the original report and the information in bug duplicates can improve automated triaging techniques. 
@@ -516,67 +548,6 @@ based on the information available, assign it to
   They learned that existing conversation-based extractive summary generators trained on bug reports produce the best results. 
   \item \textbf{Relevance to our work}:
   As the paper revolves around conversations that are attached to a bug (i.e. comments) instead of the actual description of the bug, we can apply the technique described here maybe to generate summaries and analyze them as well in the overall context of ticket quality (maybe together with some sentiment analysis). 
-\end{itemize}
-
-\textbf{Improving Bug Triage with Bug Tossing Graphs}\cite{jeong2009improving}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-  The two main goals of the authors, through their bug tossing graph idea (based on the Markov property), were to discover developer networks and team structures, as well as help to better assign developers to bug reports. 
-  \item \textbf{What was the method?}
-  They analyzed 145.000 bug reports from Eclipse and 300.000 from Mozilla. Then, using statistical analysis on the bug reports in order to find evolution histories and changes throughout the lifetime of the reports, they created the bug tossing graph. 
-  \item \textbf{What did they learn?}
-  They learned that it takes a long time to assign and toss bugs. Additionally, they learned that their model reduces tossing steps by up to 72\% and improved the automatic bug assignment by up to 23\%. 
-  \item \textbf{Relevance to our work}:
-  First paper on importance of tossing and its impact on the software development process. It might prove useful as we shall also inspect tossing and bug assignment in our own research in order to determine ticket quality (i.e. maybe tossing actually reduces the quality of the ticket?). 
-\end{itemize}
-
-\textbf{Bug Report Assignee Recommendation using 
-Activity Profiles}\cite{Naguib2013BugReportAssignee}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The main goal of the paper is to automatically detect who should be
-    the developers who are most suitable to solve a specific issue.
-  \item \textbf{What was the method?}
-    They employed an algorithm using activity profiles (i.e.\ assign, review,
-    resolve activity of the developer) such that, after detecting the prior
-    experience, developer's role, and involvement in the project, it could
-    recommend who should fix a specific bug. The average accuracy was around
-    88\%, much higher than the LDA-SVM technique.
-  \item \textbf{What did they learn?}
-    They found out that their approach was more accurate than previous work
-    done on assignee recommendation, but they think that it might even be
-    improved further by combining their technique with the classic LDA-SVM one.
-  \item \textbf{Relevance to our work}: this work complements the research
-    presented in Anvik et al. \cite{anvik2006should} and it will provide us
-    with valuable insight into how automatic triaging should be performed.
-\end{itemize}
-
-\textbf{Who should fix this bug?}\cite{anvik2006should}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The authors aimed to create a tool that could automatically assign the 
-    bug report to a specific developer based on his/her suitability for that
-    specific task.
-  \item \textbf{What was the method?}
-    They applied a supervised machine learning algorithm on the 
-    repositories to learn which developers were best suited for specific tasks,
-    thus when a new bug report would come in, a small set of people 
-    would be selected. In order to train the algorithm, they looked at
-    Bugzilla repositories and selected the free text form of tickets, trying
-    to label similar ones based on textual similarities. Once the tickets were 
-    labeled and grouped for specific developers, the algorithm would then be
-    able to present the triager the set of developers suitable to fix the bug.
-  \item \textbf{What did they learn?}
-    The most important lesson learned was that collecting data from bug reports 
-    and CVS logs was quite challenging. One of the major reasons why they 
-    found this aspect hard was that not all CVS comments referenced the 
-    specific bug report id.
-  \item \textbf{Relevance to our work}
-    The paper taught us that bug triaging is hard and that there is almost no 
-    automated tool that can choose the perfect developers to work on the task.
-    Moreover, the method applied by the authors could prove useful as a 
-    learning aid when working with the open source repositories 
-    chosen as data sets.
 \end{itemize}
 
 \textbf{Software Quality \- The Elusive Target}\cite{kitchenham1996software}:
