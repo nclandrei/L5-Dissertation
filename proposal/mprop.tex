@@ -188,15 +188,42 @@ had lower mailing campaign success rates, but after applying the metrics, the
 company was able to establish a direct connection between the results of
 measuring data quality and the success rates of campaigns.
 
+\citet{nelson2005antecedents} proposed another technique for measuring data 
+quality in an organization by, firstly, setting 2 main research questions:
+  \begin{itemize}
+    \item identify a set of antecedents that both drive information and
+      system quality, as well as define the nature of the IT artifact;
+    \item explore data warehousing in general, especially analytical tools,
+      predefined reports and ad hoc queries.
+  \end{itemize}
+
+Then, the authors set up a model to define a tree-structured representation
+of system quality and data quality, as follows:
+  \begin{itemize}
+    \item data quality - defined by completeness, accuracy, format and currency;
+    \item system quality - defined by reliability, flexibility, integration,
+    response time and accessibility;
+    \item then, data and systems available are evaluated to infer 
+    data satisfaction and system satisfaction (coming from customers), which
+    in turn will compute the final satisfaction score of the product.
+  \end{itemize}
+
+After conducting a cross-functional survey to test the model, they learned that
+the features they selected were a good indicator of overall information/data and
+system quality. They also found that accuracy is the dominant determinant across
+all three data warehouse technologies, followed by completeness and format. Last
+but not least, another discovery was that more attention needs to be given to
+differences across varying technologies.
+
 Another important area of data quality is what methodologies or techniques can 
-be applied by organizations in order to improve DQ. There are several studies 
-that tried to propose such methodologies. A general overview of such techniques 
-was presented by \citet{pipino2002data} - they wanted to present ways of 
-developing usable  data quality methods that organizations can implement in 
-their own internal processes. After reviewing various techniques of assessing 
-data quality in information systems, they reached the conclusion that there is 
-no universal approach to assess data quality as it heavily depends on the 
-context where it is analysed. 
+be applied by organizations in order to improve data quality. 
+There are several studies that tried to propose such methodologies. A general 
+overview of such techniques  was presented by \citet{pipino2002data} - they 
+wanted to present ways of developing usable  data quality methods that 
+organizations can implement in their own internal processes. After reviewing 
+various techniques of assessing data quality in information systems, they reached 
+the conclusion that there is no universal approach to assess data quality as it  
+heavily depends on the context where it is analysed. 
 
 One such methodology examined by \citet{pipino2002data} is the technique 
 proposed by \citet{wang1998product} called Total Data Quality Management
@@ -212,7 +239,7 @@ improvement. After developing the methodology, the authors conclude on a
 confident note that their technique can fill a gap in the information quality
 environment.
 
-However, there are other aspects that can be investigated when trying to measure
+However, there are other aspects that can be investigated when trying to improve
 data quality. For example, \citet{prybutok2008evaluating} tried to find if 
 leadership and information quality can lead to positive outcomes in an 
 e-government's data quality. They conducted a web survey to gather data and test 
@@ -223,112 +250,39 @@ had a positive impact on the IT quality triad (information, system and service
 quality). Moreover, they found out that both leadership and IT quality improved 
 the benefits.
 
+Finally, after defining, measuring and improving data quality, we also need
+to be able to assess the impact poor DQ has on a company. In this area, there
+are several authors that investigated various implications of low indices
+of data quality.
 
+One such research is the one done by \citet{gorla2010organizational}. They wanted
+to examine what influences do system quality, service quality and data quality
+have on an organization, as well as what effect does system quality have on
+data quality. After conducting a construct measurement for the information
+systems quality dimensions \citep{swanson1997maintaining} and collecting data
+through empirical testing, they learned that service quality has the greatest
+impact of all three quality constructs. Moreover, they found out that there is 
+a linkage between system and information quality, fact that previous research
+did not reveal. Last but not least, their results indicate that the 
+above-mentioned quality dimensions have a significant positive influence on 
+organizational impact either directly or indirectly. 
 
-\textbf{Knowing-Why about Data Processes and Data Quality}\cite{lee2003knowing}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    They tried to investigate whether knowing-why affects work performance and
-    whether knowledge held by people in different roles affect the overall work
-    performance. 
-  \item \textbf{What was the method?}
-    They had 6 companies that served as data collection points. In all of them,
-    the research focused on the quality of their customer activity data, tuned
-    for the specific domain the company was activating in. They held 2 sessions
-    at each company: in the first session, the participants were presented with
-    an overview of the research and a questionnaire, while during the second 
-    session provided summary feedback on the questionnaire results and gave the
-    participants the chance to provide comments and explanations.
-  \item \textbf{What did they learn?}
-    The major finding of the study was that there is vast complexity of knowledge at work in data production process. 
-  \item \textbf{Relevance to our work}: an important research on how knowledge in
-    different roles in a company can lead to decreased data quality overall. It
-    will help us to analyse the software tickets we will mine better.
-\end{itemize}
+On the other hand, \citet{redman1998impact} had different findings. Even though
+they did not analyze multiple types of quality, but only data quality, they 
+learned that there are three main issues across most enterprises: inaccurate
+data, inconsistencies across databases and unavailable data necessary for 
+certain operations. Furthermore, they presented a number of impacts that
+poor data quality has on enterprises: lowered customer satisfaction, increased
+cost, lowered employee satisfaction, it becomes more difficult to set strategy,
+as well as worse decision making.
 
-\textbf{Antecedents of Information and System Quality}
-\cite{nelson2005antecedents}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The authors had 2 main research objectives they wanted to aim for in this
-    paper:
-      \begin{itemize}
-        \item identify a set of antecedents that both drive information and
-          system quality, as well as define the nature of the IT artifact;
-        \item explore data warehousing in general, especially analytical tools,
-          predefined reports and ad hoc queries.
-        \end{itemize}
-  \item \textbf{What was the method?}
-    They conducted a cross-functional survey to test the model the authors 
-    proposed. They focused on user experience with a data warehouse. They sent
-    email invites to the Data Warehouse Institute which distributed it further
-    to organizations, among which 7 agreed to participate, yielding a total of
-    465 completed surveys. 
-  \item \textbf{What did they learn?}
-    They learned that their selected features were indeed a good indicator of
-    overall information and system quality. They also found out that accuracy is
-    the dominant determinant across all three data warehouse technologies, 
-    followed by completeness and format. Also, the results showed that more 
-    attention needs to be given to differences across varying technologies. 
-  \item \textbf{Relevance to our work}: this paper presents important findings
-    regarding information and system quality in an IT environment. We can use it
-    when analysing the quality of the tickets we will mine.
-\end{itemize}
-
-\textbf{Organizational Impact of Information Quality}
-\cite{gorla2010organizational}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The authors had two main research questions they wanted to address:
-      \begin{itemize}
-        \item what individual/combined influences system quality, service 
-          quality, information quality have on organizational impact?
-        \item what effect does system quality have on information quality?
-      \end{itemize}
-  \item \textbf{What was the method?}
-    They conducted a construct measurement for the IS quality dimensions and 
-    collected data through empirical testing.
-  \item \textbf{What did they learn?}
-    Firstly, they learned that service quality has the greatest impact 
-    of all three quality constructs. Moreover, they found out that there is a 
-    linkage between system and information quality, fact that previous research
-    did not reveal. Lastly, their results indicate that the above-mentioned 
-    quality dimensions have a significant positive influence on organizational
-    impact either directly or indirectly.
-  \item \textbf{Relevance to our work}: the paper can provide us insights into
-    how valuable information quality is and what an impact it can have.
-\end{itemize}
-
-\textbf{Impact of Poor Data Quality}\cite{redman1998impact}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The main purpose of the article is to provide some insights into how
-    data quality can have a major economical impact on a company, as well
-    as to raise awareness about this issue.
-  \item \textbf{What was the method?}
-    The author has analysed various large enterprises and their available data 
-    to infer conclusions about the impact data quality has.
-  \item \textbf{What did they learn?}
-    There are three main issues across most enterprises:
-      \begin{itemize}
-        \item inaccurate data;
-        \item inconsistencies across databases;
-        \item unavailable data necessary for certain operations.
-      \end{itemize}
-    Moreover, the paper also presents a list of impacts poor data quality brings, among 
-    which we can find:
-      \begin{itemize}
-        \item lowered customer satisfaction;
-        \item increased cost;
-        \item lowered employee satisfaction;
-        \item it becomes more difficult to set strategy;
-        \item poorer decision making.
-      \end{itemize}
-  \item \textbf{Relevance to our work}: this is a key paper on data quality in
-    an enterprise setting and what impact it can have. It is valuable to our research 
-    because we can relate the findings with what negative impacts poor tickets
-    can bring to software projects.
-\end{itemize}
+Another research, the one of \citet{lee2003knowing}, investigated another 
+aspect: whether knowing-why affects work performance and whether knowledge held
+by people in different roles affect the overall work performance. After
+conducting various surveys with 6 companies that served as data collection 
+points, they reached the conclusion that there is vast complexity of 
+knowledge at work in the data production process and if these gaps are not 
+bridged it might lead to decrased data quality.
 
 \subsection{Issue Quality}
 
