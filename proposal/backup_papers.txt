@@ -55,3 +55,98 @@ DATA QUALITY
     our own research.
 \end{itemize}
 
+\textbf{Data Quality Assessment}\cite{pipino2002data}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The main goal of the authors is to present ways of developing usable data
+    quality metrics that organizations can implement in their own internal 
+    processes.
+  \item \textbf{What was the method?}
+    They have researched previous methods of assessing data quality in information
+    systems and they formulated general advice that can be directly implemented
+    by organizations in their processes.
+  \item \textbf{What did they learn?}
+    They learned that there is no universal approach to assessing data quality
+    as it heavily depends on the context where it is analysed.
+  \item \textbf{Relevance to our work}: it shows how one can effectively measure
+    data quality in information systems, thus we can apply it on the quality of
+    the tickets we are analysing.
+\end{itemize}
+
+\textbf{Product perspective on total Data Quality Assessment}\cite{wang1998product}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The author wanted to create a Total Data Quality Management methodology so that
+    high quality information products could be delivered to information consumers.
+  \item \textbf{What was the method?}
+    The research presents us, firstly, with a couple of definitions for the methodology:
+      \begin{itemize}
+        \item TDQM cycle - define, measure, analyze and improve information quality continuously;
+        \item information product - information output from an information manufacturing system
+          that has value to the information consumer;
+        \item information quality - fitness for use by information consumers.
+      \end{itemize}
+    Then, the author presents the four steps in order to successfully implement the TDQM methodology:
+      \begin{itemize}
+        \item clearly articulate the information product;
+        \item establish several roles that would be in charge of the information product management;
+        \item teach information quality assessment and management skills to all IP constituencies;
+        \item institutionalize continuous information product improvement.
+      \end{itemize}
+  \item \textbf{What did they learn?}
+    The author learned that this methodology is filling a gap in the information quality
+    world and that it could help organizations better manage the information quality of their
+    information products.
+  \item \textbf{Relevance to our work}
+    This article could prove helpful to our own research as the methodology presented could help
+    us in detecting if there is data quality in the projects we will be analyzing.
+\end{itemize}
+
+\textbf{AIMQ}\cite{lee2002aimq}:
+ \begin{itemize}
+   \item \textbf{What were the goals?}
+     The main challenge set by the authors was to develop an overall model
+     with an accompanying assessment instrument for quantifying information
+     quality.
+   \item \textbf{What was the method?}
+     They developed a methodology called AIM quality (hence the name AIMQ) which
+     they applied at 5 different organizations. It has 3 main components:
+      \begin{itemize}
+        \item 2 $\times$ 2 model of what information quality means to managers;
+        \item questionnaire for measuring information quality along the dimensions
+          found in first step;
+        \item two analysis techniques for interpreting the assessments captured 
+          by the questionnaire.
+      \end{itemize} 
+   \item \textbf{What did they learn?}
+      They conclude that the AIMQ methodology proved to be a practical information
+      quality tool to organizations.
+   \item \textbf{Relevance to our work}: the paper gave us valuable insight into 
+     how to assess information quality.
+\end{itemize}
+
+
+\textbf{Metrics for Measuring Data Quality}\cite{Heinrich2007MetricsDataQuality}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The authors of the paper aimed to answer the two main research questions:
+      \begin{itemize}
+        \item how can data quality be measured as metrics?
+        \item what can be done in regards to data quality and what economic
+          consequences would it bring?
+      \end{itemize}
+  \item \textbf{What was the method?}
+    They applied the metric for timeliness at a major German mobile services
+    provider. Due to some Data Quality issues the company was having, they had
+    lower mailing campaign success rates, but after applying the metrics, the 
+    company was able to establish a direct connection between the results of
+    measuring data quality and the success rates of campaigns.
+  \item \textbf{What did they learn?}
+    For some practical problems, the metrics that they applied in regards to
+    data quality proved to be quite appropriate. As they designed the metrics
+    to revolve around interpretability and cardinality, they could quantify
+    data quality, thus they could analyse the economical impact.
+  \item \textbf{Relevance to our work}: this paper could possibly help us in
+    measuring data quality. This is an important step in our research as we 
+    specifically need to measure quality in software tickets.
+\end{itemize

@@ -126,9 +126,8 @@ because they eventually proved to not be so relevant to our research.
 
 \subsection{Data Quality Metrics}
 
-Several authors have investigated the \emph{meaning} of data quality, how to 
-\emph{measure} it and what \emph{impact} poor data quality has on software 
-projects.
+Several authors have investigated the \emph{meaning} of data quality and
+what characteristics define it.
 
 \citet{bachmann2009software} conducted a thorough investigation of several
 software projects, both open source (5 projects) as well as closed source (1 
@@ -152,6 +151,7 @@ The first study came to several conclusions, among which:
     \item open source projects exhibit reduced quality in change logs as,
     for example, the Eclipse project has over 20\% empty commit messages.
   \end{itemize}
+
 However, the second study reached the conclusion that representational data 
 quality dimensions are underlying causes of accessibility data quality problem
 patterns. The authors also found out that three underlying causes for users'
@@ -159,81 +159,58 @@ complaints regarding data not supporting their tasks are incomplete data,
 inadequately defined or measured data and data that could not be appropriately
 aggregated.
 
-Several authors have investigated the application quality metrics to ticket 
-data. 
+After defining what data quality is and what are its characteristics, the next 
+step would be how to measure data or information quality in a project. 
 
-\textbf{Data Quality in Context}\cite{strong1997data}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The main goal of the authors was to analyze data quality in different 
-    organizations, observe data quality problem patterns as well as see 
-    its implications.
-  \item \textbf{What was the method?}
-    They performed a qualitative analysis, examining 42 data quality projects 
-    from 3 organizations. They collected data via interviews of data procedures,
-    custodians, customers and managers. The authors analysed each project using
-    the data quality dimensions as content analysis codes. 
-  \item \textbf{What did they learn?}
-    One thing that the authors learned is that representational data quality 
-    dimensions are underlying causes of accessibility data quality problem 
-    patterns. Also, they observed three underlying causes for users' complaints
-    regarding data not supporting their tasks:
-      \begin{itemize}
-        \item incomplete data;
-        \item inadequately defined or measured data;
-        \item data that could not be appropriately aggregated.
-      \end{itemize}
-  \item \textbf{Relevance to our work}: this paper brings valuable insight into
-    major data quality issues and patterns, information which we can apply in 
-    our own research.
-\end{itemize}
+There are several research papers that try to find the answer, among which the 
+work of \citet{lee2002aimq}. The authors tried to define an overall model along 
+with an accompanying assessment instrument for quantifying information quality 
+in an organization. The methodology has 3 main steps that need to be followed 
+in order to apply it successfully:
+  \begin{itemize}
+    \item 2 $\times$ 2 model of what information quality means to managers;
+    \item questionnaire for measuring information quality along the dimensions
+    found in first step;
+    \item two analysis techniques for interpreting the assessments captured 
+    by the questionnaire.
+  \end{itemize} 
+After developing the technique, they applied it at 5 different organizations and
+found that the tool proved to be practical.
 
-\textbf{Data Quality Assessment}\cite{pipino2002data}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The main goal of the authors is to present ways of developing usable data
-    quality metrics that organizations can implement in their own internal 
-    processes.
-  \item \textbf{What was the method?}
-    They have researched previous methods of assessing data quality in information
-    systems and they formulated general advice that can be directly implemented
-    by organizations in their processes.
-  \item \textbf{What did they learn?}
-    They learned that there is no universal approach to assessing data quality
-    as it heavily depends on the context where it is analysed.
-  \item \textbf{Relevance to our work}: it shows how one can effectively measure
-    data quality in information systems, thus we can apply it on the quality of
-    the tickets we are analysing.
-\end{itemize}
+Compared to the methodology proposed by \citet{lee2002aimq}, the solution found
+by \citet{Heinrich2007MetricsDataQuality} is quite different. Even though the 
+main goals were the same, the authors used a single metric, and that is 
+the metric for timeliness (i.e. whether the values of attributes still 
+correspond to the current state of their real world counterparts and whether 
+they are out of date). Thus, they applied the metric at a major German mobile 
+services provider. Due to some Data Quality issues the company was having, they 
+had lower mailing campaign success rates, but after applying the metrics, the 
+company was able to establish a direct connection between the results of
+measuring data quality and the success rates of campaigns.
 
-\textbf{Product perspective on total Data Quality Assessment}\cite{wang1998product}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The author wanted to create a Total Data Quality Management methodology so that
-    high quality information products could be delivered to information consumers.
-  \item \textbf{What was the method?}
-    The research presents us, firstly, with a couple of definitions for the methodology:
-      \begin{itemize}
-        \item TDQM cycle - define, measure, analyze and improve information quality continuously;
-        \item information product - information output from an information manufacturing system
-          that has value to the information consumer;
-        \item information quality - fitness for use by information consumers.
-      \end{itemize}
-    Then, the author presents the four steps in order to successfully implement the TDQM methodology:
-      \begin{itemize}
-        \item clearly articulate the information product;
-        \item establish several roles that would be in charge of the information product management;
-        \item teach information quality assessment and management skills to all IP constituencies;
-        \item institutionalize continuous information product improvement.
-      \end{itemize}
-  \item \textbf{What did they learn?}
-    The author learned that this methodology is filling a gap in the information quality
-    world and that it could help organizations better manage the information quality of their
-    information products.
-  \item \textbf{Relevance to our work}
-    This article could prove helpful to our own research as the methodology presented could help
-    us in detecting if there is data quality in the projects we will be analyzing.
-\end{itemize}
+Another important area of data quality is what methodologies can be applied by
+organizations in order to improve it. There are several studies that tried to
+propose such methodologies. A general overview of such techniques was presented 
+by \citet{pipino2002data} - they wanted to present ways of developing usable 
+data quality methods that organizations can implement in their own internal 
+processes. After reviewing various techniques of assessing data quality in
+information systems, they reached the conclusion that there is no universal 
+approach to assess data quality as it heavily depends on the context where it is
+analysed. 
+
+One such methodology examined by \citet{pipino2002data} is the technique 
+proposed by \citet{wang1998product} called Total Data Quality Management
+(abbreviated TDQM). Through this method, the authors wanted to help 
+organizations deliver high quality information products to information
+consumers by following the TDQM cycle - define, measure, analyse and improve
+information quality continuously. In order to do that, the research proposes
+4 steps: clearly articulate the information product, establish several roles
+that would be in charge of the information product management, teach information
+quality assessment and management skills to all information products 
+constituencies and, finally, institutionalize continuous information product 
+improvement. After developing the methodology, the authors conclude on a 
+confident note that their technique can fill a gap in the information quality
+environment.
 
 \textbf{Knowing-Why about Data Processes and Data Quality}\cite{lee2003knowing}:
 \begin{itemize}
@@ -284,29 +261,6 @@ data.
   \item \textbf{Relevance to our work}: this paper presents important findings
     regarding information and system quality in an IT environment. We can use it
     when analysing the quality of the tickets we will mine.
-\end{itemize}
-
- \textbf{AIMQ}\cite{lee2002aimq}:
- \begin{itemize}
-   \item \textbf{What were the goals?}
-     The main challenge set by the authors was to develop an overall model
-     with an accompanying assessment instrument for quantifying information
-     quality.
-   \item \textbf{What was the method?}
-     They developed a methodology called AIM quality (hence the name AIMQ) which
-     they applied at 5 different organizations. It has 3 main components:
-      \begin{itemize}
-        \item 2 $\times$ 2 model of what information quality means to managers;
-        \item questionnaire for measuring information quality along the dimensions
-          found in first step;
-        \item two analysis techniques for interpreting the assessments captured 
-          by the questionnaire.
-      \end{itemize} 
-   \item \textbf{What did they learn?}
-      They conclude that the AIMQ methodology proved to be a practical information
-      quality tool to organizations.
-   \item \textbf{Relevance to our work}: the paper gave us valuable insight into 
-     how to assess information quality.
 \end{itemize}
 
 \textbf{Evaluating IT Quality in E-Government 
