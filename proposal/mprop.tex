@@ -159,6 +159,31 @@ complaints regarding data not supporting their tasks are incomplete data,
 inadequately defined or measured data and data that could not be appropriately
 aggregated.
 
+The work of \citet{kitchenham1996software} looks specifically at defining
+quality in a software projects, as well as finding who are the people in charge of 
+this and how should they approach achieving it. They tried to define quality 
+in software projects and analyze techniques that measure such metrics by looking
+at other models proposed in different other researches, such as McCall's quality
+model or ISO 9126. However, they learned that quality is very hard to define and
+there are various factors which need to be taken into consideration, such as the
+business model of the company, the type of the software project (e.g. safety 
+critical, financial sector) or the actors who are involved and how they coordinate
+the software activities.
+
+One other piece of data that is probably the most crucial in a software project
+is code, and \citet{stamelos2002code} tried to discuss and examine the quality
+of the source code delivered by open source projects. They used a set of tools
+that could automatically inspect various aspects of source code, looking at
+the 6th release of the OpenSUSE project and its components defined by C
+functions. The research's results show that Linux applications have high quality 
+code standards that one might expect in an open source repository, but 
+the quality is lower than the one implied by the standard. More than half
+of the components were in a high state of quality, but on the other hand, 
+most lower quality components cannot be improved only by applying some
+corrective actions. Thus, even though not all the source code was in 
+an industrial standards shape, there is definitely room for further 
+improvement and open source repositories proved to be of good quality.
+
 After defining what data quality is and what are its characteristics, the next 
 step would be how to measure data or information quality in a project. 
 
@@ -368,6 +393,20 @@ overall accuracy was above the one achieved by \citet{bettenburg2012using},
 being able to rank over 70\%, but only as long as it recommended \emph{any} 
 locations.
 
+One other type of information that could be extracted and used for valuable
+purposes is the summary of a bug report, as shown in the work of 
+\citet{rastkar2010summarizing}. The authors wanted to determine if bug reports
+could be summarized effectively and automatically so that developers would
+need only to analyze summaries instead of full tickets. Firstly, they asked
+university students to volunteer to annotate the bug reports collected from
+various open sources projects (i.e. Eclipse, Mozilla, Gnome, KDE) by writing
+a summary of maximum 250 words in their own sentences. These human-produced 
+annotations were then used by algorithms to learn how to effectively summarize a 
+bug report.  Afterwards, the authors asked the end users of these bug reports, the 
+software developers, to rate the summaries against the original bug reports.
+They eventually learned that existing conversation-based extractive summary
+generators trained on bug reports produce the best results.
+
 A third technique for linking source code files from the textual description of a 
 bug report is the one proposed by \citet{zhou2012should}. The authors
 firstly performed a textual analysis, looking for similarities between the bug 
@@ -538,82 +577,6 @@ Really}\cite{bettenburg2008duplicate}:
   The findings presented in this paper could potentially make us consider duplicate tickets in a different way (i.e. do not treat it as disposable but analyze it and see if it maybe adds more information to the original/master report). 
 \end{itemize}
 
-\textbf{Summarizing Software Artifacts: A Case Study of Bug Reports}\cite{rastkar2010summarizing}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-  The main goal of the research was to determine if software artifacts could be summarized effectively and automatically so that developers would need only to analyze summaries instead of full software artifacts (i.e. in our case, bug reports). 
-  \item \textbf{What was the method?}
-  Firstly, they collected data to analyze from 4 different open source projects (Eclipse, Mozilla, Gnome, KDE). Then, they asked the volunteers (i.e. university students) to annotate the bug reports - write a summary of maximum 250 words in their own sentences. These human-produced annotations were then used by algorithms to learn how to effectively summarize a bug report.  Afterwards, the authors asked the end users of these bug reports, the software developers, to rate the summaries against the original bug reports. 
-  \item \textbf{What did they learn?}
-  They learned that existing conversation-based extractive summary generators trained on bug reports produce the best results. 
-  \item \textbf{Relevance to our work}:
-  As the paper revolves around conversations that are attached to a bug (i.e. comments) instead of the actual description of the bug, we can apply the technique described here maybe to generate summaries and analyze them as well in the overall context of ticket quality (maybe together with some sentiment analysis). 
-\end{itemize}
-
-\textbf{Software Quality \- The Elusive Target}\cite{kitchenham1996software}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The main goal of the paper is to determine what makes for a good quality
-    software project, as well as who are the people in charge of this aspect
-    and how should they approach achieving it.
-  \item \textbf{What was the method?}
-    They tried to define quality in software projects and analyze techniques that 
-    measure such quality by looking at other models proposed in different other  
-    papers (e.g.\ McCall's quality model, ISO 9126).
-  \item \textbf{What did they learn?}
-    They learned that quality is very hard to define and there are various 
-    factors which need to be taken into consideration, such as the business
-    model of the company, the type of the software project (e.g.\ safety
-    critical, financial) or the actors which are involved and how they
-    coordinate the software activities.
-  \item \textbf{Relevance to our work}: this paper is a key paper on software  
-    quality and it can prove beneficial in our research by
-    giving valuable insights into how software quality can be modeled, thus
-    helping us in selecting good quality open source repositories to work with 
-    (i.e.\ ticket selection and analysis).
-\end{itemize}
-
-\textbf{Code Quality Analysis in OSS}\cite{stamelos2002code}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The article tries to discuss and examine the quality of the source code
-    delivered by open source projects.
-  \item \textbf{What was the method?}
-    They used a set of tools that could automatically inspect various aspects
-    of source code. The authors analyzed the 6th release of the OpenSUSE project
-    and examined only the components, which are defined by C functions in the
-    programs.
-  \item \textbf{What did they learn?}
-    The research's results show that Linux applications have high quality 
-    code standards that one might expect in an open source repository, but 
-    the quality is lower than the one implied by the standard. More than half
-    of the components were in a high state of quality, but on the other hand, 
-    most lower quality components cannot be improved only by applying some
-    corrective actions. Thus, even though not all the source code was in 
-    an industrial standards shape, there is definitely room for further 
-    improvement and open source repositories proved to be of good quality.
-  \item \textbf{Relevance to our work}: this work completes the previous paper
-    on software quality in general by looking specifically at quality in
-    open source projects, which will be our main points for data collection.
-\end{itemize}
-
-\textbf{Analysis of Software Cost Estimation}\cite{grimstad2006framework}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The authors are trying to show that poor estimation analysis techniques 
-    in software projects will lead to wrong conclusions regarding cost 
-    estimation accuracy. Moreover, they also propose a framework for 
-    better analysis of software cost estimation error.
-  \item \textbf{What was the method?}
-    They approached a real-world company where they conducted analysis on
-    their cost estimation techniques.
-  \item \textbf{What did they learn?}
-    They learned that regular, straight-forward types of cost estimation analysis
-    techniques error lead them to wrong conclusions. 
-  \item \textbf{Relevance to our work}: it showed us that we need to be careful
-    when selecting techniques for cost estimation in our own research.
-\end{itemize}
-
 \subsection{Measuring Cost and Waste in Software Projects}
 
 \textbf{Secret Life of Bugs}\cite{aranda2009secret}:
@@ -653,6 +616,22 @@ Really}\cite{bettenburg2008duplicate}:
   research paper.
 \end{itemize}
 
+\textbf{Analysis of Software Cost Estimation}\cite{grimstad2006framework}:
+\begin{itemize}
+  \item \textbf{What were the goals?}
+    The authors are trying to show that poor estimation analysis techniques 
+    in software projects will lead to wrong conclusions regarding cost 
+    estimation accuracy. Moreover, they also propose a framework for 
+    better analysis of software cost estimation error.
+  \item \textbf{What was the method?}
+    They approached a real-world company where they conducted analysis on
+    their cost estimation techniques.
+  \item \textbf{What did they learn?}
+    They learned that regular, straight-forward types of cost estimation analysis
+    techniques error lead them to wrong conclusions. 
+  \item \textbf{Relevance to our work}: it showed us that we need to be careful
+    when selecting techniques for cost estimation in our own research.
+\end{itemize}
 
 \textbf{Effects of process maturity on quality, cycle time and effort in software product development}\cite{harter2000effects}:
 \begin{itemize}
