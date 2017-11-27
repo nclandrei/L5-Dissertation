@@ -552,6 +552,68 @@ interesting:
 
 \subsection{Measuring Cost and Waste in Software Projects}
 
+Having talked about data and ticket quality and its characteristics, we have 
+another issue that inevitably arises in every software project: software waste. 
+There are different researches that try to define what waste in software 
+development is as well as its main types. One such paper is the one of 
+\citet{sedano2017software}. The authors conducted a participant-observation 
+study over a long period of time at Pivotal, a consultancy software development
+company. They also interviewed multiple engineering and balanced theoretical 
+sampling with analysis to elicit the following main types of waste in software
+project:
+  \begin{itemize}
+    \item building the wrong feature or product;
+    \item mismanaging backlog;
+    \item extraneous cognitive load;
+    \item rework;
+    \item ineffective communication;
+    \item waiting/multitasking;
+    \item solutions too complex;
+    \item psychological distress.
+    \item \textbf{Relevance to our work}: this paper complements the previous 
+      one on waste identification\cite{Korkala2014WasteIdentification}.
+  \end{itemize}
+
+Even though \citet{sedano2017software} look at waste generally in software 
+development, \citet{ikonen2010exploring} try to specifically investigate waste
+in kanban-based projects. They controlled a case study research at a company 
+called Software factory using semi-structured interviews. The authors reached
+two main conclusions:
+  \begin{itemize}
+    \item they couldn't explain the success of the project even though waste was 
+      found;
+    \item they identified 7 main types of waste throughout various development
+      stages: partially done work, extra processes, extra features, task 
+      switching, waiting, motion and defects.
+  \end{itemize}
+Apart from building the wrong feature/product, the 2 works differ in what types
+of waste they identified.
+
+However, defining waste and its main types is not enough - one needs also
+ways to identify such waste. \citet{Korkala2014WasteIdentification} propose a
+technique to identify communication waste in agile software projects 
+environments. The authors collaborated with a medium-sized American software 
+company and conducted a series of observations, informal discussions, documents 
+provided by the organization, as well as semi-structured interviews. Moreover,
+the data collection for waste identification was split into 2 parts:
+  \begin{itemize}
+    \item \textbf{pre-development}: occurred before the actual implementation
+      begun (e.g.\ backlog creation);
+    \item \textbf{development}: happened throughout the implementation
+      process (e.g.\ throughout sprints, retrospectives, sprint reviews,
+      communication media).
+  \end{itemize}
+Eventually they reached two main conclusions:
+  \begin{itemize}
+    \item this proposed approach was efficient and the authors recommend it to
+      companies if they'd like to conduct such processes internally;
+    \item the research elicits 5 main categories for communication waste: lack
+      of involvement, lack of shared understanding, outdated information, 
+      restricted access to information, scattered information.
+  \end{itemize}
+
+
+
 \textbf{Secret Life of Bugs}\cite{aranda2009secret}:
 \begin{itemize}
 \item What were the goals?
@@ -618,105 +680,6 @@ interesting:
   It can aid our research through better understanding of how various factors can influence the software development processes, thus giving more value to our own research (i.e. being able to automatically determine issue quality could improve better issue writing guidelines/better rules to be enforced, thus reduced triaging and development costs). 
 \end{itemize}
 
-\textbf{Waste Identification}\cite{Korkala2014WasteIdentification}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The paper had two main goals: 
-    \begin{itemize}
-      \item a means to identify communication waste in agile software projects 
-        environments;
-      \item types of communication waste in agile projects.
-    \end{itemize}
-  \item \textbf{What was the method?}
-    The authors collaborated with a medium-sized American software company
-    and conducted a series of observations, informal discussions, documents 
-    provided by the organization, as well as semi-structured interviews. Moreover,
-    the data collection for waste identification was split into 2 parts:
-      \begin{itemize}
-        \item \textbf{pre-development}: occured before the actual implementation
-          begun (e.g.\ backlog creation);
-        \item \textbf{development}: happened throughout the implementation
-          process (e.g.\ throughout sprints, retrospectives, sprint reviews,
-          communication media).
-      \end{itemize}
-  \item \textbf{What did they learn?}
-    They realized the communication waste can be divided into 5 main categories:
-      \begin{itemize}
-        \item lack of involvement;
-        \item lack of shared understanding;
-        \item outdated information;
-        \item restricted access to information;
-        \item scattered information.
-      \end{itemize}
-    Also, they learned that their way of identifying these types of waste was
-    quite efficient and they even recommend it to companies if they'd like
-    to conduct such processes internally.
-  \item \textbf{Relevance to our work}: the waste identification process can
-    be applied to our work so that we can identify possible causes to poor 
-    quality tickets.
-\end{itemize}
-
-\textbf{Software Development Waste}\cite{sedano2017software}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The main goal of the paper was to identify main types of waste in software
-    development projects.
-  \item \textbf{What was the method?}
-    They conducted a participant-observation study over a long period of time
-    at Pivotal, a consultancy software development company. They also interviewed
-    multiple engineers and balanced theoretical sampling with analysis to achieve
-    the conclusions.
-  \item \textbf{What did they learn?}
-    They found out there are nine main types of waste in software projects:
-    \begin{itemize}
-      \item building the wrong feature or product;
-      \item mismanaging backlog;
-      \item extraneous cognitive load;
-      \item rework;
-      \item ineffective communication;
-      \item waiting/multitasking;
-      \item solutions too complex;
-      \item psychological distress.
-      \item \textbf{Relevance to our work}: this paper complements the previous 
-    one on waste identification\cite{Korkala2014WasteIdentification}.
-    \end{itemize}
-\end{itemize}
-
-\textbf{Waste in Kanban Projects}\cite{ikonen2010exploring}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The authors are trying to find the main sources of waste in Kanban software
-    development projects and categorize/rank them based on severity.
-  \item \textbf{What was the method?}
-    A controlled case study research was employed in a company called Software
-    Factory. They conducted semi-structured interviews with 5 of the team
-    members both in the beginning in order to collect data as well as at the end 
-    of the whole process to categorize the seven types of waste found. Moreover,
-    they also measured the overall success of the project based on Shenar's
-    techniques (first-second-third-fourth; project efficiency-imapct on the
-    customer-business success-preparing for the future).
-  \item \textbf{What did they learn?}
-    They reached two main findings:
-      \begin{itemize}
-        \item they found 7 types of waste throughout the project at various
-          development stages:
-            \begin{itemize}
-              \item partially done work;
-              \item extra processes;
-              \item extra features;
-              \item task switching;
-              \item waiting;
-              \item motion;
-              \item defects.
-            \end{itemize}
-        \item they reached the conclusion that they couldn't explain the success
-          of the project even though waste was found.
-      \end{itemize}
-  \item \textbf{Relevance to our work}: this work completes the findings 
-    from the previous work presented as most of the projects we will work with
-    will be Agile, thus Kanban-based in terms of issue management.
-\end{itemize}
-
 \subsection{Sentiment Analysis}
 
 \textbf{Thumbs Up or Thumbs Down}\cite{turney2002thumbs}:
@@ -776,6 +739,33 @@ interesting:
 % 3- 4 pages 
 
 What are we actually going to do?
+
+\textbf{Research Questions}:
+\begin{itemize}
+  \item what makes for a quality software ticket that could help developers
+    fix the bug/implement the feature faster?
+  \item what can be changed in software ticket structure that could ease writing
+    such quality software tickets (e.g. add specific fields to the ticket in
+    Jira, add instructions as comments on how reporters should write such a 
+    ticket)?
+  \end{itemize}
+
+\textbf{Experimental design}: conduct a statistical analysis over popular 
+open source projects such as Mozilla or Apache and extract tickets via 
+some API (maybe REST based). Then, define what makes for 2 similar tickets
+(maybe look at story points assigned by experienced triagers; probably we also
+need to use only severe/critical ones as they will probably be fixed first
+and there will not be any delay, such as waiting for the main developer to come
+back from vacation) and then see how much time it took both to be completed
+so that we can infer what differences did those 2 tickets have (and see if, for
+example, stack traces influenced the duration of the ticket). 
+
+\textbf{Independent Variables}: components of tickets - stack traces, steps
+to reproduce, grammar error free description and summary, succinct/detailed 
+summary, complex/light discussion in comments
+
+\textbf{Dependent Variable}: duration of the ticket between OPEN status and
+CLOSED status.
 
 Research questions, outline experimental design, independent variables, dependent variables.
 
