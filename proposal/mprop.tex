@@ -357,6 +357,15 @@ interviews with developers) and confirmed that steps to reproduce and stack trac
 are the most important features in a bug report that help developers solve the
 issue quicker.
 
+Other interesting findings regarding the quality of a software project's tickets
+are the ones elicited in \citet{bettenburg2008duplicate}. The authors examined
+whether duplicate bug reports are actually harmful to a project or they add 
+quality. They collected big amount of data from the Eclipse project and ran
+various kind of textual and statistical analysis on the data to find answers.
+They reached the conclusion that bug duplicates contain information that is not
+present in the master reports. This additional data can be helpful for developers
+and it can also aid automated triaging techniques.
+
 However, in order to model the quality of a bug report, one needs to be able to
 successfully extract various types of information from such a report and, if 
 possible, link them to the source code of the project (i.e. source code fragments
@@ -421,8 +430,21 @@ files. Moreover, similar bugs can improve the localization accuracy only to a
 certain extent, while the locator outperformed every other competitor on a 
 multitude of projects. 
 
-Even though we have discussed about quality in bug reports and how it can be
-identified, we must also investigate if the platform where these bug reports 
+Having discussed automated linkage between source code files and bug reports, 
+\citet{fischer2003analyzing} presents a way to track certain features from the
+data residing in tickets. The authors employed a method to track features by 
+analyzing and relating bug report data filtered from a release history database.
+Features are then instrumented and tracked, relationships of modification and 
+problem reports to these features are established, and tracked features are
+visualized to illustrate their otherwise hidden dependencies. They managed to 
+successfully visualize the tracked features and illustrate their non apparent
+dependencies which can prove very useful in projects with a large number of
+components.
+
+Even though we have discussed about quality in bug reports, how it can be 
+identified and what state-of-the-art techniques can be used to extract and 
+link various components from tickets, we must also investigate if the platform 
+where these bug reports 
 reside (i.e. bug trackers) are properly fitting the software environment. 
 The work of \citet{just2008towards} tries to find the answer to this question.
 The authors launched a survey to developers from Eclipse, Mozilla and Apache
@@ -527,31 +549,6 @@ interesting:
     \item depending on how well a software project is componentized, one can 
       use a predictor per component rather than an universal one.
   \end{itemize}
-
-\textbf{Analyzing and Relating Bug Report Data for Feature Tracking}\cite{fischer2003analyzing}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-  The main goal of the paper was to analyze the proximity of software features based on modification and problem report data.
-  \item \textbf{What was the method?}
-  They employed a method to track features by analyzing and relating bug report data filtered from a release history database. Features are instrumented and tracked, relationships of modification and problem reports to these features are established, and tracked features are visualized to illustrate their otherwise hidden dependencies. 
-  \item \textbf{What did they learn?}
-  The authors’ approach suggest first to instrument and track features, then establish the relationships of modification and problem reports to these features and lastly visualize the tracked features for illustrating their non apparent dependencies. 
-  \item \textbf{Relevance to our work}:
-  This paper can give us insight into how bug reports can influence feature implementation throughout the lifetime of the ticket. 
-\end{itemize}
-
-\textbf{Duplicate Bug Reports Considered Harmful... 
-Really}\cite{bettenburg2008duplicate}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-  The authors wanted to test two main hypotheses, and these were: duplicate bug reports provide developers with information that was not present in the original report and the information in bug duplicates can improve automated triaging techniques. 
-  \item \textbf{What was the method?}
-  They collected big amounts of data from the Eclipse open source project in XML form. Then, they ran different kinds of textual and statistical analysis on the data to find answers to their research questions. 
-  \item \textbf{What did they learn?}
-  They reached the conclusion that bug duplicates contain information that is not present in the master reports. This additional data can be helpful for developers and it can also aid automated triaging techniques (e.g. decide who to assign a bug to). 
-  \item \textbf{Relevance to our work}:
-  The findings presented in this paper could potentially make us consider duplicate tickets in a different way (i.e. do not treat it as disposable but analyze it and see if it maybe adds more information to the original/master report). 
-\end{itemize}
 
 \subsection{Measuring Cost and Waste in Software Projects}
 
