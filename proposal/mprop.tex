@@ -655,58 +655,26 @@ with increased cycle times and development efforts. On the other hand, the reduc
 time and effort resulting from improved quality outweigh the marginal increases from achieving
 more process maturity. 
 
+As we want to analyze comments as well and how they influence the quality of a ticket, we
+need to investigate what state-of-the-art tools are available to perform sentiment analysis.
+One paper that tried to detect the overall sentiment transmitted through reviews of various 
+types is the research performed by \citet{turney2002thumbs}. The author created an unsupervised
+machine learning algorithm that was evaluated on more than 400 reviews on Epinions on various
+kins of markets. The algorithm implementation was divided into three steps:
+  \begin{itemize}
+    \item extract phrases containing adjectives or adverbs;
+    \item estimate the semantic orientation of the phrases;
+    \item classify the review as recommended or not recommended based on
+      the semantic orientation calculated at previous step.
+  \end{itemize}
+The author learned that different categories will yield different results, such as the
+automobile section on Epinions ranked much higher, 84\%, compared to movie reviews, which
+had an accuracy of 65.83\%. Moreover, most pitfalls of the algorithm could be attributed
+to multiple factors, such as not using a supervised learning system or limitations of 
+PMI-IR.
 
-
-\textbf{Effects of process maturity on quality, cycle time and effort in software product development}\cite{harter2000effects}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-  The research tries to investigate the relationship between process maturity, quality, cycle time and effort in software projects. The authors are mainly trying to prove/
-  reject a couple of hypotheses: higher levels of process maturity lead to higher product quality in software projects, higher levels of process maturity are associated 
-  with increased cycle time in software products, higher product quality is associated with lower cycle time, higher levels of process maturity lead to increased 
-  development efforts in the project and higher product quality is associated with lower development effort.
-  \item \textbf{What was the method?}
-  In order to test their hypotheses, the authors examined data coming from 30 projects belonging to the systems integration division from a large IT company. The process 
-  improvement data was collected via external divisions and by government agencies to provide independent assessments of the firm’s software development processes. Then, 
-  they analyzed a couple of key variables and see how they interact: process maturity, product quality, cycle time, development effort, product size, domain/data/decision 
-  complexity and requirements ambiguity.
-  \item \textbf{What did they learn?}
-  They learned that the main features they inspected are additively separable and linear. Moreover, they found out that higher levels of process maturity are associated 
-  with significantly higher quality, but also with increased cycle times and development efforts. On the other hand, the reductions in cycle time and effort resulting from 
-  improved quality outweigh the marginal increases from achieving more process maturity.
-  \item \textbf{Relevance to our work}:
-  It can aid our research through better understanding of how various factors can influence the software development processes, thus giving more value to our own research 
-  (i.e. being able to automatically determine issue quality could improve better issue writing guidelines/better rules to be enforced, thus reduced triaging and 
-  development costs). 
-\end{itemize}
-
-\subsection{Sentiment Analysis}
-
-\textbf{Thumbs Up or Thumbs Down}\cite{turney2002thumbs}:
-\begin{itemize}
-  \item \textbf{What were the goals?}
-    The main goal of the paper is to detect the overall sentiment transmitted
-    through reviews of various types.
-  \item \textbf{What was the method?}
-    The author created an unsupervised machine learning algorithm that was 
-    evaluated on more than 400 reviews on Epinions on various kinds of markets 
-    (e.g.\ automobiles, movie). The algorithm implementation was divided 
-    into three steps:
-      \begin{itemize}
-        \item extract phrases containing adjectives or adverbs;
-        \item estimate the semantic orientation of the phrases;
-        \item classify the review as recommended or not recommended based on
-          the semantic orientation calculated at previous step.
-      \end{itemize}
-  \item \textbf{What did they learn?}
-    One thing the author learned that different categories will yield different 
-    results. For example, the automobile section on Epinions ranked much higher, 
-    84\%, compared to movie reviews, which had an accuracy of 65.83\%. Moreover, 
-    most pitfalls of the algorithm could be attributed to multiple factors, such 
-    as not using a supervised learning system or limitations of PMI-IR.
-  \item \textbf{Relevance to our work}: the method can be applied for extracting
-    sentiments from the tickets (description and comments) we will use 
-    in our own research.
-\end{itemize}
+However, the work of \citet{turney2002thumbs} looks only at sentiment analysis without
+examining the context. 
 
 \textbf{Recognizing Contextual Polarity}\cite{wilson2005recognizing}:
 \begin{itemize}
