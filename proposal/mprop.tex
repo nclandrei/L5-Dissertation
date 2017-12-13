@@ -20,7 +20,7 @@
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Software Ticket Quality}
+\title{Measuring Software Ticket Quality using Statistical Analysis}
 \author{Andrei-Mihai Nicolae}
 \date{December 18th 2017}
 \maketitle
@@ -34,8 +34,44 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}\label{intro}
-
 % 2 - 3 pages tops
+
+Software engineering, compared to other engineering fields, such as
+mechanical or electrical engineering, is much more abstract - while 
+performing maintenance on a car engine or on some electric panel,
+you can actually touch the components, they are physical. However, in
+computer science and the engineering of software, you cannot see the whole picture.
+Of course one can actually open up a laptop or PC and see and touch the
+components, but the software, what is actually displayed to the user, 
+is just characters in some file that gets compiled/interpreted to machine
+code by other components which run on the operating system that, in turn,
+can communicate with the kernel (i.e. the component that sits exactly
+between the OS and the hardware) and perform the final step - send 
+different 1s and 0s encoded into electrical signals to the CPU and various
+other hardware components.
+
+Having discussed about the high level of abstraction computers expose to 
+their human operators, developing software that runs and performs as expected
+in agreement with its requirements is not trivial. Thus, developers have
+created software called \emph{issue tracking systems} that can manage
+and track \emph{tickets}, which can take various forms, such as bug 
+reports, feature requests etc. The aforementioned tickets can vary greatly
+and issue tracking systems usually allow developers to include many 
+types of information, such as:
+  \begin{itemize}
+    \item stack traces;
+    \item steps to reproduce a bug;
+    \item summary and description;
+    \item story points (e.g. how many units of time does it take one
+      developer to mark the ticket as resolved or completed).
+  \end{itemize}
+
+Thus, a still unresolved software engineering issue is how can one create
+valuable, high quality tickets? 
+
+
+
+
 
 \begin{itemize}
 \item Background briefly explain the context of the project problem
