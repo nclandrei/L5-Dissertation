@@ -111,7 +111,7 @@ software's overall quality on the long term.
 \subsection{Research Questions and Contributions}
 
 The main research question this study is trying to answer is 
-what makes for a valuable, high quality?
+what makes for a valuable, high quality ticket?
 
 However, as this is a broad research question, we have divided it into
 two sub-research questions which, when combined, would yield the 
@@ -150,12 +150,31 @@ in terms of creating tickets.
 
 \subsection{Proposal Structure}
 
+The rest of this project proposal is structured as follows:
+  \begin{itemize}
+    \item Section \ref{background_survey} presents both the study design 
+      and the background survey, which in turn is divided into three 
+      subsection:
+        \begin{itemize}
+          \item subsection \ref{data_quality} describes the literature
+            review on data quality and metrics;
+          \item subsection \ref{issue_quality} describes the background
+            survey on issue/ticket quality;
+          \item subsection \ref{waste} elicits literature on 
+            waste in software projects;
+        \end{itemize}
+    \item Section \ref{proposed_approach} describes how we would like 
+      to conduct the research;
+    \item Section \ref{work_plan} shows how we broke down the work
+      so that we keep a consistent pace throughout the lifecycle of 
+      the research.
+  \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Background Survey}
+\section{Background Survey}\label{background_survey}
 % 10 - 12 pages
 
 \subsection{Study Design}
@@ -229,7 +248,7 @@ Even though the literature review contains around 40 papers, there were
 around 80 papers that were reviewed but roughly half of them were excluded 
 because they eventually proved to not be so relevant to our research. 
 
-\subsection{Data Quality and Metrics}
+\subsection{Data Quality and Metrics}\label{data_quality}
 
 Several authors have investigated the \emph{meaning} of data quality and
 what characteristics define it.
@@ -414,7 +433,7 @@ points, they reached the conclusion that there is vast complexity of
 knowledge at work in the data production process and if these gaps are not 
 bridged it might lead to decrased data quality.
 
-\subsection{Issue Quality}
+\subsection{Issue Quality}\label{issue_quality}
 
 Issue quality is the main topic of this literature review as it revolves around
 software tickets and what are the characteristics of a well-written and 
@@ -655,7 +674,7 @@ interesting:
       use a predictor per component rather than an universal one.
   \end{itemize}
 
-\subsection{Measuring Cost and Waste in Software Projects}
+\subsection{Measuring Cost and Waste in Software Projects}\label{waste}
 
 Having talked about data and ticket quality and its characteristics, we have 
 another issue that inevitably arises in every software project: software waste. 
@@ -790,31 +809,22 @@ looking at the sentiment extracted from the overall document, they managed to ge
 valuable results from looking at specific words and phrases.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Proposed Approach}
+\section{Proposed Approach}\label{proposed_approach}
 
-% 3- 4 pages 
+\subsection{Experimental Design}
 
-What are we actually going to do?
-
-\textbf{Research Questions}:
-\begin{itemize}
-  \item what makes for a quality software ticket that could help developers
-    fix the bug/implement the feature faster?
-  \item what can be changed in software ticket structure that could ease writing
-    such quality software tickets (e.g. add specific fields to the ticket in
-    Jira, add instructions as comments on how reporters should write such a 
-    ticket)?
-  \end{itemize}
-
-\textbf{Experimental design}: conduct a statistical analysis over popular 
-open source projects such as Mozilla or Apache and extract tickets via 
-some API (maybe REST based). Then, define what makes for 2 similar tickets
+We would like to begin the research by conducting a statistical analysis 
+over popular open source projects such as Mozilla or Apache and extract 
+tickets most probably via REST APIs, however the final list of projects
+will be finalized once some tests will be run. Then, define what makes for 2 similar tickets
 (maybe look at story points assigned by experienced triagers; probably we also
 need to use only severe/critical ones as they will probably be fixed first
 and there will not be any delay, such as waiting for the main developer to come
 back from vacation) and then see how much time it took both to be completed
 so that we can infer what differences did those 2 tickets have (and see if, for
 example, stack traces influenced the duration of the ticket). 
+
+\subsection{Variables Tested}
 
 \textbf{Independent Variables}: components of tickets - stack traces, steps
 to reproduce, grammar error free description and summary, succinct/detailed 
@@ -828,7 +838,7 @@ Research questions, outline experimental design, independent variables, dependen
 state how you propose to solve the software development problem. Show that your proposed approach is feasible, but identify any risks.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Work Plan}
+\section{Work Plan}\label{work_plan}
 
 % 1 - 2 pages  structure as work packages (don't bother with a chart).
 
