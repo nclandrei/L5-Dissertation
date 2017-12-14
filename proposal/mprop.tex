@@ -883,17 +883,21 @@ affected the time-to-close the most.
 
 \subsection{Variables Tested}
 
-The study has 
-\textbf{Independent Variables}: components of tickets - stack traces, steps
-to reproduce, grammar error free description and summary, succinct/detailed 
-summary, complex/light discussion in comments
+The independent variables we would like to test are:
+  \begin{itemize}
+    \item presence and number of stack traces in a ticket;
+    \item steps to reproduce (as described above - images or text);
+    \item presence of screenshots in tickets;
+    \item text components (e.g. summary, description) being either 
+      succinct or detailed;
+    \item grammar-free textual description;
+    \item overall sentiment drawn from comments (e.g. angry or calm);
+    \item complex or light discussion in comments.
+  \end{itemize}
 
-\textbf{Dependent Variable}: duration of the ticket between OPEN status and
-CLOSED status.
-
-Research questions, outline experimental design, independent variables, dependent variables.
-
-state how you propose to solve the software development problem. Show that your proposed approach is feasible, but identify any risks.
+In terms of dependant variables, we only have one - the time it takes
+between when the ticket was created and marked as OPEN until when it
+is finished and marked as CLOSED or RESOLVED.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Work Plan}\label{work_plan}
