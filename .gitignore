@@ -225,4 +225,5 @@ proposal/.vscode/last.sql
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
+proposal/.vscode/settings.json
 proposal/mprop.pdf
