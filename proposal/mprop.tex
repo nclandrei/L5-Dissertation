@@ -906,24 +906,39 @@ is finished and marked as CLOSED or RESOLVED.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Work Plan}\label{work_plan}
 
-% 1 - 2 pages  structure as work packages (don't bother with a chart).
+The work on the actual project in the second semester will start off 
+with deciding and analyzing which repositories to use for ticket data.
+We have several popular open source options, such as Apache, Mozilla or
+Eclipse, so settling on a couple of options will be the first step in our
+research. We believe that this step will be finished \emph{by the end of
+January}.
 
-show how you plan to organize your work, identifying intermediate deliverables and dates.
+The next step will be to create the scraping, extraction and inspection
+tool which will be implemented in either Go or Java. This will be a vital
+component of the whole research so we believe that it will be ready to run
+\emph{by the end of February}.
 
-\begin{itemize}
-  \item decide which repositories to use for data (e.g. Apache, Mozilla, Eclipse);
-  \item create scraping/extraction/inspection tool using either Go or Java;
-  \item decide which approach to use for detecting similar tickets (the two
-    approaches are listed above) after testing them on the tickets retrieved
-    with the application;
-  \item collect data, run the analysis and decide which components have
-    the biggest impact on creating high quality tickets;
-  \item write abstract, introduction, related work;
-  \item write methodology and how we conducted the experiment (collecting
-    data, running analysis);
-  \item write results, contributions and conclusion for the paper.
-\end{itemize}
+Then, concomitantly with the previous work package, we will decide on
+what method to use to detect similar tickets. This step will be performed
+during the creation of the tool because we can only test efficiency once
+we have some tickets to validate our ideas. Thus, the proposed deadline
+for this work package is \emph{the end of February} as well.
 
+Following we will run the the tool on the tickets we have collected. This
+is expected to be quite trivial once all the other work packages are 
+completed as we will simply need to run the application. The expected
+deadline is \emph{by 4\textsuperscript{th} of March}.
+
+Then, the actual write-up of the paper will be structured as follows:
+  \begin{itemize}
+    \item write abstract, introduction, related work - this is expected
+      to be completed \emph{by mid March};
+    \item write methodology and how we conducted the experiment (collecting
+      data, running analysis) - expected to be finished \emph{by the 
+      beginning of April};
+    \item write results, contributions and conclusion for the paper - 
+      we expect to complete it \emph{by 18\textsuperscript{th} of April}.
+  \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{plainnat}
 \bibliography{mprop}
