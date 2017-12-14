@@ -815,17 +815,75 @@ valuable results from looking at specific words and phrases.
 
 We would like to begin the research by conducting a statistical analysis 
 over popular open source projects such as Mozilla or Apache and extract 
-tickets most probably via REST APIs, however the final list of projects
-will be finalized once some tests will be run. Then, define what makes for 2 similar tickets
-(maybe look at story points assigned by experienced triagers; probably we also
-need to use only severe/critical ones as they will probably be fixed first
-and there will not be any delay, such as waiting for the main developer to come
-back from vacation) and then see how much time it took both to be completed
-so that we can infer what differences did those 2 tickets have (and see if, for
-example, stack traces influenced the duration of the ticket). 
+tickets most probably via REST APIs, however the list of projects
+will be finalized once some tests will be run, and that is because
+maybe some projects will have more valuable tickets for us to analyze and
+we also decided that we want to analyze multiple issue tracking systems 
+(e.g. Apache uses Jira \citep{jira} while Mozilla uses Bugzilla 
+\citep{bugzilla}). 
+
+Then, as most issue tracking systems respond with JSON payloads through 
+their REST APIs, we can easily extract components such as summary or 
+description and analyze them. We have defined that the initial list of 
+components that we want to inspect into three main categories:
+  \begin{itemize}
+    \item regular text - summary, description, story points, 
+      text in comments, status (e.g. OPEN, WONTFIX, CLOSED);
+    \item non-regular text (i.e. special structures) - stack traces,
+      steps to reproduce;
+    \item non-text - attachments in comments (e.g. images, screenshots
+      when trying to show steps to reproduce).
+  \end{itemize}
+
+Extracting text from components is rather trivial, but extracting and 
+analyzing non-text data such as images or non-regular text will be 
+more complex. 
+
+For images, there are two very popular REST APIs that 
+we can use for analysis: Google Cloud Vision \citep{vision} and 
+AWS Rekognition \citep{rekognition}. When an image is sent via the API,
+the servers respond with detailed information about what can be found
+in the image, thus we can detect if the image was for example a 
+simple screenshot or if it contained multiple screenshots that were aimed
+at visually showing steps to reproduce a bug.
+
+In terms of non-regular text, steps to reproduce are usually trivial to
+retrieve (if they are not images, for which we have presented a solution
+in the above paragraph), they will most probably be written as bullet
+lists or a sequence of lines starting with \emph{Step [number] ...}, thus
+a simple regex will probably suffice. However, for stack traces, as they
+are more complex, there are no commercial or open source applications
+that could help them extract them easily, thus we will compose a special
+regex depending on the language of the project (e.g. Apache heavily 
+uses Java, thus we can look for lines starting with java.*.*Exception ...).
+
+In order to detect what features make for a high quality ticket, we need 
+to compare two \emph{similar} tickets and then analyze their components
+for differences. Thus, one of the biggest issues we will be facing is how 
+can we say that two tickets are similar. We have two initial approaches
+that we want to test to see which one is more efficient:
+  \begin{itemize}
+    \item look solely at the issue tracking system and use story points
+      to detect similar tickets; one limitation of this approach is that
+      either the triager is not experienced and might assign wrong story
+      point values or the initial story point values are not properly
+      assigned and they will be corrected during the ticket's lifecycle;
+    \item look at the version control system and compare changesets for
+      similar work effort; however, this approach has one limitation - 
+      solely looking at source code changes might not encapsulate the
+      whole effort needed to solve the task (e.g. the developers on the
+      team might spend extra hours only on designing the fix).
+  \end{itemize}
+However, this list is not final, so if we find some other method 
+while running the experiment, we shall switch to that.
+
+Finally, having similar tickets grouped together, we can then test 
+the variances in component features they possess and see which features
+affected the time-to-close the most.
 
 \subsection{Variables Tested}
 
+The study has 
 \textbf{Independent Variables}: components of tickets - stack traces, steps
 to reproduce, grammar error free description and summary, succinct/detailed 
 summary, complex/light discussion in comments
