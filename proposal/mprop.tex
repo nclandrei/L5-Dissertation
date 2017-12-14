@@ -857,6 +857,10 @@ that could help them extract them easily, thus we will compose a special
 regex depending on the language of the project (e.g. Apache heavily 
 uses Java, thus we can look for lines starting with java.*.*Exception ...).
 
+Implementation wise, we would like to develop the application that will
+perform both scraping, extraction and inspection in either Go or Java
+as I am the most proficient with these two programming languages. 
+
 In order to detect what features make for a high quality ticket, we need 
 to compare two \emph{similar} tickets and then analyze their components
 for differences. Thus, one of the biggest issues we will be facing is how 
@@ -905,6 +909,9 @@ is finished and marked as CLOSED or RESOLVED.
 % 1 - 2 pages  structure as work packages (don't bother with a chart).
 
 show how you plan to organize your work, identifying intermediate deliverables and dates.
+
+\begin{itemize}
+  \item create 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{plainnat}
