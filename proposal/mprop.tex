@@ -299,7 +299,6 @@ improvement and open source repositories proved to be of good quality.
 
 After defining what data quality is and its characteristics, the next 
 step would be data measurement or information quality in a project. 
-
 There are several research papers that try to find the answer, among which the 
 work of \citet{lee2002aimq}. The authors tried to define an overall model along 
 with an accompanying assessment instrument for quantifying information quality 
@@ -683,8 +682,6 @@ project:
     \item waiting/multitasking;
     \item solutions too complex;
     \item psychological distress.
-    \item \textbf{Relevance to our work}: this paper complements the previous 
-      one on waste identification\cite{Korkala2014WasteIdentification}.
   \end{itemize}
 
 Even though \citet{sedano2017software} look at waste generally in software 
@@ -716,7 +713,7 @@ the data collection for waste identification was split into 2 parts:
       process (e.g.\ throughout sprints, retrospectives, sprint reviews,
       communication media).
   \end{itemize}
-Eventually they reached two main conclusions:
+They reached two main conclusions:
   \begin{itemize}
     \item this proposed approach was efficient and the authors recommend it to
       companies if they'd like to conduct such processes internally;
@@ -752,8 +749,7 @@ estimation techniques. Eventually, they learned that regular, straight-forward t
 of cost estimation analysis techniques errors lead to wrong conclusions, thus increasing
 the risk of poor coordination activities.
 
-But what happens when a project gains maturity? A work that investigates the effects of process
-maturity on quality, cycle time and effort is the one undergone by \citet{harter2000effects}. The
+\citet{harter2000effects} explored the effects of process maturity on quality, cycle time and effort. The
 research proves and rejects several hypotheses, such as higher levels of process maturity lead 
 to higher product quality, higher levels of process maturity are associated with increased cycle time,
 higher product quality is associated with lower cycle time, higher levels of process maturity lead 
@@ -800,9 +796,19 @@ valuable results from looking at specific words and phrases.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Approach}\label{proposed_approach}
 
-\subsection{Experimental Design}
+Having reviewed the literature on state of the art approaches to what features
+are most important when composing a high quality ticket, our work will
+build on top of these methods and will try to improve the validity of the
+results through statistical analysis. In the following subsections 
+(\ref{experimental_design}, \ref{variables_tested} \ref{contributions}) we will
+discuss how the experiment was designed, what variables were chosen
+as dependent and independent as well as what contributions our study will bring.
 
-We would like to begin the research by conducting a statistical analysis 
+\subsection{Experimental Design}\label{experimental_design}
+
+The study we will undergo tries to identify the key components that make
+for a valuable, high quality ticket. We would like to begin the research by 
+conducting a statistical analysis 
 over popular open source projects such as Mozilla or Apache and extract 
 tickets most probably via REST APIs, however the list of projects
 will be finalized once some tests will be run, and that is because
@@ -812,7 +818,7 @@ we want to analyze multiple issue tracking systems
 \citep{bugzilla}). 
 
 Then, as most issue tracking systems respond with JSON payloads through 
-their REST APIs, we can easily extract components such as summary or 
+their REST APIs, we can extract components such as summary or 
 description and analyze them. We have defined that the initial list of 
 components that we want to inspect into three main categories:
   \begin{itemize}
@@ -846,7 +852,7 @@ that could help them extract them easily, thus we will compose a special
 regex depending on the language of the project (e.g. Apache heavily 
 uses Java, thus we can look for lines starting with java.*.*Exception ...).
 
-Implementation wise, we would like to develop the application that will
+Implementation wise, we will develop the application that will
 perform both scraping, extraction and inspection in either Go or Java.
 
 In order to detect what features make for a high quality ticket, we need 
@@ -873,13 +879,13 @@ Finally, grouping similar tickets together allows testing
 the variances in component features they possess and see which features
 affected the time-to-close the most.
 
-\subsection{Variables Tested}
+\subsection{Variables Tested}\label{variables_tested}
 
 The independent variables proposed for testing are:
   \begin{itemize}
     \item presence and number of stack traces in a ticket;
     \item steps to reproduce (as described above - images or text);
-    \item presence of screenshots in tickets;
+    \item presence of screenshots in tickets and associated image quality metrics;
     \item text components (e.g. summary, description) being either 
       succinct or detailed;
     \item grammar-free textual description;
@@ -890,6 +896,17 @@ The independent variables proposed for testing are:
 In terms of dependent variables, there is only one - the time it takes
 between when the ticket was created and marked as OPEN until when it
 is finished and marked as CLOSED or RESOLVED.
+
+\subsection{Contributions}\label{contributions}
+
+As we have previously mentioned, the main three contributions we will 
+bring are as follows:
+  \begin{itemize}
+    \item explore the area of ticket quality through statistical analysis;
+    \item inspect both tickets and other components of the software project
+      (e.g. version control system) when analysing ticket quality;
+    \item propose model for bug reports and/or feature requests.
+  \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Work Plan}\label{work_plan}
