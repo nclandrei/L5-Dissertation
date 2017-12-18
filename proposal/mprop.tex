@@ -72,7 +72,7 @@ More specifically, it is looking into the various components
 of a ticket (e.g. summary, description, comments) and their characteristics
 in order to infer what combination of such components or what specific
 attributes help developers close the ticket quicker (i.e. time between
-ticket creation and when it is marked as CLOSED or RESOLVED). 
+ticket creation and marked as CLOSED or RESOLVED). 
 
 We believe that this study is valuable to the software engineering 
 community because solving the issue/ticket quality problem will help
@@ -180,7 +180,7 @@ trackers and version control systems. Thus, \emph{data quality} is an important
 topic that needed to be explored in order to infer appropriate conclusions. 
 
 We analyzed data quality mainly in software organizations and looked at what metrics
-are most useful when trying to perform measurements. We also tried to find different
+are most useful when performing measurements. We also found different
 methodologies that either measure data quality or calculate the impact of poor data
 quality on the software project. 
 
@@ -189,27 +189,27 @@ This field is mainly concerned with software tickets and their characteristics: 
 important are issue trackers to a software project, what makes for a good bug report,
 what impact does bad triaging have etc. As we are interested in finding out what
 features are most important in improving the quality of a ticket, the issue quality
-literature I have reviewed proved to be beneficial and provided valuable insight into
+literature reviewed proved to be beneficial and provided valuable insight into
 how other researchers tried to approach this problem.
 
-The third topic was waste in software projects and how it impacts them. We needed to
+The third topic was waste and its impact on software projects. We needed to
 look into various communication and tool-related waste in software projects because
 having a project with a considerable amount of waste might affect our results and
 compromise the evaluation process. We investigated researches that looked into what
-are the main types of waste in software projects and how it can be avoided so that
+the main types of waste are and how it can be avoided so that
 we could apply the findings into selecting the projects.
 
 Last but not least, we did a literature review on sentiment analysis as well 
 because we will inspect, among other components of a ticket, comments - we want 
 to analyze the textual representation of comments and see if the overall 
-sentiment influences the time it takes to close a ticket (i.e. maybe a negative 
-conversation in comments might increase the time it takes to solve the issue).
+sentiment influences the time it takes to close a ticket (i.e. a conversation
+might unnecessarily delay solving the ticket).
 
 The main sources of information when searching for papers were Google Scholar, 
 ACM digital library and IEEE Xplore digital library. The first step in the 
 literature review process was finding relevant papers that could aid us in
-our research and splitting them into the categories mentioned above. There were
-a couple of key search phrases that I started with (along with slight variations):
+our research and splitting them into the categories mentioned above. The
+key search phrases used (with slight variations) are as follows:
   \begin{itemize}
     \item software data quality;
     \item software data quality metrics;
@@ -220,19 +220,9 @@ a couple of key search phrases that I started with (along with slight variations
     \item software project communication waste.
   \end{itemize}
 
-Then, after reading the papers retrieved when searching for the above-mentioned
-phrases, I also applied the snowballing research technique as per Dr. Storer's 
-advice. This extra step was helpful and allowed me to easily find linked 
-papers and correlate them in this literature review.
-
-Moreover, when reading papers, one key aspect for selecting and including it
-in the literature review was citation count. Thus, after finding the most 
-cited papers, I then checked to see the journal where it was published so that
-we would only have material from the most important journals.
-
-Even though the literature review contains around 40 papers, there were
-around 80 papers that were reviewed but roughly half of them were excluded 
-because they eventually proved to not be so relevant to our research. 
+The snowballing research technique was also applied when retrieving papers for the
+background review. Citation count and publication journal were two important aspects 
+when selecting papers - the most cited papers, published in the top quality journals were reviewed.
 
 \subsection{Data Quality and Metrics}\label{data_quality}
 
@@ -241,12 +231,12 @@ what characteristics define it.
 
 \citet{bachmann2009software} conducted a thorough investigation of several
 software projects, both open source (5 projects) as well as closed source (1 
-project), in order to infer what determines if it has quality. They selected 
+project), in order to infer what determines their quality. They selected 
 various sources of information, among which bug tracking 
 databases and version control systems logs, and examined SVN logs, CVS logs
 and the content of the bug tracker databases, in the end trying to link 
 the logs with the bug tracker contents as they are not integrated by default. 
-On the other hand, \citet{strong1997data} conducted a qualitative analysis
+A different approach was taken by \citet{strong1997data} who conducted a qualitative analysis
 instead of quantitative by collecting data from 42 data quality projects by 
 interviewing custodians, customers and managers. They analyzed each project
 using the data quality dimensions as content analysis codes.
@@ -270,10 +260,10 @@ inadequately defined or measured data and data that could not be appropriately
 aggregated.
 
 The work of \citet{kitchenham1996software} looks specifically at defining
-quality in a software projects, as well as finding who are the people in charge of 
-this and how should they approach achieving it. They tried to define quality 
+quality in a software project, as well as finding who the people in charge of this 
+are and how they should approach achieving it. They tried to define quality 
 in software projects and analyze techniques that measure such metrics by looking
-at other models proposed in different other researches, such as McCall's quality
+at other models proposed in different researches, such as McCall's quality
 model or ISO 9126. However, they learned that quality is very hard to define and
 there are various factors which need to be taken into consideration, such as the
 business model of the company, the type of the software project (e.g. safety 
@@ -285,7 +275,7 @@ is code, and \citet{stamelos2002code} tried to discuss and examine the quality
 of the source code delivered by open source projects. They used a set of tools
 that could automatically inspect various aspects of source code, looking at
 the 6th release of the OpenSUSE project and its components defined by C
-functions. The research's results show that Linux applications have high quality 
+functions. The results show that Linux applications have high quality 
 code standards that one might expect in an open source repository, but 
 the quality is lower than the one implied by the standard. More than half
 of the components were in a high state of quality, but on the other hand, 
@@ -294,8 +284,8 @@ corrective actions. Thus, even though not all the source code was in
 an industrial standards shape, there is definitely room for further 
 improvement and open source repositories proved to be of good quality.
 
-After defining what data quality is and what are its characteristics, the next 
-step would be how to measure data or information quality in a project. 
+After defining what data quality is and its characteristics, the next 
+step would be data measurement or information quality in a project. 
 
 There are several research papers that try to find the answer, among which the 
 work of \citet{lee2002aimq}. The authors tried to define an overall model along 
@@ -309,7 +299,7 @@ in order to apply it successfully:
     \item two analysis techniques for interpreting the assessments captured 
     by the questionnaire.
   \end{itemize} 
-After developing the technique, they applied it at 5 different organizations and
+After developing the technique, they applied it in 5 different organizations and
 found that the tool proved to be practical.
 
 Compared to the methodology proposed by \citet{lee2002aimq}, the solution found
@@ -351,7 +341,7 @@ but not least, another discovery was that more attention needs to be given to
 differences across varying technologies.
 
 Another important area of data quality is what methodologies or techniques can 
-be applied by organizations in order to improve data quality. 
+be applied by organizations in order to improve it. 
 There are several studies that tried to propose such methodologies. A general 
 overview of such techniques  was presented by \citet{pipino2002data} - they 
 wanted to present ways of developing usable  data quality methods that 
@@ -375,7 +365,7 @@ confident note that their technique can fill a gap in the information quality
 environment.
 
 However, there are other aspects that can be investigated when trying to improve
-data quality. For example, \citet{prybutok2008evaluating} tried to find if 
+data quality. For example, \citet{prybutok2008evaluating} tested whether  
 leadership and information quality can lead to positive outcomes in an 
 e-government's data quality. They conducted a web survey to gather data and test 
 their hypotheses. Afterwards, they assessed the City of Denton's e-government 
@@ -391,8 +381,8 @@ are several authors that investigated various implications of low indices
 of data quality.
 
 One such research is the one done by \citet{gorla2010organizational}. They wanted
-to examine what influences do system quality, service quality and data quality
-have on an organization, as well as what effect does system quality have on
+to examine the influences of system quality, service quality and data quality
+on an organization, as well as what effect does system quality have on
 data quality. After conducting a construct measurement for the information
 systems quality dimensions \citep{swanson1997maintaining} and collecting data
 through empirical testing, they learned that service quality has the greatest
@@ -417,12 +407,12 @@ by people in different roles affect the overall work performance. After
 conducting various surveys with 6 companies that served as data collection 
 points, they reached the conclusion that there is vast complexity of 
 knowledge at work in the data production process and if these gaps are not 
-bridged it might lead to decrased data quality.
+bridged it might lead to decreased data quality.
 
 \subsection{Issue Quality}\label{issue_quality}
 
 Issue quality is the main topic of this literature review as it revolves around
-software tickets and what are the characteristics of a well-written and 
+software tickets and the characteristics of a well-written and 
 informative bug report, how efficient are bug tracking systems, what defines
 an efficient bug triaging process etc. 
 
@@ -431,7 +421,7 @@ we will address in our own research as well, is the quality of bug reports.
 There are several authors that have tried to defined what makes for a good bug
 report and what components actually improve the overall quality.
 
-\citet{bettenburg2008makes} have tried, through their work, to analyze what 
+\citet{bettenburg2008makes} analyzed what 
 makes for a good bug report through qualitative analysis. They interviewed over
 450 developers and asked them what are the most important features for them in
 a bug report that help them solve the issue quicker. They reached the conclusion 
@@ -455,14 +445,14 @@ reports faster is the one performed by \citet{schroter2010stack}. They conducted
 the whole experiment on the Eclipse project. They first extracted the stack
 traces using the infoZilla tool(\citep{bettenburg2008extracting}), followed by
 linking the stack traces to changes in the source code (change logs) by mining
-the version repository of the Eclipse project. The results were that 
+the version repository of the Eclipse project. The results showed that 
 around 60\% of the bugs that contained stack traces in their reports were fixed
 in one of the methods in the frame, with 40\% being fixed in exactly the first
 stack frame.
 
-Following on the conclusions of \citet{bettenburg2008makes} we have found out
-that the investigations undertaken by \citet{bettenburg2007quality} reveal 
-very similar results. They performed the same type of evaluation method (i.e. 
+After examining the work of \citet{bettenburg2007quality}, we noticed that
+the authors found very similar results to the ones presented in the research of \citet{bettenburg2008makes}. 
+They performed the same type of evaluation method (i.e. 
 interviews with developers) and confirmed that steps to reproduce and stack traces
 are the most important features in a bug report that help developers solve the
 issue quicker.
@@ -497,7 +487,7 @@ enumerations. When evaluating it on over 160.000 Eclipse bug reports, it proved 
 have a very high rate of over 97\% accuracy.
 
 However, \citet{kim2013should} propose a rather different technique than the one
-exposed in \citet{bettenburg2012using}. The authors have employed a two-phase
+exposed in \citet{bettenburg2012using}. The authors employed a two-phase
 recommendation model that would locate the necessary fixes based on information
 in bug reports. Firstly, they did a feature extraction on the bug reports (e.g. 
 extract description, summary, metadata). Then, in order to successfully predict
@@ -516,7 +506,7 @@ One other type of information that could be extracted and used for valuable
 purposes is the summary of a bug report, as shown in the work of 
 \citet{rastkar2010summarizing}. The authors wanted to determine if bug reports
 could be summarized effectively and automatically so that developers would
-need only to analyze summaries instead of full tickets. Firstly, they asked
+need only analyze summaries instead of full tickets. Firstly, they asked
 university students to volunteer to annotate the bug reports collected from
 various open sources projects (i.e. Eclipse, Mozilla, Gnome, KDE) by writing
 a summary of maximum 250 words in their own sentences. These human-produced 
@@ -528,7 +518,7 @@ generators trained on bug reports produce the best results.
 
 A third technique for linking source code files from the textual description of a 
 bug report is the one proposed by \citet{zhou2012should}. The authors
-firstly performed a textual analysis, looking for similarities between the bug 
+first performed a textual analysis, looking for similarities between the bug 
 report description and the source code files. Then, it analyzed previous bugs in 
 the repository to find the most similar ones, thus being able to find which files 
 ought to be changed. Lastly, it assigned scores to similar files, the ones with 
@@ -578,13 +568,13 @@ they ranked the top suggestions as follows:
 One other important aspect when analyzing the quality of a bug report is the
 time it takes to triage it. Triaging is the process of analyzing issues and 
 based on the information available, determine their severity and assign them to the
-most qualified available developer to fix them. If the ticket would be valuable
-and have an increased index of quality, the triaging process would be quicker and,
+most qualified available developer to fix them. If the ticket was valuable and had 
+an increased index of quality, the triaging process would be quicker and,
 thus, reduce the cost for the organization. There are several researches that 
 are concerned with this field and how gaps can be bridged.
 
-One such example is the work of \citet{anvik2006automating}. The authors tried
-to automate the process of bug report assignment by employing a machine learning 
+One such example is the work of \citet{anvik2006automating}. The authors
+automated the process of bug report assignment by employing a machine learning 
 algorithm which, after receiving as input various types of information (e.g. 
 textual description of bug, bug component, OS, hardware, software version, 
 developer who owns the code, current workload of developers, list of developers 
@@ -618,8 +608,8 @@ However, a completely different approach is the one presented by
 tossing (i.e. re-assign tickets from one developer to another). They wanted, 
 through their tossing graph approach based on the Markov property, to both 
 discover developer networks and team structures, as well as help to better assign 
-developers to bug reports. They analyzed 145.000 bug reports from Eclipse and 
-300000 from Mozilla and then, using statistical analysis on the bug reports in 
+developers to bug reports. They analyzed 145,000 bug reports from Eclipse and 
+300,000 from Mozilla and then, using statistical analysis on the bug reports in 
 order to find evolution histories and changes throughout the lifetime of the 
 reports, they created the bug tossing graph. The research shows that it takes a 
 long time to assign and toss bugs and, additionally, they learned that their model 
@@ -638,7 +628,7 @@ However, bug report assignment is not the only part of bug triaging that needs
 investigation. \citet{lamkanfi2010predicting} show a method through which one
 can predict the severity of a reported bug (i.e. assign story points to the 
 ticket) automatically. The authors conducted their research on the Mozilla,
-Eclipse and GNOME projects and divided their method into 5 steps:
+Eclipse and GNOME projects and divided their method into four steps:
   \begin{itemize}
     \item extract and organize bug reports;
     \item pre-process bug reports - tokenization, stop word removal and stemming;
@@ -725,7 +715,7 @@ Eventually they reached two main conclusions:
 Another work that is trying to analyze the waste around software coordination activities
 is the one of \citet{aranda2009secret}. They are trying to understand common bug fixing
 coordination activities in terms of software projects coordination and propose different
-directions on how to implement proper tools. Firstly, the conducted a field study which was
+directions on how to implement proper tools. They conducted a field study which was
 split into two parts:
   \begin{itemize}
     \item led an exploratory case study of bug repositories histories;
@@ -741,7 +731,7 @@ shotgun emails and infrequent/direct email.
 
 However, having discussed about software and communication waste, what work has been done
 around another major software activity, i.e. software cost estimation? The paper from 
-\citet{grimstad2006framework} tried to show that poor estimation analysis techniques
+\citet{grimstad2006framework} showed that poor estimation analysis techniques
 in software projects will lead to wrong conclusions regarding cost estimation accuracy.
 Moreover, they also propose a framework for better analysis of software cost estimation
 error. They approached a real-world company where they conducted analysis on their cost
@@ -751,7 +741,7 @@ the risk of poor coordination activities.
 
 But what happens when a project gains maturity? A work that investigates the effects of process
 maturity on quality, cycle time and effort is the one undergone by \citet{harter2000effects}. The
-research tries to prove or reject several hypotheses, such as higher levels of process maturity lead 
+research proves and rejects several hypotheses, such as higher levels of process maturity lead 
 to higher product quality, higher levels of process maturity are associated with increased cycle time,
 higher product quality is associated with lower cycle time, higher levels of process maturity lead 
 to increased development efforts in the project and higher product quality is associated with lower
@@ -784,7 +774,7 @@ to multiple factors, such as not using a supervised learning system or limitatio
 PMI-IR.
 
 However, the work of \citet{turney2002thumbs} looks only at sentiment analysis without
-examining the context. The research from \citet{wilson2005recognizing} tries to find
+examining the context. The research from \citet{wilson2005recognizing} found
 efficient ways to distinguish between contextual and prior polarity. They used a two 
 step method that used machine learning and a variety of features. The first step 
 classified each phrase which had a clue as either neutral or polar, followed by 
