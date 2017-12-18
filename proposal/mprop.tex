@@ -794,7 +794,7 @@ over popular open source projects such as Mozilla or Apache and extract
 tickets most probably via REST APIs, however the list of projects
 will be finalized once some tests will be run, and that is because
 maybe some projects will have more valuable tickets for us to analyze and
-we also decided that we want to analyze multiple issue tracking systems 
+we want to analyze multiple issue tracking systems 
 (e.g. Apache uses Jira \citep{jira} while Mozilla uses Bugzilla 
 \citep{bugzilla}). 
 
@@ -834,13 +834,12 @@ regex depending on the language of the project (e.g. Apache heavily
 uses Java, thus we can look for lines starting with java.*.*Exception ...).
 
 Implementation wise, we would like to develop the application that will
-perform both scraping, extraction and inspection in either Go or Java
-as I am the most proficient with these two programming languages. 
+perform both scraping, extraction and inspection in either Go or Java.
 
 In order to detect what features make for a high quality ticket, we need 
 to compare two \emph{similar} tickets and then analyze their components
-for differences. Thus, one of the biggest issues we will be facing is how 
-can we say that two tickets are similar. We have two initial approaches
+for differences. Thus, one of the biggest issues we will be facing is 
+comparing and contrasting tickets. We have two initial approaches
 that we want to test to see which one is more efficient:
   \begin{itemize}
     \item look solely at the issue tracking system and use story points
@@ -857,13 +856,13 @@ that we want to test to see which one is more efficient:
 However, this list is not final, so if we find some other method 
 while running the experiment, we shall switch to that.
 
-Finally, having similar tickets grouped together, we can then test 
+Finally, grouping similar tickets together allows testing 
 the variances in component features they possess and see which features
 affected the time-to-close the most.
 
 \subsection{Variables Tested}
 
-The independent variables we would like to test are:
+The independent variables proposed for testing are:
   \begin{itemize}
     \item presence and number of stack traces in a ticket;
     \item steps to reproduce (as described above - images or text);
@@ -875,7 +874,7 @@ The independent variables we would like to test are:
     \item complex or light discussion in comments.
   \end{itemize}
 
-In terms of dependant variables, we only have one - the time it takes
+In terms of dependent variables, there is only one - the time it takes
 between when the ticket was created and marked as OPEN until when it
 is finished and marked as CLOSED or RESOLVED.
 
@@ -884,7 +883,7 @@ is finished and marked as CLOSED or RESOLVED.
 
 The work on the actual project in the second semester will start off 
 with deciding and analyzing which repositories to use for ticket data.
-We have several popular open source options, such as Apache, Mozilla or
+There are several popular open source options, such as Apache, Mozilla or
 Eclipse, so settling on a couple of options will be the first step in our
 research. We believe that this step will be finished \emph{by the end of
 January}.
@@ -894,22 +893,20 @@ tool which will be implemented in either Go or Java. This will be a vital
 component of the whole research so we believe that it will be ready to run
 \emph{by the end of February}.
 
-Then, concomitantly with the previous work package, we will decide on
-what method to use to detect similar tickets. This step will be performed
-during the creation of the tool because we can only test efficiency once
-we have some tickets to validate our ideas. Thus, the proposed deadline
-for this work package is \emph{the end of February} as well.
+Then, concomitantly with the previous work package, the method used to 
+detect similar tickets will be decided on. This step will be performed
+during the creation of the tool because efficiency can only be evaluated
+once ideas have been validated via execution of several mock tickets. 
+Thus, the proposed deadline for this work package is \emph{the end of February} as well.
 
-Following we will run the the tool on the tickets we have collected. This
-is expected to be quite trivial once all the other work packages are 
-completed as we will simply need to run the application. The expected
-deadline is \emph{by 4\textsuperscript{th} of March}.
+Following, tickets collected will be run in the tool created as per the previous steps. 
+The expected deadline is \emph{by 4\textsuperscript{th} of March}.
 
 Then, the actual write-up of the paper will be structured as follows:
   \begin{itemize}
     \item write abstract, introduction, related work - this is expected
       to be completed \emph{by mid March};
-    \item write methodology and how we conducted the experiment (collecting
+    \item write methodology (collecting
       data, running analysis) - expected to be finished \emph{by the 
       beginning of April};
     \item write results, contributions and conclusion for the paper - 
