@@ -35,9 +35,9 @@ is a multitude of layers on top of each other: it starts with a number of charac
 then, that file gets compiled or interpreted to machine
 code by other components which run on the operating system; then, these components
 can communicate with the kernel (i.e. the component that sits exactly
-between the OS and the hardware) and eventually perform the final step - send 
-different 1s and 0s encoded into electrical signals to the CPU and various
-other hardware components.
+between the OS and the hardware) and eventually, after several other layers, 
+perform the final step - send different 1s and 0s encoded into electrical signals 
+to the CPU and various other hardware components.
 
 As previously mentioned, there are many levels of abstraction that computers expose to 
 their human operators, thus developing software that runs and performs as expected
@@ -176,15 +176,26 @@ explored, among which the most important were:
 
 Firstly, we will deal with a large volume of tickets and information extracted 
 from software projects and the tools that revolve around them, such as issue 
-trackers and version control systems. Thus, \emph{data quality} is an important 
-topic that needed to be explored in order to infer appropriate conclusions. 
+trackers and version control systems. Thus, \emph{data quality} (\cite{bachmann2009software}, 
+\cite{strong1997data}, \cite{kitchenham1996software},
+\cite{stamelos2002code}, \cite{lee2002aimq}, \cite{Heinrich2007MetricsDataQuality},
+\cite{nelson2005antecedents}, \cite{pipino2002data}, \cite{wang1998product},
+\cite{prybutok2008evaluating}, \cite{gorla2010organizational}, \cite{swanson1997maintaining},
+\cite{redman1998impact}, \cite{lee2003knowing}) is an important topic that needed to be explored in order to infer 
+appropriate conclusions. 
 
 We analyzed data quality mainly in software organizations and looked at what metrics
 are most useful when performing measurements. We also found different
 methodologies that either measure data quality or calculate the impact of poor data
 quality on the software project. 
 
-Secondly, probably the topic of most interest to our research is \emph{issue quality}.
+Secondly, probably the topic of most interest to our research is \emph{issue quality}
+(\cite{bettenburg2008makes}, \cite{hooimeijer2007modeling}, \cite{schroter2010stack},
+\cite{bettenburg2008extracting}, \cite{bettenburg2007quality}, \cite{bettenburg2008duplicate},
+\cite{bettenburg2012using}, \cite{kim2013should}, \cite{rastkar2010summarizing}, 
+\cite{zhou2012should}, \cite{fischer2003analyzing}, \cite{just2008towards}, 
+\cite{anvik2006automating}, \cite{anvik2011reducing}, \cite{anvik2006should}, 
+\cite{jeong2009improving}, \cite{Naguib2013BugReportAssignee}, \cite{lamkanfi2010predicting})
 This field is mainly concerned with software tickets and their characteristics: how
 important are issue trackers to a software project, what makes for a good bug report,
 what impact does bad triaging have etc. As we are interested in finding out what
@@ -192,7 +203,9 @@ features are most important in improving the quality of a ticket, the issue qual
 literature reviewed proved to be beneficial and provided valuable insight into
 how other researchers tried to approach this problem.
 
-The third topic was waste and its impact on software projects. We needed to
+The third topic was \emph{waste} (\cite{sedano2017software}, \cite{Korkala2014WasteIdentification},
+\cite{ikonen2010exploring}, \cite{aranda2009secret}, \cite{grimstad2006framework},
+\cite{harter2000effects}, \cite{turney2002thumbs}, \cite{wilson2005recognizing}) and its impact on software projects. We needed to
 look into various communication and tool-related waste in software projects because
 having a project with a considerable amount of waste might affect our results and
 compromise the evaluation process. We investigated researches that looked into what
