@@ -75,7 +75,7 @@ of a ticket? What about attachments and whether a screenshot is more helpful tha
 drawn from comments increase or decrease the time taken to solve a bug? How does grammar correctness influence the 
 communication friction?
 
-In this research paper, we present and discuss our findings after running a statistical analysis 
+In this research paper, we present and discuss our findings after running a quantitative data analysis 
 on over 300,000 tickets taken from more than 15 open source projects. We have implemented a Go application 
 with multiple commands (i.e. store, analyze, plot, statistics) that can automatically fetch any number of tickets 
 from a Jira instance, analyze them, generate plots and run statistical tests. 
@@ -92,9 +92,7 @@ analyzed and well-tested data.
 \section{Related Work}
 
 \section{Building the Data Set}
-
-
-The first step to building the data set was to create a tool that was able to execute all the commands that we required:
+The first step towards building the data set was to create a tool that was able to execute all the commands that we required:
 fetching the tickets from any Jira instance, storing them into some form of database, analyze the variables of interest, 
 automatically plot the correlations between them and run statistical analysis on the data. After careful consideration, 
 we decided that Go was the best way to go for various reasons:
@@ -106,7 +104,11 @@ we decided that Go was the best way to go for various reasons:
     \item is is designed with concurrency in mind, thus it helps reduce times of execution and computing power considerably;
   \end{itemize}
 
-Figure \ref{} The following two subsections will describe in detail how the process of building the data set was undergone.
+Then, we split our tool into four main commands: \emph{store}, \emph{analyse}, \emph{plot} and \emph{stats}. They all 
+follow the flow shown in figure \ref{fig-eg} and complete the whole application cycle, in the end producing a database 
+of analysed tickets, as well as plots and statistics for investigating correlations, saved on the filesystem.
+
+In the following two subsections we describe how we designed and implemented the commands mentioned above.
 
 \subsection{Fetch and Store}
 
@@ -115,13 +117,54 @@ and then store everything inside an instance of BoltDB \cite{bolt}, which is a v
 database. The whole process is parallelized with the possibility of scaling even up to hundreds of goroutines
 (i.e. lightweight threads) running concurrently.
 
-In terms of projects selected, we have opted for the Apache Software Foundation which open-sourced some of the most popular
-software applications. Moreover, they have all their projects' issue tracking systems hosted on Jira, thus we could also 
-achieve consistency easier. 
+We have interacted with the Jira Server REST API which has very good documentation written by the Atlassian team. After getting
+familiar with all the features the REST API offers, we have opted for getting paginated issues from the server, which means 
+slicing the whole set of tickets into multiple smaller arrays to improve performance and reduce the load on the server. We also
+specified to Jira exactly what set of issue fields to return and, eventually, while responses were retrieved from the instance,
+we began storing them into our Bolt DB instance. The way we chose to store them was to set the issue key (i.e. unique 
+identifier that differentiates a ticket from all others across all projects inside a Jira instance) as the key of the pair and
+the value is the whole representation of an issue (e.g. attachments, story points, priority) as a JSON encoded value. This
+helped us reduce the size of the database once we reached hundreds of thousands of tickets.
 
 \subsection{Analyse}
 
+Once the Bolt DB instance is completely populated with all the tickets we were interested in, the analyze command first 
+fetches all the issues in the database. Then, it runs in parallel the \emph{seven types of analysis}:
+\begin{itemize}
+  \item \emph{attachments} - checks whether attachments influence Time-To-Close and also look at what types 
+  of attachments (e.g. screenshots, archive, code snippets) influence quality the most;
+  \item \emph{steps to reproduce} - performs a complex regex to detect steps to reproduce and then checks whether their presence
+  influence the quality of a ticket;
+  \item \emph{stack traces} - runs complex regex for detecting stack traces in either summary, description or comments 
+  and verifies whether their presence influence Time-To-Close for the ticket;
+  \item \emph{comments complexity} - loops through all comments and counts all words; then, the tool verifies whether 
+  having many words or comments decreases or increases Time-To-Close for the ticket;
+  \item \emph{fields complexity} - same analysis as comments complexity, but only for summary and description;
+  \item \emph{grammar correctness} - it uses Azure Cloud Bing Spell Check API \cite{bing} to perform analysis on summary, 
+  description and comments; after concatenating everything and making it compatible with the API allowed formats, the tool 
+  receives back in the JSON payload not only the number of flagged tokens (i.e. grammar errors), but also their types 
+  (e.g. unknown token, misspell);
+  \item \emph{sentiment} - uses Google Cloud Platform's Natural Language Processing API \cite{gcp_nlp} to retrieve the 
+  sentiment score for summary, description and comments; it first concatenates everything and makes it conform to Google's 
+  API and then sends the request, receiving a score from -1 to 1 inclusive (-1 is completely negative, 1 is completely 
+  positive).
+\end{itemize}
+
+Implementation wise, the application first checks Bolt for tickets and gets either all of them in memory (easier to parse, 
+but heavy on resource utilization) or slices them into smaller arrays to get processed afterwards (harder to parse as it 
+eventually requires re-creation of the whole array of tickets before inserting back into the database, but it is much 
+lighter on computing power). After having the tickets available, we start looping through them and perform all 
+analysis types mentioned above. Once some sort of value is computed (e.g. grammar correctness score), it gets set in 
+its corresponding field in the ticket struct and subsequently stored back in the database. We chose this approach because 
+we do not want to run the analysis every time we want to plot correlations between variables, but rather have the data 
+already available there. Moreover, for external analysis such as hitting Google Cloud Platform APIs, there are costs for 
+running the analysis, thus in this way we drastically reduce overall costs for the project. 
+
+\subsection{Plot and Statistical Tests}
+
 \section{Characterising the Data Set}
+
+\section{Correlations}
 
 \subsection{Attachments}
 
@@ -136,8 +179,6 @@ achieve consistency easier.
 \subsection{Steps to Reproduce}
 
 \subsection{Stack Traces}
-
-\section{Correlations}
 
 \section{Future Work}
 
