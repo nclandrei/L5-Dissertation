@@ -29,24 +29,58 @@ as well as state-of-the-art sentiment and grammar correctness analysis.
 
 \section{Introduction}
 
-This paper outlines the standard template for an MSci submission.
-In earlier years, MSci students at the School of Computing
-Science,
-University of Glasgow, were expected to produce a full-length
-dissertation. Now, the requirement is for MSci students to
-write a paper of up to 14 pages in length, using the supplied
-\texttt{mpaper} \LaTeX style file.
+In the past decade, technology has drastically increased its influence on 
+virtually every aspect of our society. Therefore, software projects have 
+inherently become more complex and require increasing number of developers in
+the team. Due to this, software engineers have created issue tracking systems,
+a means of planning, managing and tracking work products in the form of 
+\emph{software tickets} or \emph{issues}.
 
-The precise structure of an MSci paper is not mandated, but it should
-probably cover in detail the following aspects of the project.
-\begin{enumerate}
-\item General description of the problem, motivation, relevance
-\item Background information, possibly including a literature survey
-\item Description of approach taken to solve the problem, including
-  high-level design and lower-level implementation details as appropriate
-\item Evaluation, qualitative or quantitative as appropriate
-\item Conclusion, including scope for future work
-\end{enumerate}
+There are multiple platforms for providing such issue tracking systems, among which
+the most popular are Jira \cite{jira} and Bugzilla \cite{bugzilla}. For both platforms,
+the tickets are split into two main categories: feature requests (i.e. feature to be 
+implemented into the system) and bug reports (i.e. issue encountered by an end user or
+discovered by a developer in the codebase). Regardless of the type of ticket, they provide
+various types of information that can be filled in by the reporter, including:
+  \begin{itemize}
+    \item summary - short description of the feature to be implemented/encountered bug;
+    \item description - longer textual field which goes into more detail regarding the ticket;
+    it can include various types of information, such as stack traces or steps to reproduce a bug;
+    \item attachments - screenshots, snippets of code or configuration files that might help
+    close the ticket faster;
+    \item comments - each ticket can have any number of comments where the people interested in 
+    it can talk about what might have caused the bug, how to fix it etc.
+  \end{itemize}
+
+Even though tickets provide such comprehensive information regarding a specific task, studies have shown 
+that fixing bugs is one of the most common tasks performed by developers \cite{latoza2006maintaining}. One of
+the reasons for this is the communication friction between developers and end users \cite{Korkala2014WasteIdentification}
+as developers might need clarification regarding what information the users have provided (e.g. cannot reproduce the bug, 
+screenshot is unclear). Another main reason for this waste of effort on solving tickets, according to 
+Just et. al \cite{just2008towards} and Zimmermann et. al \cite{zimmermann2009improving}, is the generally poor design of issue 
+tracking systems. This can lead to various issues, including increased costs for the company, wasted development effort, 
+decreased customer satisfaction and overall poor performance.
+
+Therefore, there is a need in the community to find the answer to what makes for a high quality, valuable software ticket 
+that would improve the overall performance of the development team and, inherently, the company. As there are many 
+fields in a ticket, the number of unanswered questions is rather large: do stack traces have an influence on the quality
+of a ticket? What about attachments and whether a screenshot is more helpful than a snippet of code? Does a negative sentiment
+drawn from comments increase or decrease the time taken to solve a bug? How does grammar correctness influence the 
+communication friction?
+
+In this research paper, we present and discuss our findings after running a statistical analysis 
+on over 300,000 tickets taken from more than 15 open source projects. We have implemented a Go application 
+with multiple commands (i.e. store, analyze, plot, statistics) that can automatically fetch any number of tickets 
+from a Jira instance, analyze them, generate plots and run statistical tests. 
+
+During the analysis part, we investigate several variables in correlation with \emph{time-to-complete}, 
+which we define as the \emph{metric of quality} (\emph{time-to-complete} represents the period of time between the creation 
+and the closing of a ticket). There are multiple novel aspects brought by our study, among which is the fact that it is one of 
+the very few studies that have tackled this issue using a quantitative rather than a qualitative approach (with a very 
+large number of tickets analysed) and also that it uses state-of-the-art sentiment \cite{wilson2005recognizing} as well as 
+grammar correctness analysis techniques \cite{wilson2005recognizing}. We believe that our results are valuable 
+contributions to the research community and the database produced after the analysis can help further studies with 
+analyzed and well-tested data.
 
 \section{Related Work}
 
@@ -57,24 +91,7 @@ but it is possible to make them
 stretch over both columns using the \texttt{figure*} and
 \texttt{table*} environments. For an example, see Figure \ref{fig-eg}.
 
-\begin{table}
-\begin{tabular}{l||c||p{2cm}}
-\emph{Operating System} & \emph{Version} & \emph{Verdict} \\ \hline \hline
-Ubuntu & 12.04 & Everyone's favourite Linux, unless you grew up with
-RedHat \\ \hline
-Slackware & xxx & Pseudo-hacker's Linux, how often do you recompile
-your kernel? \\ \hline
-Mac OS & 10.7 & For people with more money than sense \\ \hline
-\end{tabular}
-\caption{\label{tab-eg}Single column table of figures}
-\end{table}
 
-\begin{figure*}
-\begin{center}
-\includegraphics[scale=0.3]{images/alice.pdf}
-\end{center}
-\caption{\label{fig-eg}An example figure stretching over two columns}
-\end{figure*}
 
 \section{Building the Data Set}
 
@@ -125,3 +142,22 @@ Tim, my parents, Corina.
 
 
 \end{document}
+
+% \begin{table}
+% \begin{tabular}{l||c||p{2cm}}
+% \emph{Operating System} & \emph{Version} & \emph{Verdict} \\ \hline \hline
+% Ubuntu & 12.04 & Everyone's favourite Linux, unless you grew up with
+% RedHat \\ \hline
+% Slackware & xxx & Pseudo-hacker's Linux, how often do you recompile
+% your kernel? \\ \hline
+% Mac OS & 10.7 & For people with more money than sense \\ \hline
+% \end{tabular}
+% \caption{\label{tab-eg}Single column table of figures}
+% \end{table}
+
+% \begin{figure*}
+% \begin{center}
+% \includegraphics[scale=0.3]{images/alice.pdf}
+% \end{center}
+% \caption{\label{fig-eg}An example figure stretching over two columns}
+% \end{figure*}
