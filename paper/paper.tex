@@ -29,6 +29,13 @@ as well as state-of-the-art sentiment and grammar correctness analysis.
 
 \section{Introduction}
 
+\begin{figure*}
+\begin{center}
+\includegraphics[width=\textwidth]{images/flow.pdf}
+\end{center}
+\caption{\label{fig-eg}Application flow of the Go tool.}
+\end{figure*}
+
 In the past decade, technology has drastically increased its influence on 
 virtually every aspect of our society. Therefore, software projects have 
 inherently become more complex and require increasing number of developers in
@@ -86,12 +93,6 @@ analyzed and well-tested data.
 
 \section{Building the Data Set}
 
-\begin{figure*}
-\begin{center}
-\includegraphics[width=\textwidth]{images/flow.pdf}
-\end{center}
-\caption{\label{fig-eg}Flow of the Go tool.}
-\end{figure*}
 
 The first step to building the data set was to create a tool that was able to execute all the commands that we required:
 fetching the tickets from any Jira instance, storing them into some form of database, analyze the variables of interest, 
