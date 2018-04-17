@@ -84,48 +84,57 @@ analyzed and well-tested data.
 
 \section{Related Work}
 
-This \LaTeX template is based on the ACM \texttt{sig-alternate} class.
-The layout is two-column text. Generally figures and tables only
-extend to one column width, e.g.\ Table \ref{tab-eg},
-but it is possible to make them
-stretch over both columns using the \texttt{figure*} and
-\texttt{table*} environments. For an example, see Figure \ref{fig-eg}.
-
-
-
 \section{Building the Data Set}
 
-Again, Simon Peyton Jones has a lovely description of how to write a
-paper on his
-website.
-Personally, I put URLs in footnotes and \emph{bona fide} references
-in the bibliography. For instance, Turing \cite{turing37computable}
-and Knuth \cite{knuth68art} would not be out of place in list of
-references.
-How many references? Hard to say. Five is not enough, 50 is pushing
-it.
+\begin{figure*}
+\begin{center}
+\includegraphics[scale=0.3]{images/flow.png}
+\end{center}
+\caption{\label{fig-eg}Flow of the whole application.}
+\end{figure*}
 
-\subsection{User Interface}
+The first step to building the data set was to create a tool that was able to execute all the commands that we required:
+fetching the tickets from any Jira instance, storing them into some form of database, analyze the variables of interest, 
+automatically plot the correlations between them and run statistical analysis on the data. After careful consideration, 
+we decided that Go was the best way to go for various reasons:
+  \begin{itemize}
+    \item it is designed with simplicity in min, thus making it easier for others who might join the project to read 
+    and understand the codebase;
+    \item it is compiled, statically typed, which implies that it is a much faster candidate than other interpreted languages
+    such as Ruby or Python;
+    \item is is designed with concurrency in mind, thus it helps reduce times of execution and computing power considerably;
+  \end{itemize}
 
-Blah blah blah
-Blah blah blah
-Blah blah blah
-Blah blah blah
+Figure \ref{} The following two subsections will describe in detail how the process of building the data set was undergone.
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\subsection{Foo}
+\subsection{Fetch and Store}
 
-Blah blah blah
-Blah blah blah
-Blah blah blah
+This is the first command implemented in our tool - it is desgined to fetch, from any valid Jira URL, any number of tickets 
+and then store everything inside an instance of BoltDB \cite{bolt}, which is a very simple yet powerful key-value pair 
+database. The whole process is parallelized with the possibility of scaling even up to hundreds of goroutines
+(i.e. lightweight threads) running concurrently.
 
-\subsubsection{Bar}
-\textsf{Blah} \textit{blah} \textbf{blah}
+In terms of projects selected, we have opted for the Apache Software Foundation which open-sourced some of the most popular
+software applications. Moreover, they have all their projects' issue tracking systems hosted on Jira, thus we could also 
+achieve consistency easier. 
+
+\subsection{Analyse}
 
 \section{Characterising the Data Set}
 
-Graphs are always good. I recommend getting to grips with Matlab, R or
-gnuplot rather than exporting horribly Excel bitmapped graphs.
+\subsection{Attachments}
+
+\subsection{Comments}
+
+\subsection{Summary and Description}
+
+\subsection{Grammar Correctness}
+
+\subsection{Sentiment Analysis}
+
+\subsection{Steps to Reproduce}
+
+\subsection{Stack Traces}
 
 \section{Correlations}
 
