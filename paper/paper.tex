@@ -110,30 +110,30 @@ traces and steps to reproduce in tickets. A further contribution brought by the
 authors to the community is the creation of a tool called Cuezilla which is able 
 to automatically predict the quality of a bug report with an accuracy of around 40\%.
 
-%TODO: modify here
-Strengthening the argument that readability matters considerably in bug report 
-quality is the work of Hooimeijer et. al \cite{hooimeijer2007modeling}. They ran an analysis over
-27000 bug reports from the Mozilla Firefox project, looking at self-reported 
-severity, readability, daily load, submitter reputation and changes over time. 
-After running the evaluation, they not only found out about the importance of
-readability in bug reports, but also that attachment and comment counts are 
-valuable for faster triaging and that patch count, for example, does not
-contribute in the same manner as the previous two.
+Another research paper that strenghtens the argument that readability is a quality 
+factor in software tickets is the one presented by Hooimeijer et. al \cite{hooimeijer2007modeling}.
+They conducted their analysis on over 25,000 bug reports from the Mozilla project, 
+investigating readability, daily load, submitter reputation, the whole changelog histories 
+and severity. They conclude that not only readability in the textual fields of a ticket
+influence the \emph{Time-To-Close}, but also that the presence of attachments and 
+the number of comments have a clear effect on the duration of triaging. On the 
+other hand, the patch count and other similar fields did not provide significant 
+value to the quality of tickets.
 
-%TODO: modify here
-Another research that agrees that stack traces are helpful in solving bug
-reports faster is the one performed by Schroter et. al \cite{schroter2010stack}. They conducted
-the whole experiment on the Eclipse project. They first extracted the stack
-traces using the infoZilla tool(\cite{bettenburg2008extracting}), followed by
-linking the stack traces to changes in the source code (change logs) by mining
-the version repository of the Eclipse project. The results showed that 
+However, there are other types on information typically included in software tickets 
+which might prove beneficial for developers and subsequently improve the ticket quality.
+One such type is stack traces and Schroter et. al \cite{schroter2010stack} analyse how 
+quickly tickets are closed when they either have stack traces included in their fields 
+(e.g. description) or not. They collected their data from the Eclipse project using 
+the InfoZilla tool proposed by Bettenburg et. al \cite{bettenburg2008extracting}.
+Then, they linked the stack traces to changes in source code by mining the Eclipse version 
+controlled repository. The results showed that 
 around 60\% of the bugs that contained stack traces in their reports were fixed
-in one of the methods in the frame, with 40\% being fixed in exactly the first
-stack frame.
+in one of the methods in the frame. Moreover, more than 40\% of the tickets having stack traces
+got fixed in the first stack frame.
 
-%TODO: modify here
 Other interesting findings regarding the quality of a software project's tickets
-are the ones elicited in \cite{bettenburg2008duplicate}. The authors examined
+are the ones elicited in the study of Bettenburg et. al \cite{bettenburg2008duplicate}. The authors examined
 whether duplicate bug reports are actually harmful to a project or they add 
 quality. They collected big amount of data from the Eclipse project and ran
 various kind of textual and statistical analysis on the data to find answers.
@@ -457,6 +457,5 @@ Tim, my parents, Corina.
 
 \bibliographystyle{abbrv}
 \bibliography{paper}
-
 
 \end{document}
