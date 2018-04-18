@@ -41,19 +41,12 @@ There are multiple platforms for providing such issue tracking systems, among wh
 the most popular are Jira \cite{jira} and Bugzilla \cite{bugzilla}. For both platforms,
 the tickets are split into two main categories: feature requests (i.e. feature to be 
 implemented into the system) and bug reports (i.e. issue encountered by an end user or
-discovered by a developer in the codebase). Regardless of the type of ticket, they provide
-various types of information that can be filled in by the reporter, including:
-  \begin{itemize}
-    \item summary - short description of the feature to be implemented/encountered bug;
-    \item description - longer textual field which goes into more detail regarding the ticket;
-    it can include various types of information, such as stack traces or steps to reproduce a bug;
-    \item attachments - screenshots, snippets of code or configuration files that might help
-    close the ticket faster;
-    \item comments - each ticket can have any number of comments where the people interested in 
-    it can talk about what might have caused the bug, how to fix it etc.
-  \end{itemize}
+discovered by a developer in the codebase). Regardless of the type of ticket, they possess
+various information that can be filled in by the reporter (i.e. person who created the ticket; 
+can be both an end user or a developer in the team), providing the developers
+a detailed view of what is requested or what went wrong.
 
-Even though tickets provide such comprehensive information regarding a specific task, studies have shown 
+Even though tickets provide such comprehensive data regarding a specific task, studies have shown 
 that fixing bugs is one of the most common tasks performed by developers \cite{latoza2006maintaining}. One of
 the reasons for this is the communication friction between developers and end users \cite{Korkala2014WasteIdentification}
 as developers might need clarification regarding what information the users have provided (e.g. cannot reproduce the bug, 
@@ -64,10 +57,8 @@ decreased customer satisfaction and overall poor performance.
 
 Therefore, there is a need in the community to find the answer to what makes for a high quality, valuable software ticket 
 that would improve the overall performance of the development team and, inherently, the company. As there are many 
-fields in a ticket, there are numerous unanswered questions: do stack traces have an influence on the quality
-of a ticket? What about attachments and whether a screenshot is more helpful than a snippet of code? Does a negative sentiment
-drawn from comments increase or decrease the time taken to solve a bug? How does grammar correctness influence the 
-communication friction?
+fields in a ticket, there are numerous unanswered questions, such as whether stack traces have an influence on the quality
+of a ticket? 
 
 In this research paper, we present and discuss our findings after running a quantitative data analysis 
 on over 300,000 tickets taken from more than 15 open source projects. We have implemented a Go application 
@@ -103,7 +94,6 @@ Finally, we provide future research directions in Section \ref{future_work} and 
 \end{center}
 \caption{\label{fig-eg}Application flow of the Go tool.}
 \end{figure*}
-
 
 \section{Building the Data Set}\label{building}
 The first step towards building the data set was to create a tool that was able to execute all the commands that we required:
@@ -183,9 +173,38 @@ For plotting the data, we first connect again to the Bolt database instance and 
 the variable \emph{Time-To-Close} set (i.e. tickets marked as closed when they were fetched from the Jira instance). Afterwards,
 we either save scatter plots or bar charts to disk. 
 
-Also, in order to validate our findings, the statistics command fetches all the data from the database and 
+Also, in order to validate our findings, the statistics command fetches all the data from the database and runs two types of 
+tests: Welch's T Test \cite{welch1947generalization} for analysing categorical data (e.g. has/does not have attachments)
+and Spearman's rank correlation coefficient \cite{spearman1904proof} for investigating continuous data (e.g. how do different 
+grammar correctness scores change \emph{Time-To-Complete}).
 
 \section{Characterising the Data Set}\label{characterising}
+
+The data that we collected is stored, as previously mentioned, in a Bolt database instance which is around 6 GB in size. 
+All tickets are stored as key-value pairs, where the key is the ticket's unique ID (e.g. KAFKA-100) and the value is the 
+JSON encoded representation of the ticket. The tickets stored have the following fields available for investigation:
+\begin{itemize}
+  \item attachments - files or images attached to tickets;
+  \item summary - short description of the ticket;
+  \item description - more detailed information regarding what is requested or what bug was encountered;
+  \item time estimate - estimated number of hours to complete the task (set by triagers or developers);
+  \item time spent - time period between opening the ticket and a specific point in time;
+  \item created timestamp;
+  \item issue status - jira specific statuses, including Open, Closed, Awaiting Review, Patch Submitted;
+  \item due date - optional deadline for when the ticket should get closed;
+  \item comments - discussion around the ticket conducted by developers, end users, triagers;
+  \item priority - it can range from low priority (minor) to critical/blocker;
+  \item issue type - specific Jira field that specifies whether the ticket is either a bug, a feature request or a general task.
+\end{itemize}
+
+There are other fields that can be configured inside Jira, including custom fields, but we did not collect them as they would not 
+have been helpful in conducting the analysis. However, in addition to the fields we saved, we also store grammar correctness scores 
+(i.e. number of grammar mistakes identified in summary, description and comments), sentiment scores (i.e. sentiment drawn from summary 
+and description), whether they have steps to reproduce, if stack traces are present and number of words in comments, summary and description. 
+Even though all of them, apart from grammar and sentiment scores, can be computed locally, we store them because of performance issues
+due to the very large size of the database. 
+
+
 
 \section{Correlations}\label{correlations}
 
