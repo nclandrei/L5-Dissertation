@@ -20,7 +20,8 @@ In this research paper, we present our findings after
 investigating a large number of variables surrounding software tickets, 
 such as whether the presence of stack traces influence the time 
 to close for the ticket. Our results show that the presence and type of attachments,
-comments complexity (i.e. number of comments per ticket), grammar correctness scores
+comments complexity (i.e. number of comments per ticket and total number of words), 
+summary and description complexity, grammar correctness scores
 as well as the sentiment drawn from the comments can influence the quality of the ticket.
 We bring a couple of novel aspects to the research
 community including one of the largest dataset statistically analysed in the field,
@@ -28,7 +29,6 @@ as well as state-of-the-art sentiment and grammar correctness analysis.
 \end{abstract}
 
 \section{Introduction}
-
 
 In the past decade, technology has drastically increased its influence on 
 virtually every aspect of our society. Therefore, software projects have 
@@ -74,8 +74,8 @@ such as \emph{Fixed}, \emph{Resolved}). \emph{Time-To-Close} is our dependent va
 
 This study brings several contributions to the research community:
 \begin{itemize}
-  \item it is one of the very few research projects that investigates such a large number of tickets (over 3200,000) spanning
-  across a variety of projects (i.e. 21 projects);
+  \item it is one of the very few research projects that investigates such a large number of tickets (over 300,000) spanning
+  across 38 different projects;
   \item it is one of the few studies in the field that performs a quantitative analysis rather than a qualitative one;
   \item it is, to our knowledge, the first study to conduct sentiment and grammar correctness analyses on software tickets.
 \end{itemize}
@@ -162,7 +162,7 @@ analysis types mentioned above. Once some sort of value is computed (e.g. gramma
 its corresponding field in the ticket struct and subsequently is stored back in the database. We chose this approach because 
 we do not want to run the analysis every time we want to plot correlations between variables, but rather have the data 
 already available there. Moreover, for external analysis such as hitting Google Cloud Platform APIs, there are costs for 
-running the analysis, thus in this way we drastically reduce overall costs for the project. 
+running the analysis, thus in this way we drastically reduce overall costs for the project.
 
 \subsection{Plot and Statistical Tests}
 
@@ -204,64 +204,103 @@ and description), whether they have steps to reproduce, if stack traces are pres
 Even though all of them, apart from grammar and sentiment scores, can be computed locally, we store them because of performance issues
 due to the very large size of the database. 
 
+In total, we have collected 303,138 tickets spanned across 38 projects from the Apache Software Foundation: Impala, Eagle, Groovy, Lucene,
+Hadoop, Kafka, Apache Infrastructure project, Tika, Solr, ActiveMQ, ZooKeeper, Velocity, Tez, Storm, Stratos, CouchDB, Cassandra, 
+Beam, Aurora, Bigtop, Camel, CarbonData, Cloudstack, Flex, Flink, Ignite, HBase, Mesos, Ambari, Cordova, Avalon, Atlas, 
+Cactus, Flume, Felix, Geode, Ivy and Phoenix. These projects are using a large varieties of programming languages, ranging from Java, C, 
+Go to Python and Ruby \cite{apache_projects}. Moreover, in terms of contributors, the projects we selected range from small teams of people
+such as Tika to large numbers of developers spread across the globe, such as the people working on Kafka. We came to this final number 
+and range of tickets and projects because of a couple of reasons: 
+\begin{itemize}
+  \item the study needed as much diversity as possible in order to correctly analyse and validate the data;
+  \item these are the most important, up-to-date and contributed to Apache projects by the open source world;
+  \item Apache is one of the few companies/foundations that use Jira exclusively for their projects and it is public (they do 
+  provide a Bugzilla alternative, but it is rarely updated compared to Jira).
+\end{itemize}
 
+More specifically, we computed the following numbers for the tickets we collected:
+\begin{itemize}
+  \item out of the 303,138 tickets, 236,383 tickets have been closed (i.e. marked Closed, Resolved, Done or Completed) by the time we 
+  fetched them from the Jira instance;
+  \item 287,120 tickets are of high priority (i.e. marked as Blocker, Critical, Major or High);
+  \item 103,397 tickets have attachments which we split in the following categories:
+    \begin{itemize}
+      \item 4,082 have code attachments (e.g. Go, Java, Python);
+      \item 7,171 have image attachments (e.g. png, jpg/jpeg, gif);
+      \item 164 have video attachments (e.g. mkv, avi, mp4);
+      \item 13,990 have text attachments (e.g. txt, md, doc(x));
+      \item 918 have config attachments (e.g. json, xml, yml);
+      \item 2,491 have archive attachments (e.g. zip, tar.gz, rar, 7z);
+      \item 280 have spreadsheet attachments (e.g. csv, xlsx);
+      \item 80,015 have other attachments (i.e. any file extension not pre-defined by us in one of the above categories).
+    \end{itemize}
+  \item 270,907 tickets have comments;
+  \item 39,988 tickets have steps to reproduce (i.e. sequence of steps specified by the bug reporter that would reproduce a certain bug); 
+  \item 1,942 tickets have Java stack traces - we have applied the technique described by Bettenburg et. al 
+  \cite{bettenburg2008extracting} for extracting structured data from bug reports and even though the method proved to be efficient, 
+  the total number of stack traces is so small due to the fact that many projects are actually written in languages other than Java;
+  \item 133,689 tickets have grammar correctness scores (i.e. number of grammar mistakes inside summary, description and comments) - 
+  they have been collected using Microsoft Azure Bing Spell Check API which is one of the best grammar checking tool in the industry; 
+  \item 157,047 tickets have sentiment scores (i.e. positive/negative sentiment on a scale from -1 to 1 drawn from summary, description
+  and comments) - they have been collected using Google Cloud Platform Natural Language Processing APIs;
+\end{itemize}
 
 \section{Correlations}\label{correlations}
 
 \subsection{Attachments}
 \begin{figure}
   \begin{center}
-  \includegraphics[scale=0.2]{images/attachments.png}
+  \includegraphics[scale=0.25]{images/attachments.png}
   \end{center}
-  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \caption{\label{attachments}Application flow of the Go tool.}
   \end{figure}
 
 \subsection{Comments}
 \begin{figure}
   \begin{center}
-  \includegraphics[scale=0.2]{images/comment_complexity.png}
+  \includegraphics[scale=0.25]{images/comment_complexity.png}
   \end{center}
-  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \caption{\label{comments}Application flow of the Go tool.}
   \end{figure}
 
 \subsection{Summary and Description}
 \begin{figure}
   \begin{center}
-  \includegraphics[scale=0.2]{images/fields_complexity.png}
+  \includegraphics[scale=0.25]{images/fields_complexity.png}
   \end{center}
-  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \caption{\label{fields}Application flow of the Go tool.}
   \end{figure}
 
 \subsection{Grammar Correctness}
 \begin{figure}
   \begin{center}
-  \includegraphics[scale=0.2]{images/grammar_correctness.png}
+  \includegraphics[scale=0.25]{images/grammar_correctness.png}
   \end{center}
-  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \caption{\label{grammar}Application flow of the Go tool.}
   \end{figure}
 
 \subsection{Sentiment Scores}
 \begin{figure}
   \begin{center}
-  \includegraphics[scale=0.2]{images/sentiment_analysis.png}
+  \includegraphics[scale=0.25]{images/sentiment_analysis.png}
   \end{center}
-  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \caption{\label{sentiment}Application flow of the Go tool.}
   \end{figure}
 
 \subsection{Steps to Reproduce}
 \begin{figure}
   \begin{center}
-  \includegraphics[scale=0.2]{images/steps_to_reproduce.png}
+  \includegraphics[scale=0.25]{images/steps_to_reproduce.png}
   \end{center}
-  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \caption{\label{steps}Application flow of the Go tool.}
   \end{figure}
 
 \subsection{Stack Traces}
 \begin{figure}
   \begin{center}
-  \includegraphics[scale=0.2]{images/stack_traces.png}
+  \includegraphics[scale=0.25]{images/stack_traces.png}
   \end{center}
-  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \caption{\label{stack_traces}Application flow of the Go tool.}
   \end{figure}
 
 \section{Future Work}\label{future_work}
