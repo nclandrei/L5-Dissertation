@@ -74,13 +74,22 @@ such as \emph{Fixed}, \emph{Resolved}). \emph{Time-To-Close} is our dependent va
 
 In order to provide answers to what factors influence quality in a software ticket, we answer the following seven research 
 questions in this paper (Section \ref{correlations}):
-
+\begin{itemize}
+  \item does the presence of attachments and their type (e.g. code snippet, screenshot) influence the \emph{Time-To-Close} for 
+  a ticket?
+  \item does the presence of stack traces improve the ticket quality?
+  \item does the presence of steps to reproduce reduce the \emph{Time-To-Close}?
+  \item is there a relationship between the number of comments influence \emph{Time-To-Close}?
+  \item is there a relationship between 
+\end{itemize}
 
 This study brings several contributions to the research community:
 \begin{itemize}
-  \item it is one of the very few research projects that investigates such a large number of tickets (over 300,000) spanning
-  across 38 different projects;
+  \item an innovative tool was built for the purpose of this project, its strengths lying in its simplicity, speed and
+  extensability;
   \item it is one of the few studies in the field that performs a quantitative analysis rather than a qualitative one;
+  \item it is one of the very few research projects that investigates such a large number of tickets (over 300,000)
+  extracted from 38 different projects;
   \item it is, to our knowledge, the first study to conduct sentiment and grammar correctness analyses on software tickets.
 \end{itemize}
 
@@ -451,22 +460,3 @@ Tim, my parents, Corina.
 
 
 \end{document}
-
-% \begin{table}
-% \begin{tabular}{l||c||p{2cm}}
-% \emph{Operating System} & \emph{Version} & \emph{Verdict} \\ \hline \hline
-% Ubuntu & 12.04 & Everyone's favourite Linux, unless you grew up with
-% RedHat \\ \hline
-% Slackware & xxx & Pseudo-hacker's Linux, how often do you recompile
-% your kernel? \\ \hline
-% Mac OS & 10.7 & For people with more money than sense \\ \hline
-% \end{tabular}
-% \caption{\label{tab-eg}Single column table of figures}
-% \end{table}
-
-% \begin{figure}
-% \begin{center}
-% \includegraphics[scale=0.32]{images/alice.pdf}
-% \end{center}
-% \caption{\label{fig-eg}An example figure stretching over two columns}
-% \end{figure*}
