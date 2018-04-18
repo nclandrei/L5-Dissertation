@@ -72,6 +72,10 @@ and the closing of a ticket; more specifically, the creation of the ticket is ma
 such as \emph{Fixed}, \emph{Resolved}). \emph{Time-To-Close} is our dependent variable, and as independent variables 
 (i.e. variables controlled in order to test the effects on the dependent variable) we have set a number of ticket fields. 
 
+In order to provide answers to what factors influence quality in a software ticket, we answer the following seven research 
+questions in this paper (Section \ref{correlations}):
+
+
 This study brings several contributions to the research community:
 \begin{itemize}
   \item it is one of the very few research projects that investigates such a large number of tickets (over 300,000) spanning
@@ -87,6 +91,113 @@ number of tickets with attachments) and then discuss about correlations between 
 Finally, we provide future research directions in Section \ref{future_work} and present our conclusions in Section \ref{conclusions}.
 
 \section{Related Work}\label{related_work}
+
+The study of Bettenburg et. al \cite{bettenburg2008makes} showed what 
+makes for a valuable bug report through qualitative analysis. 
+After conducting interviews with over 450 developers, one of the main factors
+behind a quality ticket is grammar correctness in summary and description. Another
+aspect which was flagged as helpful by the interviewees was the presence of stack 
+traces and steps to reproduce in tickets. A further contribution brought by the
+authors to the community is the creation of a tool called Cuezilla which is able 
+to automatically predict the quality of a bug report with an accuracy of around 40\%.
+
+Strengthening the argument that readability matters considerably in bug report 
+quality is the work of Hooimeijer et. al \cite{hooimeijer2007modeling}. They ran an analysis over
+27000 bug reports from the Mozilla Firefox project, looking at self-reported 
+severity, readability, daily load, submitter reputation and changes over time. 
+After running the evaluation, they not only found out about the importance of
+readability in bug reports, but also that attachment and comment counts are 
+valuable for faster triaging and that patch count, for example, does not
+contribute in the same manner as the previous two.
+
+Another research that agrees that stack traces are helpful in solving bug
+reports faster is the one performed by Schroter et. al \cite{schroter2010stack}. They conducted
+the whole experiment on the Eclipse project. They first extracted the stack
+traces using the infoZilla tool(\cite{bettenburg2008extracting}), followed by
+linking the stack traces to changes in the source code (change logs) by mining
+the version repository of the Eclipse project. The results showed that 
+around 60\% of the bugs that contained stack traces in their reports were fixed
+in one of the methods in the frame, with 40\% being fixed in exactly the first
+stack frame.
+
+Other interesting findings regarding the quality of a software project's tickets
+are the ones elicited in \cite{bettenburg2008duplicate}. The authors examined
+whether duplicate bug reports are actually harmful to a project or they add 
+quality. They collected big amount of data from the Eclipse project and ran
+various kind of textual and statistical analysis on the data to find answers.
+They reached the conclusion that bug duplicates contain information that is not
+present in the master reports. This additional data can be helpful for developers
+and it can also aid automated triaging techniques.
+
+Bettenburg et. al \cite{bettenburg2012using} present in their work an application
+called infoZilla. This tool can
+parse bug reports and correctly extract stack traces, patches and source code. 
+When evaluated on over 150,000 bug reports, it proved to have a very high rate of over 97\% accuracy.
+We applied some of the techniques shown in the study and successfully managed to 
+retrieve stack traces as well with a great accuracy.
+
+One other type of information that could be extracted and used for valuable
+purposes is the summary of a bug report, as shown in the work of 
+Rastkar et. al \cite{rastkar2010summarizing}. The authors wanted to determine if bug reports
+could be summarized effectively and automatically so that developers would
+need only analyze summaries instead of full tickets. Firstly, they asked
+university students to volunteer to annotate the bug reports collected from
+various open sources projects (i.e. Eclipse, Mozilla, Gnome, KDE) by writing
+a summary of maximum 250 words in their own sentences. These human-produced 
+annotations were then used by algorithms to learn how to effectively summarize a 
+bug report.  Afterwards, the authors asked the end users of these bug reports, the 
+software developers, to rate the summaries against the original bug reports.
+They eventually learned that existing conversation-based extractive summary
+generators trained on bug reports produce the best results.
+
+We tried to apply the technique presented in the work of Fischer et. al \cite{fischer2003analyzing},
+where they present a way to track specific version controlled branches from information
+in software tickets.  They managed to successfully visualize the tracked features and illustrate 
+their non apparent dependencies which can prove very useful in projects with a large number of
+components. 
+
+The work of Just et. al \cite{just2008towards} examines a rather different aspect
+of quality in tickets - they are investigating the quality of the underlying issue 
+tracking systems instead. 
+The authors ran a survey on 175 developers from Eclipse, Apache and Mozilla
+Then, they applied a card sort in order to organize the comments into hierarchies to 
+identify common patterns. Their findings can be summarized in the following top seven
+suggestions:
+  \begin{itemize}
+    \item create differentiation between bug report difficulty levels between 
+    novices and experiences reporters;
+    \item encourage users to input as much information as possible;
+    \item add ability to merge tickets when needed;
+    \item recognise and reward valuable bug reporters;
+    \item integrate reputation into user profiles to mark experienced reporters;
+    \item to be able to easily and expressively search through tickets.
+  \end{itemize}
+
+However, bug report assignment is not the only part of bug triaging that needs
+investigation. Lamkanfi et. al \cite{lamkanfi2010predicting} show a method through which one
+can predict the severity of a reported bug (i.e. assign story points to the 
+ticket) automatically. The authors conducted their research on the Mozilla,
+Eclipse and GNOME projects and divided their method into four steps:
+  \begin{itemize}
+    \item extract and organize bug reports;
+    \item pre-process bug reports - tokenization, stop word removal and stemming;
+    \item train the classifier on multiple datasets of bug reports - 70\% 
+      training and 30\% evaluation;
+    \item apply the trained classifier on the evaluation set.
+  \end{itemize}
+The conclusions they drew from running the evaluation process were rather 
+interesting:
+  \begin{itemize}
+    \item terms such as deadlock, hand, crash, memory or segfault usually indicate
+      a severe bug; however, there are other terms that can indicate the opposite,
+      such as typos;
+    \item when analyzing the textual description they found that using simple
+      one line summaries resulted in less false positives and increased precision
+      levels;
+    \item the classifier needs a large dataset in order to predict correctly;
+    \item depending on how well a software project is componentized, one can 
+      use a predictor per component rather than an universal one.
+  \end{itemize}
 
 \begin{figure*}
 \begin{center}
@@ -108,27 +219,39 @@ we decided that Go was the best way to go for various reasons:
     \item is is designed with concurrency in mind, thus it helps reduce times of execution and computing power considerably;
   \end{itemize}
 
-Then, we split our tool into four main commands: \emph{store}, \emph{analyse}, \emph{plot} and \emph{stats}. They all 
+Throughout the entire application, we tried to apply the UNIX philosophy of creating small applications that do one thing, but 
+do it well. Therefore, we implemented clean and simple packages where we tried to use the standard library as much as possible
+so that potential contributors coming to the project would find it easy to start working directly on the code. Also, we designed 
+the tool with extensibility in mind, so that other database providers (e.g. CockroachDB) or issue tracking systems (e.g. Bugzilla) 
+could be easily implemented - this was achieved using the elegant Go interfaces. 
+
+We split our tool into four main commands: \emph{store}, \emph{analyse}, \emph{plot} and \emph{stats}. They all 
 follow the flow shown in figure \ref{fig-eg} and complete the whole application cycle, in the end producing a database 
 of analysed tickets, as well as plots and statistics for investigating correlations, saved on the filesystem.
 
-In the following two subsections we describe how we designed and implemented the commands mentioned above.
+In the following three subsections we describe how we designed and implemented the commands mentioned above.
 
 \subsection{Fetch and Store}
 
 This is the first command implemented in our tool - it is desgined to fetch, from any valid Jira URL, any number of tickets 
 and then store everything inside an instance of BoltDB \cite{bolt}, which is a very simple yet powerful key-value pair 
 database. The whole process is parallelized with the possibility of scaling even up to hundreds of goroutines
-(i.e. lightweight threads) running concurrently.
+(i.e. lightweight threads) running concurrently. 
+
+The decision of choosing Bolt in favor of well tested, more traditional databases such as Postgres or MySQL came naturally when 
+we noticed that we did not need to query the database often, but rather get the whole array of tickets and manipulate them. Moreover, 
+a MongoDB or Postgres DB would have required a running server. Even though the server could have been running on the local machine, 
+Bolt instances are actually files with the extension \emph{db} saved on disk, thus it is trivial to create backups.
 
 We have interacted with the Jira Server REST API which has very good documentation written by the Atlassian team. After getting
 familiar with all the features the REST API offers, we have opted for getting paginated issues from the server, which means 
 slicing the whole set of tickets into multiple smaller arrays to improve performance and reduce the load on the server. We also
 specified to Jira exactly what set of issue fields to return and, eventually, while responses were retrieved from the instance,
-we began storing them into our Bolt DB instance. The way we chose to store them was to set the issue key (i.e. unique 
-identifier that differentiates a ticket from all others across all projects inside a Jira instance) as the key of the pair and
-the value is the whole representation of an issue (e.g. attachments, story points, priority) as a JSON encoded value. This
-helped us reduce the size of the database once we reached hundreds of thousands of tickets.
+we began storing them into our Bolt DB instance. 
+
+The way we chose to store them was to set the issue key (i.e. unique identifier that differentiates a ticket from all others across all 
+projects inside a Jira instance) as the key of the pair and the value is the JSON representation of the ticket. This helped us reduce 
+the size of the database once we reached hundreds of thousands of tickets.
 
 \subsection{Analyse}
 
@@ -197,10 +320,15 @@ JSON encoded representation of the ticket. The tickets stored have the following
   \item issue type - specific Jira field that specifies whether the ticket is either a bug, a feature request or a general task.
 \end{itemize}
 
+Another component of issues that we stored and proved to be crucial in our analysis is changelog histories together with their 
+corresponding items. They represent the whole history of a ticket and can show status transitions, story points modifications, 
+summary/description editing etc. What made them useful for our study was that we needed to see when tickets were marked closed and, 
+as Jira does not provide this in a separate field, we looped through all changelog history items and saved when the transition to 
+Closed or a similar status was made. 
+
 There are other fields that can be configured inside Jira, including custom fields, but we did not collect them as they would not 
-have been helpful in conducting the analysis. However, in addition to the fields we saved, we also store grammar correctness scores 
-(i.e. number of grammar mistakes identified in summary, description and comments), sentiment scores (i.e. sentiment drawn from summary 
-and description), whether they have steps to reproduce, if stack traces are present and number of words in comments, summary and description. 
+have been helpful in conducting the analysis. However, in addition to the fields we saved, we also stored grammar correctness scores, 
+sentiment scores, whether they have steps to reproduce, if stack traces are present and number of words in comments, summary and description. 
 Even though all of them, apart from grammar and sentiment scores, can be computed locally, we store them because of performance issues
 due to the very large size of the database. 
 
@@ -242,8 +370,11 @@ More specifically, we computed the following numbers for the tickets we collecte
   \item 133,689 tickets have grammar correctness scores (i.e. number of grammar mistakes inside summary, description and comments) - 
   they have been collected using Microsoft Azure Bing Spell Check API which is one of the best grammar checking tool in the industry; 
   \item 157,047 tickets have sentiment scores (i.e. positive/negative sentiment on a scale from -1 to 1 drawn from summary, description
-  and comments) - they have been collected using Google Cloud Platform Natural Language Processing APIs;
+  and comments) - they have been collected using Google Cloud Platform Natural Language Processing APIs.
 \end{itemize}
+
+All these numbers are also stored inside the database in a different bucket for easier access in the future. Moreover, the statistical 
+tests we ran on the tickets are saved as well in the database.
 
 \section{Correlations}\label{correlations}
 
