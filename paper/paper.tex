@@ -4,7 +4,7 @@
 
 \title{Measuring Software Ticket Quality using Quantitative Data Analysis}
 \author{Andrei-Mihai Nicolae}
-\matricnum{2147392}
+\matricnum{21473292}
 
 \maketitle
 
@@ -61,20 +61,20 @@ fields in a ticket, there are numerous unanswered questions, such as whether sta
 of a ticket? 
 
 In this research paper, we present and discuss our findings after running a quantitative data analysis 
-on over 300,000 tickets taken from more than 15 open source projects. We have implemented a Go application 
+on over 3200,000 tickets taken from more than 15 open source projects. We have implemented a Go application 
 with multiple commands (i.e. store, analyze, plot, statistics) that can automatically fetch any number of tickets 
 from a Jira instance, analyze them, generate plots and run statistical tests. 
 
-During the analysis part, we investigate several variables in correlation with \emph{time-to-complete}, 
-which we define as the \emph{metric of quality}. \emph{time-to-complete} represents the period of time between the creation 
+During the analysis part, we investigate several variables in correlation with \emph{Time-To-Close}, 
+which we define as the \emph{metric of quality}. \emph{Time-To-Close} represents the period of time between the creation 
 and the closing of a ticket; more specifically, the creation of the ticket is marked when the status of the ticket is set to 
 \emph{Open} and the closing of a ticket is considered when the ticket status is set to \emph{Closed} (or some similar status, 
-such as \emph{Fixed}, \emph{Resolved}). \emph{Time-To-Complete} is our dependent variable, and as independent variables 
+such as \emph{Fixed}, \emph{Resolved}). \emph{Time-To-Close} is our dependent variable, and as independent variables 
 (i.e. variables controlled in order to test the effects on the dependent variable) we have set a number of ticket fields. 
 
 This study brings several contributions to the research community:
 \begin{itemize}
-  \item it is one of the very few research projects that investigates such a large number of tickets (over 300,000) spanning
+  \item it is one of the very few research projects that investigates such a large number of tickets (over 3200,000) spanning
   across a variety of projects (i.e. 21 projects);
   \item it is one of the few studies in the field that performs a quantitative analysis rather than a qualitative one;
   \item it is, to our knowledge, the first study to conduct sentiment and grammar correctness analyses on software tickets.
@@ -176,7 +176,7 @@ we either save scatter plots or bar charts to disk.
 Also, in order to validate our findings, the statistics command fetches all the data from the database and runs two types of 
 tests: Welch's T Test \cite{welch1947generalization} for analysing categorical data (e.g. has/does not have attachments)
 and Spearman's rank correlation coefficient \cite{spearman1904proof} for investigating continuous data (e.g. how do different 
-grammar correctness scores change \emph{Time-To-Complete}).
+grammar correctness scores change \emph{Time-To-Close}).
 
 \section{Characterising the Data Set}\label{characterising}
 
@@ -209,18 +209,60 @@ due to the very large size of the database.
 \section{Correlations}\label{correlations}
 
 \subsection{Attachments}
+\begin{figure}
+  \begin{center}
+  \includegraphics[scale=0.2]{images/attachments.png}
+  \end{center}
+  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \end{figure}
 
 \subsection{Comments}
+\begin{figure}
+  \begin{center}
+  \includegraphics[scale=0.2]{images/comment_complexity.png}
+  \end{center}
+  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \end{figure}
 
 \subsection{Summary and Description}
+\begin{figure}
+  \begin{center}
+  \includegraphics[scale=0.2]{images/fields_complexity.png}
+  \end{center}
+  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \end{figure}
 
 \subsection{Grammar Correctness}
+\begin{figure}
+  \begin{center}
+  \includegraphics[scale=0.2]{images/grammar_correctness.png}
+  \end{center}
+  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \end{figure}
 
-\subsection{Sentiment Analysis}
+\subsection{Sentiment Scores}
+\begin{figure}
+  \begin{center}
+  \includegraphics[scale=0.2]{images/sentiment_analysis.png}
+  \end{center}
+  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \end{figure}
 
 \subsection{Steps to Reproduce}
+\begin{figure}
+  \begin{center}
+  \includegraphics[scale=0.2]{images/steps_to_reproduce.png}
+  \end{center}
+  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \end{figure}
 
 \subsection{Stack Traces}
+\begin{figure}
+  \begin{center}
+  \includegraphics[scale=0.2]{images/stack_traces.png}
+  \end{center}
+  \caption{\label{fig-eg}Application flow of the Go tool.}
+  \end{figure}
 
 \section{Future Work}\label{future_work}
 
@@ -248,9 +290,9 @@ Tim, my parents, Corina.
 % \caption{\label{tab-eg}Single column table of figures}
 % \end{table}
 
-% \begin{figure*}
+% \begin{figure}
 % \begin{center}
-% \includegraphics[scale=0.3]{images/alice.pdf}
+% \includegraphics[scale=0.32]{images/alice.pdf}
 % \end{center}
 % \caption{\label{fig-eg}An example figure stretching over two columns}
 % \end{figure*}
