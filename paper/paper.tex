@@ -29,12 +29,6 @@ as well as state-of-the-art sentiment and grammar correctness analysis.
 
 \section{Introduction}
 
-\begin{figure*}
-\begin{center}
-\includegraphics[width=\textwidth]{images/flow.pdf}
-\end{center}
-\caption{\label{fig-eg}Application flow of the Go tool.}
-\end{figure*}
 
 In the past decade, technology has drastically increased its influence on 
 virtually every aspect of our society. Therefore, software projects have 
@@ -70,7 +64,7 @@ decreased customer satisfaction and overall poor performance.
 
 Therefore, there is a need in the community to find the answer to what makes for a high quality, valuable software ticket 
 that would improve the overall performance of the development team and, inherently, the company. As there are many 
-fields in a ticket, the number of unanswered questions is rather large: do stack traces have an influence on the quality
+fields in a ticket, there are numerous unanswered questions: do stack traces have an influence on the quality
 of a ticket? What about attachments and whether a screenshot is more helpful than a snippet of code? Does a negative sentiment
 drawn from comments increase or decrease the time taken to solve a bug? How does grammar correctness influence the 
 communication friction?
@@ -81,17 +75,37 @@ with multiple commands (i.e. store, analyze, plot, statistics) that can automati
 from a Jira instance, analyze them, generate plots and run statistical tests. 
 
 During the analysis part, we investigate several variables in correlation with \emph{time-to-complete}, 
-which we define as the \emph{metric of quality} (\emph{time-to-complete} represents the period of time between the creation 
-and the closing of a ticket). There are multiple novel aspects brought by our study, among which is the fact that it is one of 
-the very few studies that have tackled this issue using a quantitative rather than a qualitative approach (with a very 
-large number of tickets analysed) and also that it uses state-of-the-art sentiment \cite{wilson2005recognizing} as well as 
-grammar correctness analysis techniques \cite{wilson2005recognizing}. We believe that our results are valuable 
-contributions to the research community and the database produced after the analysis can help further studies with 
-analyzed and well-tested data.
+which we define as the \emph{metric of quality}. \emph{time-to-complete} represents the period of time between the creation 
+and the closing of a ticket; more specifically, the creation of the ticket is marked when the status of the ticket is set to 
+\emph{Open} and the closing of a ticket is considered when the ticket status is set to \emph{Closed} (or some similar status, 
+such as \emph{Fixed}, \emph{Resolved}). \emph{Time-To-Complete} is our dependent variable, and as independent variables 
+(i.e. variables controlled in order to test the effects on the dependent variable) we have set a number of ticket fields. 
 
-\section{Related Work}
+This study brings several contributions to the research community:
+\begin{itemize}
+  \item it is one of the very few research projects that investigates such a large number of tickets (over 300,000) spanning
+  across a variety of projects (i.e. 21 projects);
+  \item it is one of the few studies in the field that performs a quantitative analysis rather than a qualitative one;
+  \item it is, to our knowledge, the first study to conduct sentiment and grammar correctness analyses on software tickets.
+\end{itemize}
 
-\section{Building the Data Set}
+In Section \ref{related_work} we iterate over state-of-the art studies in the field and then continue with 
+Section \ref{building} where we discuss how the ticket data set was collected and analysed. We continue with describing 
+the data set (Section \ref{characterising}) where we provide insights into various aspects of the data (e.g. size of database,
+number of tickets with attachments) and then discuss about correlations between the variables (Section \ref{correlations}).
+Finally, we provide future research directions in Section \ref{future_work} and present our conclusions in Section \ref{conclusions}.
+
+\section{Related Work}\label{related_work}
+
+\begin{figure*}
+\begin{center}
+\includegraphics[width=\textwidth]{images/flow.pdf}
+\end{center}
+\caption{\label{fig-eg}Application flow of the Go tool.}
+\end{figure*}
+
+
+\section{Building the Data Set}\label{building}
 The first step towards building the data set was to create a tool that was able to execute all the commands that we required:
 fetching the tickets from any Jira instance, storing them into some form of database, analyze the variables of interest, 
 automatically plot the correlations between them and run statistical analysis on the data. After careful consideration, 
@@ -155,16 +169,25 @@ but heavy on resource utilization) or slices them into smaller arrays to get pro
 eventually requires re-creation of the whole array of tickets before inserting back into the database, but it is much 
 lighter on computing power). After having the tickets available, we start looping through them and perform all 
 analysis types mentioned above. Once some sort of value is computed (e.g. grammar correctness score), it gets set in 
-its corresponding field in the ticket struct and subsequently stored back in the database. We chose this approach because 
+its corresponding field in the ticket struct and subsequently is stored back in the database. We chose this approach because 
 we do not want to run the analysis every time we want to plot correlations between variables, but rather have the data 
 already available there. Moreover, for external analysis such as hitting Google Cloud Platform APIs, there are costs for 
 running the analysis, thus in this way we drastically reduce overall costs for the project. 
 
 \subsection{Plot and Statistical Tests}
 
-\section{Characterising the Data Set}
+Afterwards, we have created two extra commands for automatically generating plots (i.e. scatter plots and bar charts) and 
+running statistical tests on the collected data. 
 
-\section{Correlations}
+For plotting the data, we first connect again to the Bolt database instance and then filter out only the issues that have 
+the variable \emph{Time-To-Close} set (i.e. tickets marked as closed when they were fetched from the Jira instance). Afterwards,
+we either save scatter plots or bar charts to disk. 
+
+Also, in order to validate our findings, the statistics command fetches all the data from the database and 
+
+\section{Characterising the Data Set}\label{characterising}
+
+\section{Correlations}\label{correlations}
 
 \subsection{Attachments}
 
@@ -180,9 +203,9 @@ running the analysis, thus in this way we drastically reduce overall costs for t
 
 \subsection{Stack Traces}
 
-\section{Future Work}
+\section{Future Work}\label{future_work}
 
-\section{Conclusions}
+\section{Conclusions}\label{conclusions}
 
 \vskip8pt \noindent
 {\bf Acknowledgments.}
