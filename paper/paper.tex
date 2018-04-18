@@ -132,14 +132,16 @@ around 60\% of the bugs that contained stack traces in their reports were fixed
 in one of the methods in the frame. Moreover, more than 40\% of the tickets having stack traces
 got fixed in the first stack frame.
 
-Other interesting findings regarding the quality of a software project's tickets
-are the ones elicited in the study of Bettenburg et. al \cite{bettenburg2008duplicate}. The authors examined
-whether duplicate bug reports are actually harmful to a project or they add 
-quality. They collected big amount of data from the Eclipse project and ran
+Software tickets can have duplicates, usually meaning that the most important fields, such 
+as summary or description, describe the same feature request or bug report. Even though 
+one might believe that they cannot bring any value to a software project, the work of 
+Bettenburg et. al \cite{bettenburg2008duplicate} shows the contrary.
+The authors collected large amounts of data from the Eclipse open source project and ran
 various kind of textual and statistical analysis on the data to find answers.
-They reached the conclusion that bug duplicates contain information that is not
-present in the master reports. This additional data can be helpful for developers
-and it can also aid automated triaging techniques.
+After the results were computed, they concluded that usually bug duplicates contain 
+information that is not present in the master report (i.e. the original report that was 
+filed). Moreover, developers also specified that they have often found value in these 
+duplicate bug reports and that they can even aid automated triaging techniques.
 
 Bettenburg et. al \cite{bettenburg2012using} present in their work an application
 called infoZilla. This tool can
@@ -392,6 +394,12 @@ tests we ran on the tickets are saved as well in the database.
 \section{Correlations}\label{correlations}
 
 \subsection{Attachments}
+
+A Welch T Test was computed to test the difference between tickets with attachments and those 
+without attachments. The analysis revealed significant difference with \emph{p} < 0.01 with an
+average of \emph{X <change this>} for tickets with attachments and an average of \emph{Y <change this>}
+for tickets without attachments.
+
 \begin{figure}
   \begin{center}
   \includegraphics[scale=0.25]{images/attachments.png}
@@ -399,39 +407,13 @@ tests we ran on the tickets are saved as well in the database.
   \caption{\label{attachments}Application flow of the Go tool.}
   \end{figure}
 
-\subsection{Comments}
-\begin{figure}
-  \begin{center}
-  \includegraphics[scale=0.25]{images/comment_complexity.png}
-  \end{center}
-  \caption{\label{comments}Application flow of the Go tool.}
-  \end{figure}
-
-\subsection{Summary and Description}
-\begin{figure}
-  \begin{center}
-  \includegraphics[scale=0.25]{images/fields_complexity.png}
-  \end{center}
-  \caption{\label{fields}Application flow of the Go tool.}
-  \end{figure}
-
-\subsection{Grammar Correctness}
-\begin{figure}
-  \begin{center}
-  \includegraphics[scale=0.25]{images/grammar_correctness.png}
-  \end{center}
-  \caption{\label{grammar}Application flow of the Go tool.}
-  \end{figure}
-
-\subsection{Sentiment Scores}
-\begin{figure}
-  \begin{center}
-  \includegraphics[scale=0.25]{images/sentiment_analysis.png}
-  \end{center}
-  \caption{\label{sentiment}Application flow of the Go tool.}
-  \end{figure}
-
 \subsection{Steps to Reproduce}
+
+A Welch T Test was computed to test the difference between tickets with attachments and those 
+without attachments. The analysis revealed significant difference with \emph{p} < 0.01 with an
+average of \emph{X <change this>} for tickets with attachments and an average of \emph{Y <change this>}
+for tickets without attachments.
+
 \begin{figure}
   \begin{center}
   \includegraphics[scale=0.25]{images/steps_to_reproduce.png}
@@ -440,11 +422,65 @@ tests we ran on the tickets are saved as well in the database.
   \end{figure}
 
 \subsection{Stack Traces}
+
+A Welch T Test was computed to test the difference between tickets with attachments and those 
+without attachments. The analysis revealed significant difference with \emph{p} < 0.01 with an
+average of \emph{X <change this>} for tickets with attachments and an average of \emph{Y <change this>}
+for tickets without attachments.
+
 \begin{figure}
   \begin{center}
   \includegraphics[scale=0.25]{images/stack_traces.png}
   \end{center}
   \caption{\label{stack_traces}Application flow of the Go tool.}
+  \end{figure}
+
+\subsection{Comments}
+
+A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
+with \emph{r} = \dots, \emph{p} = \dots.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[scale=0.25]{images/comment_complexity.png}
+  \end{center}
+  \caption{\label{comments}Application flow of the Go tool.}
+  \end{figure}
+
+\subsection{Summary and Description}
+
+A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
+with \emph{r} = \dots, \emph{p} = \dots.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[scale=0.25]{images/fields_complexity.png}
+  \end{center}
+  \caption{\label{fields}Application flow of the Go tool.}
+  \end{figure}
+
+\subsection{Grammar Correctness}
+
+A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
+with \emph{r} = \dots, \emph{p} = \dots.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[scale=0.25]{images/grammar_correctness.png}
+  \end{center}
+  \caption{\label{grammar}Application flow of the Go tool.}
+  \end{figure}
+
+\subsection{Sentiment Scores}
+
+A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
+with \emph{r} = \dots, \emph{p} = \dots.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[scale=0.25]{images/sentiment_analysis.png}
+  \end{center}
+  \caption{\label{sentiment}Application flow of the Go tool.}
   \end{figure}
 
 \section{Future Work}\label{future_work}
