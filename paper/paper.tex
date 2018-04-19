@@ -441,9 +441,22 @@ In this section we present our results to the research questions we set to answe
 independent variables using either scatter plots for continuous variables (e.g. number of comments/time-to-close) 
 or bar charts for categorical variables (e.g. presence of attachments). We also computed statistical analysis for 
 all variables to test their significance and rank correlation coefficient and we will present each of them in their 
-corresponding subsection. Lastly, we also discuss possible reasons why certain correlations occured.
+corresponding subsection. 
 
-%TODO: add a bit more info here and add summary for all analyses (which one is significant, what does each of them imply)
+The answers to our research questions are all statistically significant and they can summarised as follows:
+\begin{itemize}
+  \item having attachments improves the quality of a ticket;
+  \item having steps to reproduce improves the quality of a ticket;
+  \item having stack traces improves the quality of a ticket;
+  \item more grammar errors imply lower ticket quality;
+  \item lower sentiment scores result in lower ticket quality;
+  \item verbose comments result in lower ticket quality;
+  \item verbose summary and description imply lower ticket quality.
+\end{itemize}
+
+For every type of analysis, we also discuss possible reasons why certain correlations occured. Furthermore, for all 
+of them we give possible solutions that could be implemented in order to maximise the ticket quality as cost-effective 
+and efficient as possible.
 
 \subsection{Attachments}
 
