@@ -245,7 +245,7 @@ Throughout the entire application, we tried to apply the UNIX philosophy of crea
 do it well. Therefore, we implemented clean and simple packages where we tried to use the standard library as much as possible
 so that potential contributors coming to the project would find it easy to start working directly on the code. Also, we designed 
 the tool with extensibility in mind, so that other database providers (e.g. CockroachDB) or issue tracking systems (e.g. Bugzilla) 
-could be easily implemented - this was achieved using the elegant Go interfaces. 
+could be easily implemented - this was achieved using the elegant Go interfaces and the idea of composition.  
 
 We split our tool into four main commands: \emph{store}, \emph{analyse}, \emph{plot} and \emph{stats}. They all 
 follow the flow shown in figure \ref{fig-eg} and complete the whole application cycle, in the end producing a database 
@@ -298,6 +298,8 @@ fetches all the issues in the database. Then, it runs in parallel the \emph{seve
   API and then sends the request, receiving a score from -1 to 1 inclusive (-1 is completely negative, 1 is completely 
   positive).
 \end{itemize}
+
+We hit several issues 
 
 Implementation wise, the application first checks Bolt for tickets and gets either all of them in memory (easier to parse, 
 but heavy on resource utilization) or slices them into smaller arrays to get processed afterwards (harder to parse as it 
