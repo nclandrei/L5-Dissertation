@@ -183,29 +183,31 @@ suggestions:
     \item to be able to easily and expressively search through tickets.
   \end{itemize}
 
-Lamkanfi et. al \cite{lamkanfi2010predicting} show a method through which one
-can predict the severity of a reported bug (i.e. assign story points to the 
-ticket) automatically. The authors conducted their research on the Mozilla,
-Eclipse and GNOME projects and divided their method into four steps:
+Having discussed about various factors that can influence the quality in software tickets, 
+we also need to take into account how can we apply this knowledge to solving the issue of 
+poor design in issue tracking systems and how the ticket creation process could be improved. 
+The study conducted by Lamkanfi et. al \cite{lamkanfi2010predicting} looks at this aspect and
+shows how issue tracking systems could be extended in order to automatically generate the severity 
+of a ticket (e.g. assign story points to a Jira issue). The authors conducted their research on the Mozilla,
+GNOME and Eclipse and projects and split their approach into four steps:
   \begin{itemize}
-    \item extract and organize bug reports;
-    \item pre-process bug reports - tokenization, stop word removal and stemming;
-    \item train the classifier on multiple datasets of bug reports - 70\% 
+    \item extract and organize tickets;
+    \item pre-process tickets (i.e. tokenization, stop word removal and stemming);
+    \item train the classifier on two datasets of tickets - 70\% 
       training and 30\% evaluation;
     \item apply the trained classifier on the evaluation set.
   \end{itemize}
 The conclusions they drew from running the evaluation process were rather 
 interesting:
   \begin{itemize}
-    \item terms such as deadlock, hand, crash, memory or segfault usually indicate
-      a severe bug; however, there are other terms that can indicate the opposite,
-      such as typos;
+    \item terms such as segfault, deadlock, crash, hand or memory typically indicate
+      a severe bug;
     \item when analyzing the textual description they found that using simple
       one line summaries resulted in less false positives and increased precision
       levels;
-    \item the classifier needs a large dataset in order to predict correctly;
-    \item depending on how well a software project is componentized, one can 
-      use a predictor per component rather than an universal one.
+    \item the classifier needs a large number of tickets in order to predict correctly;
+    \item depending on how well a software project is modularised, one can 
+      use a predictor per module rather than a universal one.
   \end{itemize}
 
 \begin{figure*}
