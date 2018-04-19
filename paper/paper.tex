@@ -744,7 +744,8 @@ a number of strings where we compute the score by hand given a mathematical form
 there are open source libraries that can help creating and employing the algorithms, such as TensorFlow, 
 we would still have needed tickets where we defined what do we mean by positive/negative tickets, as well as
 manually computing the scores for a large range of them. Therefore, we ended using a third party API - Google 
-Cloud Platform Natural Language Processing, considered the best such service at the moment.
+Cloud Platform Natural Language Processing, considered the best such service at the moment. This API returns 
+a score between -1 (most negative) and +1 (most positive) for any text encoded in the HTTP request.
 
 After we concatenated summaries, descriptions and all the comments for every ticket, we started sending our 
 requests to Google and we plotted the data shown in Figure \ref{sentiment}. A correlational analysis revealed a 
@@ -764,7 +765,23 @@ make them feel unwelcomed and start to lose interest in helping the project anym
 
 On the other side of the spectrum, having a more positive score leads to higher quality in tickets. Calefato et. al 
 \cite{calefato2015mining} conducted a study where they show that a positive sentiment has the biggest impact on 
-the quality of an answer on Stack Overflow, one of the most popular websites related to programming in general. 
+the quality of an answer on Stack Overflow, one of the most popular websites related to programming in general. This 
+implies that when developers and triagers treat their reporters respectfully and offer support whenever possible, 
+the users will feel more welcomed and willing to help report other bugs in the future as well. We also have scores of 
+over 0.9, meaning that the actors participating in the discussion (or the reported summary/description) might compliment 
+each other for doing a great job.
+
+We strongly believe that having a positive sentiment score for tickets is valuable for absolutely everyone: the company
+behind the projects sees increased overall performance and productivity, developers feel better working in the team or
+on that specific tool and reporters will be more willing to contribute in the future with other tickets.
+
+A solution for pushing towards this ideal scenario would be expensive for the company, but the most efficient - have a 
+sentiment analysis tool running in the background as the user is typing in any text box. If they reach a certain low 
+treshold and it is believed that they are becoming rude or unpolite, there could be a warning/pop-up on the screen advising 
+them to not do that as it wouldn't help any party, but rather try to be polite, engaging and friendly. One other solution
+is a much more cost-effective one, but less efficient - the issue tracking system administrators could include a section 
+in the code of conduct for the project stating that promoting a positive environment will help everyone. This way, people 
+revolving around the project might be more inclined to be friendly.
 
 \section{Future Work}\label{future_work}
 
