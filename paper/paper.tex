@@ -503,10 +503,26 @@ when a ticket is created by reporters.
   \caption{\label{stack_traces}Stack traces analysis.}
 \end{figure}
 
-A Welch T Test was computed to test the difference between tickets with attachments and those 
-without attachments. The analysis revealed significant difference with \emph{p} < 0.01 with an
-average of \emph{X <change this>} for tickets with attachments and an average of \emph{Y <change this>}
-for tickets without attachments.
+Stack traces are active stack frames at a certain point in time while the program is executing. 
+Many programming languages provide stack traces through their standard libraries, but the most 
+popular proponents are Java and C\#. As Java is the main programming language used throughout 
+the Apache Software Foundation projects (231 projects \cite{apache_projects}), many of the projects 
+we collected (22) are also written in Java, thus we had a considerable chunk of data to analyze.
+
+For this analysis, we only looked at tickets of high priority, closed and the project they correspond 
+is written in Java. We then ran a complex regular expression derived from the works of Bettenburg et. al 
+\cite{bettenburg2012using} and Moreno et. al \cite{moreno2014use} and collected all the tickets that have 
+stack traces. In the end, we got a total number of 256 tickets that had at least an exception stack trace 
+attached in either summary, description or any of the comments.
+
+As shown in Figure \ref{stack_traces}, we can see that the presence of exception stack traces can 
+reduce the time-to-close of a ticket in orders of magnitude. This could imply that stack traces help 
+developers working on the project localise the code that is running exceptions 
+
+We computed a Welch T Test to test the difference between tickets with stack traces and tickets that 
+do not have stack traces. The analysis revealed significant difference with $p < 0.01$ with an
+average of $1475.074$ for tickets with stack traces and an average of $2441.877$
+for tickets without them.
 
 \subsection{Comments}
 
@@ -557,14 +573,26 @@ with \emph{r} = \dots, \emph{p} = \dots.
 A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
 with \emph{r} = \dots, \emph{p} = \dots.
 
-
 \section{Future Work}\label{future_work}
+
+The first extension to the Go tool we created would be to add support for Bugzilla as an issue tracking system 
+
 
 \section{Conclusions}\label{conclusions}
 
 \vskip8pt \noindent
 {\bf Acknowledgments.}
-Tim, my parents, Corina.
+I would first like to thank Dr. Storer for the amazing work he has put in helping me go through with finishing 
+this project. I would definitely not have been able to achieve what we've achieved with any other supervisor, so 
+thank you, Tim, for all the support, kindness and advice you have given me throughout this academic year. I would 
+also like to thank you for being the lecturer who has taught me the most throughout all my years at the university
+and whose advice and ideas I have applied at all my work places and my personal projects.
+The next huge thank you would have to go to my parents, the most amazing family in the world! Without them I would 
+not be here and I wouldn't have had anything of what I have now, both personally and professionally. 
+I will always treasure the unconditional support you have always offered me! Thank you for being my parents, Mom and Dad!
+And last but not least, I want to thank my partner in \"crime\" and in life, Corina! Without her, I would not be who I 
+am today. You have been with me through thick and thin, in both bad moments (such as the endless nights working 
+on ticket statistics) and best moments in my life! Thank you for everything! I will always love you!
 
 \bibliographystyle{abbrv}
 \bibliography{paper}
