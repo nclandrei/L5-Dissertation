@@ -295,11 +295,11 @@ fetches all the issues in the database. Then, it runs in parallel the \emph{seve
   (e.g. unknown token, misspell);
   \item \emph{sentiment} - uses Google Cloud Platform's Natural Language Processing API \cite{gcp_nlp} to retrieve the 
   sentiment score for summary, description and comments; it first concatenates everything and makes it conform to Google's 
-  API and then sends the request, receiving a score from -1 to 1 inclusive (-1 is completely negative, 1 is completely 
-  positive).
+  API and then sends the request, receiving a score from -1 to 1 inclusive (-1 means most negative, 1 means most 
+  positive);
 \end{itemize}
 
-We hit several issues 
+We hit several issues when working with Google Cloud Platform and Bing Spell 
 
 Implementation wise, the application first checks Bolt for tickets and gets either all of them in memory (easier to parse, 
 but heavy on resource utilization) or slices them into smaller arrays to get processed afterwards (harder to parse as it 
