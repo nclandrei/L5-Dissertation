@@ -210,6 +210,17 @@ interesting:
       use a predictor per module rather than a universal one.
   \end{itemize}
 
+Another overall aspect of software tickets and issue tracking systems that could be improved through 
+determining the quality factors for tickets is automatically assigning a bug report or a feature request 
+to the most suitable developer (or team of developers). Anvik et. al \cite{anvik2011reducing}
+propose a Machine Learning technique that could automatically assign a bug report to the developer 
+with the most expertise in that specific area. Firstly, the algorithm takes as input various types of information from 
+tickets: textual description and summary, operating system used when the bug occurred, developer 
+who owns the source code, which developers have lighter workloads at that point in time etc. After the 
+tool was evaluated, the authors concluded that it can be used in production as it provides a high 
+rate of accuracy when assigning the developers, but it needs more data so that the model is trained 
+properly.
+
 \begin{figure*}
 \begin{center}
 \includegraphics[width=\textwidth]{images/flow.pdf}
