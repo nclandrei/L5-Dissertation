@@ -28,7 +28,7 @@ community including one of the largest dataset statistically analysed in the fie
 as well as state-of-the-art sentiment and grammar correctness analysis.
 \end{abstract}
 
-\section{Introduction}
+\section{Introduction}\label{intro}
 
 In the past decade, technology has drastically increased its influence on 
 virtually every aspect of our society. Therefore, software projects have 
@@ -278,17 +278,29 @@ the size of the database once we reached hundreds of thousands of tickets.
 \subsection{Analyse}
 
 Once the Bolt DB instance is completely populated with all the tickets we were interested in, the analyze command first 
-fetches all the issues in the database. Then, it runs in parallel the \emph{seven types of analysis}:
+fetches all the issues in the database. The next step is to filter out the tickets based on the following criteria:
+\begin{itemize}
+  \item tickets are \emph{High Priority} - the ticket status was marked either Blocker, Critical, Major or High;
+  \item tickets were closed and had a maximum \emph{Time-To-Close} value of 27,000 hours (roughly 3 years) (we added the 
+  higher bound as well in order to eliminate outliers produced by wrong data retrieved by Jira);
+  \item remove outliers for all categories - some fields for a small number of tickets that had wrong values (e.g. one ticket
+  had over 270,000 comments) introduced by the team behind the project and we needed to exclude them so that the analysis 
+  produced correct results.
+\end{itemize}
+
+Then, it runs in parallel the \emph{seven types of analysis} for answering the research questions outlied in Section \ref{intro}, 
+each in its own separate goroutine in order to speed up the process:
 \begin{itemize}
   \item \emph{attachments} - checks whether attachments influence Time-To-Close and also look at what types 
   of attachments (e.g. screenshots, archive, code snippets) influence quality the most;
   \item \emph{steps to reproduce} - performs a complex regex to detect steps to reproduce and then checks whether their presence
   influence the quality of a ticket;
-  \item \emph{stack traces} - runs complex regex for detecting stack traces in either summary, description or comments 
-  and verifies whether their presence influence Time-To-Close for the ticket;
+  \item \emph{stack traces} - runs complex regex for detecting exception stack traces in either summary, description or comments 
+  and verifies whether their presence influence Time-To-Close for the ticket; this analysis only inspects projects
+  written in Java as it is the most popular proponent built-in of stack traces;
   \item \emph{comments complexity} - loops through all comments and counts all words; then, the tool verifies whether 
-  having many words or comments decreases or increases Time-To-Close for the ticket;
-  \item \emph{fields complexity} - same analysis as comments complexity, but only for summary and description;
+  the number of words in comments has an impact on the Time-To-Close for the ticket;
+  \item \emph{fields complexity} - same analysis as comments complexity, but only for summary and description wordiness;
   \item \emph{grammar correctness} - it uses Azure Cloud Bing Spell Check API \cite{bing} to perform analysis on summary, 
   description and comments; after concatenating everything and making it compatible with the API allowed formats, the tool 
   receives back in the JSON payload not only the number of flagged tokens (i.e. grammar errors), but also their types 
@@ -299,17 +311,24 @@ fetches all the issues in the database. Then, it runs in parallel the \emph{seve
   positive);
 \end{itemize}
 
-We hit several issues when working with Google Cloud Platform and Bing Spell 
+We needed to be extra cautious when working with Google Cloud Platform and Bing Spell Check APIs, especially 
+regarding rate limiting. Google's NLP APIs have a maximum rate of 10 requests per second, while Microsoft APIs 
+have a maximum rate of  100 requests per second, thus we needed to conform to their guidelines and restrict our 
+application to send more than allowed, otherwise our IP addresses could have been blacklisted. We also did not want 
+to exceed our free trial credits, therefore we calculated in advance how many requests we had available and computed 
+scores only for those tickets. 
 
-Implementation wise, the application first checks Bolt for tickets and gets either all of them in memory (easier to parse, 
+The application first checks Bolt for tickets and gets either all of them in memory (easier to parse, 
 but heavy on resource utilization) or slices them into smaller arrays to get processed afterwards (harder to parse as it 
 eventually requires re-creation of the whole array of tickets before inserting back into the database, but it is much 
 lighter on computing power). After having the tickets available, we start looping through them and perform all 
 analysis types mentioned above. Once some sort of value is computed (e.g. grammar correctness score), it gets set in 
-its corresponding field in the ticket struct and subsequently is stored back in the database. We chose this approach because 
+its corresponding field in the ticket struct and is subsequently stored back in the database. We chose this approach because 
 we do not want to run the analysis every time we want to plot correlations between variables, but rather have the data 
-already available there. Moreover, for external analysis such as hitting Google Cloud Platform APIs, there are costs for 
-running the analysis, thus in this way we drastically reduce overall costs for the project.
+already available there. Moreover, for analysis depending on third party services such as the Google Cloud Platform 
+Natural Processing Language API, we would incur costs, thus having everything saved in the database and running the 
+analysis only if the value has not been already computed allowed us to investigate the tickets without exceeding the 
+free trial credits.
 
 \subsection{Plot and Statistical Tests}
 
