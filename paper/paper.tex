@@ -631,8 +631,8 @@ by the reporters. They do not typically have any word limits, thus the reporter 
 they see fit.
 
 Figure \ref{fields} shows the scatter plot for the sum of numbers of words in summary and description, as well 
-as the Time-To-Close for the ticket. We have analysed a total number of 238,286 (all our closed tickets as they 
-all have), all having both summaries and descriptions.
+as the Time-To-Close for the ticket. We have analysed a total number of 238,286 tickets, as they all have both 
+summaries and descriptions.
 
 The Figure shows a very similar correlation to the one for comments complexity. A correlational analysis revealed 
 a weak positive relationship with $r = 0.178$ and $p < 0.01$. This implies both that our results are statistically 
@@ -682,8 +682,46 @@ unless they really have a very good reason to do so.
   \caption{\label{grammar}Grammar correctness score analysis.}
 \end{figure}
 
-A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
-with \emph{r} = \dots, \emph{p} = \dots.
+Through calling Microsoft Azure's Bing Spell Check API, one of the best grammar analysis APIs in the industry, we 
+managed to calculate the total number of grammar errors in summary, description and comments for a total number 
+of 133,689 tickets. As shown in a number of studies, the number of spelling errors can influence the quality of a ticket. 
+However, in the work conducted by Schugerl et. al \cite{schugerl2008mining}, the authors found that spelling errors 
+can be found in both high and low quality tickets, thus should not be considered as a reliable factor for determining
+the Time-To-Close for a ticket. In the rest of this section we will demonstrate the contrary - tickets with more 
+grammar errors (spelling errors are just a subset of the types of errors we are investigating) imply lower quality
+tickets. 
+
+This analysis type is called grammar correctness rather than spelling scores because the range of errors returned 
+by Bing Spell Check API are of many types, some of which are:
+\begin{itemize}
+  \item spelling errors - e.g. Hwo are you today? However, they go much further than a simple character mistyped - for example,
+  if one would type Micrsft, it would automatically flag it as a grammar error because it also takes into account a large 
+  database of words not in standard dictionaries, but also popular words in the tech world (e.g. company names) or 
+  jargon language (e.g. dab dance);
+  \item contextual errors - e.g. I ate a book today; even though this is not a misspell, the API will return \emph{book} as 
+  a grammar error due to the fact that it is used in the wrong context;
+  \item it can detect the wrong usage of a verb tense in a specific context;
+  \item it can flag wrong conjugations of verbs;
+\end{itemize}
+
+After concatenating the strings for all comments, summary and description, we ran our analysis and then plotted the 
+data which is depicted in Figure \ref{grammar}. A correlational analysis revealed a weak positive
+relationship with $r = 0.134$ and $p < 0.01$. Thus, our results are statistically significant, implying that 
+having more grammar errors in a ticket will increase the Time-To-Close for a ticket and, thus, decrease the quality. 
+
+This is expectable as having a text difficult to grasp and understand makes it harder to reason about what needs 
+to be done in order to fix a ticket. As it can be seen in the graph, most tickets are concentrated in the range of 
+0 to 40 grammar errors per ticket. Having 40 grammar errors in a ticket is quite a large number, considering the fact 
+that many tickets don't have comments at all and summary and description are not large in general. 
+
+However, we can not automatically change this through automation like the solutions we presented in the previous 
+analysis types. We cannot call, for example, the Bing Spell Check API every couple of seconds on the text the user 
+is inputting in the ticket as the costs would become unbearable very soon. Thus, what can be done to fix this? It is, 
+after all, in the human nature to make mistakes, and typing is no exception. The solution we are proposing implies a 
+local, lightweight spell checker that is run automatically as the user types. This tool would not make any external 
+calls, so there would be no costs and the load on the server would also be lower. There are already local applications 
+that can be used for performing such real-time analysis on the text, one of them being LibreOffice's built-in 
+spell checker.
 
 \subsection{Sentiment Scores}
 
