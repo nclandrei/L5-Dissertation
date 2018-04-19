@@ -634,10 +634,44 @@ Figure \ref{fields} shows the scatter plot for the sum of numbers of words in su
 as the Time-To-Close for the ticket. We have analysed a total number of 238,286 (all our closed tickets as they 
 all have), all having both summaries and descriptions.
 
-From the 
+The Figure shows a very similar correlation to the one for comments complexity. A correlational analysis revealed 
+a weak positive relationship with $r = 0.178$ and $p < 0.01$. This implies both that our results are statistically 
+significant and also that as number of words in summary and description increase, the Time-To-Close increases, thus 
+the quality of the ticket decreases.
 
-A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
-with \emph{r} = \dots, \emph{p} = \dots.
+This is not a surprise - as previously mentioned, summary and description are the core components of any ticket. 
+As summary is described by Jira, it should represent a short textual description of the bug or the feature request. However,
+we have identified tickets having summaries with even more than 200 words. This is not optimal and might obfuscate
+the essential reason of filing that ticket from triagers and developers working on the project. One of the findings 
+Zimmermann et. al \cite{zimmermann2010makes} present in their study is that a good, succint summary can significantly 
+reduce the effort invested by the developers. 
+
+Description, on the other hand, even though it is made to be a more detailed summary of the report, it should still be
+in some reasonable parameters. During our analysis process, we identified more than 50 tickets having descriptions 
+with more than 4,000 words. Even though they included various types of information, including steps to reprodce, 
+we believe that the reason why Jira and the other popular issue tracking systems created so many fields for bug reports 
+is that the information that could all be put in description should be split across these fields: 
+\begin{itemize}
+  \item if there are stack traces or steps to reproduce, as we mentioned above, there should be specific fields 
+  created exclusively for them; 
+  \item if the end user is an experienced one and has reported numerous bugs or feature requests for the project, 
+  they might also be able to provide an estimate for the difficulty of the task; however, that should be stored in the 
+  Jira system field called \"Story Points\";
+  \item the user might also want to provide excerpts of code or previous discussions with other end users/developers; 
+  however, they should not upload it inside the description field, but rather create a text attachment (e.g. markdown
+  document) and attach it separately so that they keep the description clean and easy to follow.
+\end{itemize}
+
+A solution for this issue could be the freedom of easily selecting the total number of words allowed for summary and 
+description. Even though this is possible with Jira, the process of configuring it is not trivial, thus many 
+administrators do not perform this step. An even better approach would be to have a tool automatically generating 
+word limits based on, for example, the experience of the reporter - if he/she has significant knowledge regarding 
+the project, they should be allowed to include lengthier summaries or descriptions mainly because they are more inclined 
+to know that without a very good reason, following this approach is not the most optimal way. 
+
+Another simple and straightforward solution can be the simple addition of hints below or above the text boxes for summary 
+and description where administrators can write succint messages adivising reporters to not write verbose paragraphs 
+unless they really have a very good reason to do so.
 
 \subsection{Grammar Correctness}
 
