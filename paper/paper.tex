@@ -400,95 +400,106 @@ tests we ran on the tickets are saved as well in the database.
 
 \section{Correlations}\label{correlations}
 
+In this section we present our results to the research questions we set to answer. We have computed charts for all 
+independent variables using either scatter plots for continuous variables (e.g. number of comments/time-to-close) 
+or bar charts for categorical variables (e.g. presence of attachments). We also computed statistical analysis for 
+all variables to test their significance and rank correlation coefficient and we will present each of them in their 
+corresponding subsection. Lastly, we also discuss possible reasons why certain correlations occured.
+
 \subsection{Attachments}
+
+\begin{figure}[ht]
+  \begin{center}
+  \includegraphics[scale=0.23]{images/attachments.png}
+  \end{center}
+  \caption{\label{attachments}Attachments analysis.}
+\end{figure}
+
+Attachments are, as mentioned previously, files attached to software tickets that can take any form - from code 
+snippets written in Java to tar archives. We have analyzed all the high priority tickets 
 
 A Welch T Test was computed to test the difference between tickets with attachments and those 
 without attachments. The analysis revealed significant difference with \emph{p} < 0.01 with an
 average of \emph{X <change this>} for tickets with attachments and an average of \emph{Y <change this>}
 for tickets without attachments.
-
-\begin{figure}
-  \begin{center}
-  \includegraphics[scale=0.25]{images/attachments.png}
-  \end{center}
-  \caption{\label{attachments}Application flow of the Go tool.}
-  \end{figure}
 
 \subsection{Steps to Reproduce}
 
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[scale=0.23]{images/steps_to_reproduce.png}
+  \end{center}
+  \caption{\label{steps}Steps to reproduce analysis.}
+\end{figure}
+
 A Welch T Test was computed to test the difference between tickets with attachments and those 
 without attachments. The analysis revealed significant difference with \emph{p} < 0.01 with an
 average of \emph{X <change this>} for tickets with attachments and an average of \emph{Y <change this>}
 for tickets without attachments.
-
-\begin{figure}
-  \begin{center}
-  \includegraphics[scale=0.25]{images/steps_to_reproduce.png}
-  \end{center}
-  \caption{\label{steps}Application flow of the Go tool.}
-  \end{figure}
 
 \subsection{Stack Traces}
 
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[scale=0.23]{images/stack_traces.png}
+  \end{center}
+  \caption{\label{stack_traces}Stack traces analysis.}
+\end{figure}
+
 A Welch T Test was computed to test the difference between tickets with attachments and those 
 without attachments. The analysis revealed significant difference with \emph{p} < 0.01 with an
 average of \emph{X <change this>} for tickets with attachments and an average of \emph{Y <change this>}
 for tickets without attachments.
 
-\begin{figure}
-  \begin{center}
-  \includegraphics[scale=0.25]{images/stack_traces.png}
-  \end{center}
-  \caption{\label{stack_traces}Application flow of the Go tool.}
-  \end{figure}
-
 \subsection{Comments}
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[scale=0.23]{images/comment_complexity.png}
+  \end{center}
+  \caption{\label{comments}Comments complexity analysis.}
+\end{figure}
 
 A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
 with \emph{r} = \dots, \emph{p} = \dots.
 
-\begin{figure}
-  \begin{center}
-  \includegraphics[scale=0.25]{images/comment_complexity.png}
-  \end{center}
-  \caption{\label{comments}Application flow of the Go tool.}
-  \end{figure}
 
 \subsection{Summary and Description}
 
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[scale=0.23]{images/fields_complexity.png}
+  \end{center}
+  \caption{\label{fields}Fields complexity analysis.}
+\end{figure}
+
 A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
 with \emph{r} = \dots, \emph{p} = \dots.
-
-\begin{figure}
-  \begin{center}
-  \includegraphics[scale=0.25]{images/fields_complexity.png}
-  \end{center}
-  \caption{\label{fields}Application flow of the Go tool.}
-  \end{figure}
 
 \subsection{Grammar Correctness}
 
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[scale=0.23]{images/grammar_correctness.png}
+  \end{center}
+  \caption{\label{grammar}Grammar correctness score analysis.}
+\end{figure}
+
 A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
 with \emph{r} = \dots, \emph{p} = \dots.
-
-\begin{figure}
-  \begin{center}
-  \includegraphics[scale=0.25]{images/grammar_correctness.png}
-  \end{center}
-  \caption{\label{grammar}Application flow of the Go tool.}
-  \end{figure}
 
 \subsection{Sentiment Scores}
 
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[scale=0.23]{images/sentiment_analysis.png}
+  \end{center}
+  \caption{\label{sentiment}Sentiment score analysis.}
+\end{figure}
+
 A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
 with \emph{r} = \dots, \emph{p} = \dots.
 
-\begin{figure}
-  \begin{center}
-  \includegraphics[scale=0.25]{images/sentiment_analysis.png}
-  \end{center}
-  \caption{\label{sentiment}Application flow of the Go tool.}
-  \end{figure}
 
 \section{Future Work}\label{future_work}
 
