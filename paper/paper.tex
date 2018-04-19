@@ -408,6 +408,8 @@ More specifically, we computed the following numbers for the tickets we collecte
   \item out of the 303,138 tickets, 236,383 tickets have been closed (i.e. marked Closed, Resolved, Done or Completed) by the time we 
   fetched them from the Jira instance;
   \item 287,120 tickets are of high priority (i.e. marked as Blocker, Critical, Major or High);
+  \item 201,786 tickets have all our requirements for running the analysis: were closed by the time we fetched the data, 
+  are of high priority and are not \emph{wrong} values retrieved from Jira (i.e. outliers);
   \item 103,397 tickets have attachments which we split in the following categories:
     \begin{itemize}
       \item 4,082 have code attachments (e.g. Go, Java, Python);
@@ -454,7 +456,8 @@ Attachments are, as mentioned previously, files attached to software tickets tha
 snippets written in Java to tar archives. We have analyzed all tickets that were both of high priority tickets and
 were marked as Closed by the time we collected the data. Then we split all these tickets into two main categories: 
 with attachments and without attachments. Furthermore, the tickets that were marked as having attachments were split 
-into the categories specified in Section \ref{characterising}. 
+into the categories specified in Section \ref{characterising}. In total, we looked at 201,786 tickets, among which 
+98,311 had attachments and 103,475 without any attachments.
 
 Using the plot package in our Go tool, we automatically generated the bar chart shown in Figure \ref{attachments}. 
 As it can be seen, various types of attachments can produce completely different \emph{times-to-close}. For 
@@ -498,10 +501,11 @@ that uploading a screenshot or a code snippet can help reduce the time-to-close 
 Steps to reproduce are a means of specifying to the developers what actions they need to undergo in order 
 to reproduce a certain bug. They can take various forms, but as Jira uses a wiki style markdown format for 
 their description and comments fields, they can be inserted as a bullet point list which can be easily 
-extracted with a regular expression. 
+extracted with a regular expression.
 
 Figure \ref{steps} shows the bar chart representing all closed, high priority tickets with or without steps 
-to reproduce in either the description field or in any of the comments.
+to reproduce in either the description field or in any of the comments. We looked in total at 201,786 tickets 
+among which 31,732 tickets had steps to reproduce and 170,054 did not have.
 
 As it can be shown in the figure, having steps to reproduce can significantly reduce the time-to-close 
 for the ticket. Even though the data collected does not have such many tickets with steps to reproduce 
@@ -545,7 +549,7 @@ the Apache Software Foundation projects (231 projects \cite{apache_projects}), m
 we collected (22) are also written in Java, thus we had a considerable chunk of data to analyze.
 
 For this analysis, we only looked at tickets of high priority, closed and the project they correspond 
-is written in Java. We then ran a complex regular expression derived from the works of Bettenburg et. al 
+is written in Java. In total, we investigated looked at We then ran a complex regular expression derived from the works of Bettenburg et. al 
 \cite{bettenburg2012using} and Moreno et. al \cite{moreno2014use} and collected all the tickets that have 
 stack traces. In the end, we got a total number of 256 tickets that had at least an exception stack trace 
 attached in either summary, description or any of the comments.
@@ -568,9 +572,47 @@ for tickets without them.
   \caption{\label{comments}Comments complexity analysis.}
 \end{figure}
 
-A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
-with \emph{r} = \dots, \emph{p} = \dots.
+The comment field is comprised of a textual body, a corresponding author, its time of creation and any updates 
+that were performed on it throughout its lifecycle. They provide a space for developers and end users to discuss 
+anything related to the ticket they belong to. Any popular issue tracking system, such as Jira, does not enforce 
+any limit on any component of a comment, thus the number of words for a single comment can range from only 5 
+to well over 1,000. 
 
+We firstly concatenated all comments into a single large string in order to be analysed for total number of words.
+We ran our comments analysis on 201,786 tickets among which 113,344 had comments and 88,442 did not have any comments. 
+
+In Figure \ref{comments} we present the correlations between the total number of words in comments per ticket and 
+the corresponding Time-To-Close for that ticket. We can observe in the scatter plot that most tickets tend to 
+have up to around 3,200 words in total. However, there are tickets that have a total number of words as high as 
+around 25,000. 
+
+From the figure we cannot clearly deduce whether increased number of words in comments influence 
+the Time-To-Close positively or negatively. However, a correlational analysis releaved a weak 
+positive relationship with $r = 0.271$ and $p < 0.01$. This implies a statistically significant finding - 
+as the number of comments increases, the quality of the ticket decreases. 
+
+Even though this might be surprising at first, we need to analyse the possible context where such large 
+number of words in comments occur. What if the bug was so hard to reproduce that the developers needed to 
+ask more than one user how they experienced the issue in the tool? Another case might be that even though 
+the comments start by discussing fixing or implementing a feature, the developers and end users might 
+engage in new conversations about the product in general or other features that they might want to see 
+implemented. Also, what if comments are a means of communication for developers in the team? There are studies, 
+such as the one conducted by Lotufo et. al \cite{lotufo2015modelling}, that show the importance of comments 
+in software tickets in relation to communication activities surrounding the project. Another possible explanation 
+for having increased number of comments increase the Time-To-Close value and, thus, decrease quality, is that 
+having many comments or very verbose comment can lead to more difficult information extraction. On the other 
+hand, if there would be a light discussion, the developers would be able to quickly analyse all the comments 
+and collect whatever is necessary to resolve the ticket.
+
+One possible solution that we propose to this correlation is to have the ability to limit the number of 
+comments per ticket. As to our knowledge, one cannot do this in neither Jira nor Bugzilla. However, if it were 
+possible, we believe that this might help developers find the information they need quicker. But what happens 
+if the treshold is reached and there is still a need for clarifying certain aspects? We believe that having 
+a button redirecting anyone still interesting in commenting on the ticket to a messaging tool, such as 
+Slack, would be beneficial for the project overall. Thus, if they were redirected to let's say Slack, a small 
+tool could automatically be run that creates a new channel specifically for that ticket with the name set 
+to the unique ticket key (e.g. LUCENE-2901). We believe that such a solution could aid both developers in 
+completing tasks quicker but also end users for feeling more involved and valuable to the project.
 
 \subsection{Summary and Description}
 
@@ -580,6 +622,19 @@ with \emph{r} = \dots, \emph{p} = \dots.
   \end{center}
   \caption{\label{fields}Fields complexity analysis.}
 \end{figure}
+
+Summary and description are the two most important and most frequently completed fields in a ticket on any
+issue tracking system. Even though summary is required on any issue tracking system, description might 
+be omitted if the reporter does not feel the need of adding any extra detail other than what is in the summary. 
+However, as bug reports are usually complex, there is a very small percentage of descriptions not filled in 
+by the reporters. They do not typically have any word limits, thus the reporter can add as much information as 
+they see fit.
+
+Figure \ref{fields} shows the scatter plot for the sum of numbers of words in summary and description, as well 
+as the Time-To-Close for the ticket. We have analysed a total number of 238,286 (all our closed tickets as they 
+all have), all having both summaries and descriptions.
+
+From the 
 
 A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
 with \emph{r} = \dots, \emph{p} = \dots.
