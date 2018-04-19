@@ -336,13 +336,27 @@ Afterwards, we have created two extra commands for automatically generating plot
 running statistical tests on the collected data. 
 
 For plotting the data, we first connect again to the Bolt database instance and then filter out only the issues that have 
-the variable \emph{Time-To-Close} set (i.e. tickets marked as closed when they were fetched from the Jira instance). Afterwards,
-we either save scatter plots or bar charts to disk. 
+the variable \emph{Time-To-Close} set (i.e. tickets marked as closed when they were fetched from the Jira instance). 
+In order to compute correct results, we run the same checks on issues as the ones listed in the analyse command (e.g. plot 
+only tickets of high priority). Afterwards, we either save scatter plots or bar charts to disk presenting correlations 
+between all the variables we tested.
+
+In terms of technology used for plotting the data, we have used a library called go-chart \cite{go-chart} created by 
+Will Charczuk. It is an extensible library with a focus on extensability - it does not provide the end user a large number 
+of default options, but rather let him/her extend their graphs as much as it is needed (e.g. add specific labels for axes, 
+plot a secondary Y axis).
 
 Also, in order to validate our findings, the statistics command fetches all the data from the database and runs two types of 
 tests: Welch's T Test \cite{welch1947generalization} for analysing categorical data (e.g. has/does not have attachments)
 and Spearman's rank correlation coefficient \cite{spearman1904proof} for investigating continuous data (e.g. how do different 
-grammar correctness scores change \emph{Time-To-Close}).
+grammar correctness scores change \emph{Time-To-Close}). For computing Spearman R Tests we made use of a simple 
+statistics library created by Damian Gryski called onlinestats \cite{onlinestats}, while for Welch T Tests we created our 
+own custom types and functions. 
+
+They have both been created with extensability in mind - we believe that in the future work we proposed to conduct on the 
+project, we might need to use other statistical tests as well, such as Mann-Whitney U tests \cite{mann1947test}. Also, before
+we ran both statistical tests and the plotting command, we tested them thoroughly and checked whether the libraries compute 
+stable and robust results.
 
 \section{Characterising the Data Set}\label{characterising}
 
