@@ -38,7 +38,7 @@ a means of planning, managing and tracking work products in the form of
 \emph{software tickets} or \emph{issues}.
 
 There are multiple platforms for providing such issue tracking systems, among which
-the most popular are Jira \cite{jira} and Bugzilla \cite{bugzilla}. For both platforms,
+the most popular are Jira and Bugzilla. For both platforms,
 the tickets are split into two main categories: feature requests (i.e. feature to be 
 implemented into the system) and bug reports (i.e. issue encountered by an end user or
 discovered by a developer in the codebase). Regardless of the type of ticket, they possess
@@ -443,6 +443,8 @@ or bar charts for categorical variables (e.g. presence of attachments). We also 
 all variables to test their significance and rank correlation coefficient and we will present each of them in their 
 corresponding subsection. Lastly, we also discuss possible reasons why certain correlations occured.
 
+%TODO: add a bit more info here and add summary for all analyses (which one is significant, what does each of them imply)
+
 \subsection{Attachments}
 
 \begin{figure}[ht]
@@ -717,11 +719,14 @@ that many tickets don't have comments at all and summary and description are not
 However, we can not automatically change this through automation like the solutions we presented in the previous 
 analysis types. We cannot call, for example, the Bing Spell Check API every couple of seconds on the text the user 
 is inputting in the ticket as the costs would become unbearable very soon. Thus, what can be done to fix this? It is, 
-after all, in the human nature to make mistakes, and typing is no exception. The solution we are proposing implies a 
-local, lightweight spell checker that is run automatically as the user types. This tool would not make any external 
-calls, so there would be no costs and the load on the server would also be lower. There are already local applications 
-that can be used for performing such real-time analysis on the text, one of them being LibreOffice's built-in 
-spell checker.
+after all, in the human nature to make mistakes, and typing is no exception. If we, for example, have some hint or a rule
+in the code of conduct for the project stating that everything should be 100\% gramatically correct, many reporters not 
+having English as their primary language would feel unwelcomed and they might not get involved in the project anymore. 
+
+The solution we are proposing implies a local, lightweight spell checker that is run automatically as the user types. 
+This tool would not make any external calls, so there would be no costs and the load on the server would also be lower. 
+There are already local applications that can be used for performing such real-time analysis on the text, one of them 
+being LibreOffice's built-in spell checker.
 
 \subsection{Sentiment Scores}
 
@@ -732,8 +737,34 @@ spell checker.
   \caption{\label{sentiment}Sentiment score analysis.}
 \end{figure}
 
-A correlational analysis revealed a weak positive/negative (one of them, depending on context) relationship
-with \emph{r} = \dots, \emph{p} = \dots.
+Sentiment analysis is a technique of employing Machine Learning algorithms in order to infer a sentiment 
+score from textual information. These algorithms need to be trained on very large data sets in order to 
+produce valuable results. Moreover, we would have also needed an already annotated data set, which means 
+a number of strings where we compute the score by hand given a mathematical formula we define. Even though 
+there are open source libraries that can help creating and employing the algorithms, such as TensorFlow, 
+we would still have needed tickets where we defined what do we mean by positive/negative tickets, as well as
+manually computing the scores for a large range of them. Therefore, we ended using a third party API - Google 
+Cloud Platform Natural Language Processing, considered the best such service at the moment.
+
+After we concatenated summaries, descriptions and all the comments for every ticket, we started sending our 
+requests to Google and we plotted the data shown in Figure \ref{sentiment}. A correlational analysis revealed a 
+weak negative relationship with $r = -0.114$, $p < 0.01$. Therefore, we obtained statistically significant 
+results implying that as the sentiment decreases (i.e. becomes more negative), the Time-To-Close increases, thus 
+decreasing the quality of a ticket.
+
+We can see in the Figure that neutral scores (i.e. between -0.42 and 0.42) show rather neutral results, which 
+was expectable: this most probably implies that the discussions and descriptions for these tickets revolved 
+completely around the ticket and nothing else. 
+
+However, as the sentiment decreases, we can clearly observe that the sentiment scores increase significantly. 
+This might signify that once the discussion becomes \"heated\", the developers might lose interest in solving 
+the task anymore. Also, rude language might be a driver for increased Times-To-Close because when developers are 
+answering questions from the reporters (or vice versa), the other person might become rude or unpolite, which can 
+make them feel unwelcomed and start to lose interest in helping the project anymore. 
+
+On the other side of the spectrum, having a more positive score leads to higher quality in tickets. Calefato et. al 
+\cite{calefato2015mining} conducted a study where they show that a positive sentiment has the biggest impact on 
+the quality of an answer on Stack Overflow, one of the most popular websites related to programming in general. 
 
 \section{Future Work}\label{future_work}
 
