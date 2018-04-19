@@ -416,12 +416,40 @@ corresponding subsection. Lastly, we also discuss possible reasons why certain c
 \end{figure}
 
 Attachments are, as mentioned previously, files attached to software tickets that can take any form - from code 
-snippets written in Java to tar archives. We have analyzed all the high priority tickets 
+snippets written in Java to tar archives. We have analyzed all tickets that were both of high priority tickets and
+were marked as Closed by the time we collected the data. Then we split all these tickets into two main categories: 
+with attachments and without attachments. Furthermore, the tickets that were marked as having attachments were split 
+into the categories specified in Section \ref{characterising}. 
+
+Using the plot package in our Go tool, we automatically generated the bar chart shown in Figure \ref{attachments}. 
+As it can be seen, various types of attachments can produce completely different \emph{times-to-close}. For 
+tickets with archive we can see the longest time-to-close mean while tickets having text attachments are at 
+the other end of the spectrum. The smallest mean is for other attachments, which is represented by any file 
+that does not have an extension specified in one of the other categories. 
+
+We assume that image attachments are screenshots attached to the ticket in order to help developers see and 
+subsequently reproduce the bug. Thus, we can clearly see that the difference between the means of time-to-close 
+for tickets without attachments and tickets with screenshots is significantly in favor of the latter. This can 
+indicate that developers indeed find screenshots helpful in solving the ticket faster.
+
+Another insightful result is the fact that having text, config and spreadsheet attachments significantly 
+reduces the time-to-close for the ticket. This can imply that developers find value in various steps to reproduce, 
+config values used by users when the bug encountered or data in a spreadsheet format (e.g. csv) that can be 
+found in such files and helps them lower the time-to-close for the ticket.
+
+On the other hand, having no attachments does not necessarily mean that the ticket will get closed after 
+a longer period of time. As it can be seen in the figure, the mean time-to-close value for tickets without 
+attachments is somewhat neutral in the entire data set.
 
 A Welch T Test was computed to test the difference between tickets with attachments and those 
-without attachments. The analysis revealed significant difference with \emph{p} < 0.01 with an
-average of \emph{X <change this>} for tickets with attachments and an average of \emph{Y <change this>}
-for tickets without attachments.
+without attachments. The analysis revealed significant difference with $p > 0.01$ with an
+average of $1380.551$ hours for tickets with attachments and an average of $3180.882$ hours
+for tickets without attachments. 
+
+Thus, our analysis shows that having attachments in most formats, ranging from markdown files to PNG screenshots 
+and snippets of code, can help developers solve the tickets faster. We believe that the solution of making attachments
+provide the most value to the software project would be if issue tracking systems would make explicit to the reporters 
+that uploading a screenshot or a code snippet can help reduce the time-to-close for the ticket.
 
 \subsection{Steps to Reproduce}
 
@@ -432,10 +460,10 @@ for tickets without attachments.
   \caption{\label{steps}Steps to reproduce analysis.}
 \end{figure}
 
-A Welch T Test was computed to test the difference between tickets with attachments and those 
-without attachments. The analysis revealed significant difference with \emph{p} < 0.01 with an
-average of \emph{X <change this>} for tickets with attachments and an average of \emph{Y <change this>}
-for tickets without attachments.
+A Welch T Test was computed to test the difference between tickets with attachments (i.e. all categories 
+shown in the graph and those without attachments. The analysis revealed significant difference with 
+\emph{p} < 0.01 with an average of \emph{X <change this>} for tickets with attachments and an average of 
+\emph{Y <change this>} for tickets without attachments.
 
 \subsection{Stack Traces}
 
