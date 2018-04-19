@@ -460,10 +460,39 @@ that uploading a screenshot or a code snippet can help reduce the time-to-close 
   \caption{\label{steps}Steps to reproduce analysis.}
 \end{figure}
 
-A Welch T Test was computed to test the difference between tickets with attachments (i.e. all categories 
-shown in the graph and those without attachments. The analysis revealed significant difference with 
-\emph{p} < 0.01 with an average of \emph{X <change this>} for tickets with attachments and an average of 
-\emph{Y <change this>} for tickets without attachments.
+Steps to reproduce are a means of specifying to the developers what actions they need to undergo in order 
+to reproduce a certain bug. They can take various forms, but as Jira uses a wiki style markdown format for 
+their description and comments fields, they can be inserted as a bullet point list which can be easily 
+extracted with a regular expression. 
+
+Figure \ref{steps} shows the bar chart representing all closed, high priority tickets with or without steps 
+to reproduce in either the description field or in any of the comments.
+
+As it can be shown in the figure, having steps to reproduce can significantly reduce the time-to-close 
+for the ticket. Even though the data collected does not have such many tickets with steps to reproduce 
+(39,988 compared to the total number of 238,286 closed tickets), it is still a valuable finding which shows 
+that steps to reproduce are indeed a quality factor for software tickets. 
+
+What we can infer from this result is that steps to reproduce reduce the communication friction between 
+the reporters and the developers - in the case of a bug which is harder to reproduce (e.g. maybe the 
+bug occurs only on Linux and the developer is running MacOS, but the reporter did not specify his/her 
+operating system in the ticket), the developer might need to contact the reported either directly or 
+through commenting on the issue. What this implies is waiting time until the reporter comes back on the 
+issue tracking system or sees the notification that he/she received a new message, which subsequently makes 
+the ticket remain open for a longer period of time. 
+
+A Welch T Test was computed to test the difference between tickets with steps to reproduce 
+and those without steps to reproduce. The analysis revealed significant difference with 
+$p < 0.01$ with an average of $1596.714$ for tickets with steps to reproduce and an average of 
+$2609.142$ for tickets without steps to reproduce.
+
+Thus, the answer to our research question is that the presence of steps to reproduce in tickets 
+has a positive influence on the time-to-close. One solution that we propose for maximizing their benefit 
+is that issue tracking systems should include hints on the ticket creation form specifying that 
+steps to reproduce should be included as developers would be able to fix the bug faster. Moreover, 
+issue tracking systems could also automatically add a new system field (like summary or description) 
+for any project created and the project maintainers or administrators could make them mandatory for 
+when a ticket is created by reporters.
 
 \subsection{Stack Traces}
 
