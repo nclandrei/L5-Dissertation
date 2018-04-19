@@ -150,26 +150,21 @@ When evaluated on over 150,000 bug reports, it proved to have a very high rate o
 We applied some of the techniques shown in the study and successfully managed to 
 retrieve stack traces as well with a great accuracy.
 
-%TODO: modify here
-One other type of information that could be extracted and used for valuable
-purposes is the summary of a bug report, as shown in the work of 
-Rastkar et. al \cite{rastkar2010summarizing}. The authors wanted to determine if bug reports
-could be summarized effectively and automatically so that developers would
-need only analyze summaries instead of full tickets. Firstly, they asked
-university students to volunteer to annotate the bug reports collected from
-various open sources projects (i.e. Eclipse, Mozilla, Gnome, KDE) by writing
-a summary of maximum 250 words in their own sentences. These human-produced 
-annotations were then used by algorithms to learn how to effectively summarize a 
-bug report.  Afterwards, the authors asked the end users of these bug reports, the 
-software developers, to rate the summaries against the original bug reports.
-They eventually learned that existing conversation-based extractive summary
-generators trained on bug reports produce the best results.
-
-We tried to apply the technique presented in the work of Fischer et. al \cite{fischer2003analyzing},
-where they present a way to track specific version controlled branches from information
-in software tickets.  They managed to successfully visualize the tracked features and illustrate 
-their non apparent dependencies which can prove very useful in projects with a large number of
-components. 
+The first information to be filled in by end users or developers on any issue tracking system
+is the summary field, which holds a small description, usually between 5 and 30 words, of 
+the request or bug being reported. In the study conducted by Rastkar et. al \cite{rastkar2010summarizing}, 
+the authors investigated whether tickets could be summarized automatically and efficiently. What 
+that implies is that developers would not be required to look at complete tickets comprised 
+of a large number of fields, but rather at a simple summary of a couple of lines 
+encapsulating the whole information. The authors selected the Mozilla, Eclipse, Gnome and KDE 
+open source projects and then they asked volunteering university students to annotate 
+the tickets in the issue tracking systems. More specifically, they had to write a summary 
+of maximum 250 words using both technical and non-technical terms, depending on their expertise. 
+Then, the study presents Machine Learning algorithms employed to parse these summaries and 
+learn how to efficiently create automated summaries for new bug reports. Afterwards, they asked 
+software developers to rate these auto-generated summaries against the original ones and 
+the conclusion was that existing conversation-based extractive summary generators used 
+for software tickets produce the best results.
 
 The work of Just et. al \cite{just2008towards} examines a rather different aspect
 of quality in tickets - they are investigating the quality of the underlying issue 
@@ -188,8 +183,7 @@ suggestions:
     \item to be able to easily and expressively search through tickets.
   \end{itemize}
 
-However, bug report assignment is not the only part of bug triaging that needs
-investigation. Lamkanfi et. al \cite{lamkanfi2010predicting} show a method through which one
+Lamkanfi et. al \cite{lamkanfi2010predicting} show a method through which one
 can predict the severity of a reported bug (i.e. assign story points to the 
 ticket) automatically. The authors conducted their research on the Mozilla,
 Eclipse and GNOME projects and divided their method into four steps:
