@@ -575,10 +575,71 @@ with \emph{r} = \dots, \emph{p} = \dots.
 
 \section{Future Work}\label{future_work}
 
-The first extension to the Go tool we created would be to add support for Bugzilla as an issue tracking system 
+The first extension to the Go tool we created would be to add support for Bugzilla. We already achieved this 
+when we were first prototyping the application, but we decided to proceed exclusively with Jira mainly because 
+the APIs proved to be more reliable and also versatile in terms of what data you could collect. Another 
+reason was that we were time retricted, thus we wanted to have first a well tested and stable solution for Jira and 
+only after add support for other issue tracking systems. However, we already prepared for other potential systems by 
+adding interfaces for tickets and REST clients, making Bugzilla, Manuscript, YouTrack or any 
+other issue tracking system straightforward to add to the application.
 
+Another extension to the app could be adding the possibility of selecting what database provider to use 
+for storing tickets. As we previously mentioned, we currently provide only Bolt DB support, but adding others is 
+again straightforward, mainly because we already store tickets as arrays of bytes representing the JSON encoded 
+value. Thus, if we add a new database provider, if they allow us to store items as raw bytes (which most DBs already 
+do), then the necessary code changes would be minimal.
+
+One other improvement to the application could be adding more robust support for statistical analysis. At the moment, 
+our tool uses our own custom types and functions for generating Welch T Test and Spearman R Test results, and even if 
+it produces the expected \emph{p} and \emph{r coefficient} values, end users of the application might want to 
+analyse even more possible correlations. As the Go community lacks native libraries to perform statistical tests, 
+the users of our tool might miss the simplicity of running such tests in R. A solution can be to integrate the 
+Roger library \cite{r_stats} inside the stats package, which basically allows any Go application to communicate with 
+R via TCP. 
+
+There is also room for future work in terms of the data collected. Even though the database we collected 
+is large, there is never enough tickets to analyse. Thus, the store command of the tool could be run against 
+other Jira instances apart from Apache's and collect tickets from other projects, thus improving the diversity 
+and the total number of tickets to be analysed. As we did not have access to any cluster or virtual machines in 
+the cloud, we ran all our analyses on local machines (laptops) and it could still take well over two hours to complete 
+with over 10 GB of RAM and 70\% CPU in usage.
+
+Furthermore, the project could greatly benefit from having access to closed source repositories in addition to the 
+open source ones. Most closed source projects have much more structured planning, tracking and management activities - as 
+Crowston et. al \cite{crowston2012free} present in their study, open source projects lack organized coordination which,
+in the context of our study, means that people do not invest much effort into properly creating tickets in issue tracking 
+systems, triaging efficiently, planning the work and tracking it. On the other hand, closed source projects follow 
+more strict guidelines: standard working hours (would make tracking and linking the source code changes to tickets easier), 
+adding story points (i.e. adding estimated difficulty or time to complete) and properly planning tickets before work 
+starts on the task, tickets properly distributed to developers based on availability and expertise etc. These benefits 
+of closed source projects would prove helpful for our analysis.
+
+Another aspect that could be improved is having access to funds in order to buy Google Cloud Platform credits. This 
+would be required to use the Natural Language Processing APIs on large amounts of data. We used the credits provided 
+in the free trial but quickly ran out completely after only 160,000 tickets. Also, credits on Microsoft Azure would 
+prove useful as their Spell Check API is the most efficient at the moment.
+
+A major future work candidate is availability of a technique to calculate the difficulty of a ticket based on the information
+inside it. Unfortunately, at the moment, the research community has not come up with such an approach. 
+Vijayakumar et. al \cite{vijayakumar2014much} proposed a method of predicting how much effort is required for fixing 
+a bug, but after running it on our data, it did not prove successful. After such a technique becomes available, we could 
+incorporate it inside our tool and group the tickets compared in all analysis types based on their difficulty in order to 
+have better results.
 
 \section{Conclusions}\label{conclusions}
+
+Software tickets are a vital part of every software project's lifecycle. Even though there might be other means
+of planning, managing and tracking work for a software team, issue tracking systems are deployed in virtually any company
+that provides a computer application or service.
+
+Deriving a quality score only from textual information and other non-structured data such as images is not trivial. 
+However, in this study we managed to answer all seven research questions and find factors that can posittively or 
+negatively affect the quality of a ticket. 
+
+
+In this study, we have answered all the research 
+questions we set to answer and successfully proven that all of our results are statistically significant. 
+
 
 \vskip8pt \noindent
 {\bf Acknowledgments.}
@@ -587,9 +648,11 @@ this project. I would definitely not have been able to achieve what we've achiev
 thank you, Tim, for all the support, kindness and advice you have given me throughout this academic year. I would 
 also like to thank you for being the lecturer who has taught me the most throughout all my years at the university
 and whose advice and ideas I have applied at all my work places and my personal projects.
+
 The next huge thank you would have to go to my parents, the most amazing family in the world! Without them I would 
 not be here and I wouldn't have had anything of what I have now, both personally and professionally. 
 I will always treasure the unconditional support you have always offered me! Thank you for being my parents, Mom and Dad!
+
 And last but not least, I want to thank my partner in \"crime\" and in life, Corina! Without her, I would not be who I 
 am today. You have been with me through thick and thin, in both bad moments (such as the endless nights working 
 on ticket statistics) and best moments in my life! Thank you for everything! I will always love you!
