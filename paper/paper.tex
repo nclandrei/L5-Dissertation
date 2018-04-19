@@ -633,13 +633,26 @@ of planning, managing and tracking work for a software team, issue tracking syst
 that provides a computer application or service.
 
 Deriving a quality score only from textual information and other non-structured data such as images is not trivial. 
-However, in this study we managed to answer all seven research questions and find factors that can posittively or 
-negatively affect the quality of a ticket. 
+However, in this study we managed to create an application that can automatically fetch and store tickets from any 
+Jira instance, analyse them and compute statistical tests and graphs.
 
+We manager to answer all seven research questions and find factors that can posittively or 
+negatively affect the quality of a ticket. All of our results are statistically significant and we can summarise 
+them as follows:
+\begin{itemize}
+  \item the presence of steps to reproduce increases the quality of a ticket;
+  \item the presence of stack traces increases the quality of a ticket;
+  \item the presence of attachments increases the quality of a ticket - more specifically tickets with screenshots, 
+  config files or text files have lower times-to-complete than tickets without attachments;
+  \item higher numbers of grammar errors impply lower quality scores for a ticket;
+  \item higher sentiment scores imply higher quality scores for a ticket;
+  \item higher numbers of words in comments imply lower quality scores for a ticket;
+  \item higher number of words in description and summary imply lower quality scores for a ticket.
+\end{itemize}
 
-In this study, we have answered all the research 
-questions we set to answer and successfully proven that all of our results are statistically significant. 
-
+We intend to continue work on the project and implement the points we have listed in Section \ref{future_work}. We believe
+that by open sourcing the application and making the data publicly available, we can provide a valuable starting point 
+for other studies investigating this particular field of software engineering.
 
 \vskip8pt \noindent
 {\bf Acknowledgments.}
