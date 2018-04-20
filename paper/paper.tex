@@ -75,25 +75,28 @@ questions in this paper (Section \ref{correlations}):
   a ticket?
   \item does the presence of stack traces improve the ticket quality?
   \item does the presence of steps to reproduce reduce the \emph{Time-To-Close}?
-  \item is there a relationship between the number of comments influence \emph{Time-To-Close}?
-  \item is there a relationship between 
+  \item is there a relationship between the number of words in comments and \emph{Time-To-Close}?
+  \item does the total number of words in summary and description have an impact on \emph{Time-To-Close}?
+  \item does the number of grammar errors in summary, description and comments have an effect on the quality of a ticket?
+  \item does a positive or negative ticket influence its \emph{Time-To-Close}?
 \end{itemize}
 
 This study brings several contributions to the research community:
 \begin{itemize}
-  \item an innovative tool was built for the purpose of this project, its strengths lying in its simplicity, speed and
-  extensability;
+  \item an innovative tool was built for the purpose of this project, providing efficient data collection and analysis of
+  tickets;
   \item it is one of the few studies in the field that performs a quantitative analysis rather than a qualitative one;
   \item it is one of the very few research projects that investigates such a large number of tickets (over 300,000)
   extracted from 38 different projects;
   \item it is, to our knowledge, the first study to conduct sentiment and grammar correctness analyses on software tickets.
 \end{itemize}
 
-In Section \ref{related_work} we iterate over state-of-the art studies in the field and then continue with 
-Section \ref{building} where we discuss how the ticket data set was collected and analysed. We continue with describing 
-the data set (Section \ref{characterising}) where we provide insights into various aspects of the data (e.g. size of database,
-number of tickets with attachments) and then discuss about correlations between the variables (Section \ref{correlations}).
-Finally, we provide future research directions in Section \ref{future_work} and present our conclusions in Section \ref{conclusions}.
+The rest of the paper is structured as follows. In Section \ref{related_work} we iterate over state-of-the art studies in 
+the field and then continue with Section \ref{building} where we discuss how the ticket data set was collected and 
+analysed. We continue with describing the data set (Section \ref{characterising}) where we provide insights into various 
+aspects of the data (e.g. size of database, number of tickets with attachments) and then discuss correlations between 
+the variables (Section \ref{correlations}). Finally, we provide future research directions in Section \ref{future_work} 
+and present our conclusions in Section \ref{conclusions}.
 
 \section{Related Work}\label{related_work}
 
