@@ -269,24 +269,29 @@ In the following three subsections we describe how we designed and implemented t
 \subsection{Fetch and Store}
 
 This is the first command implemented in our tool - it is desgined to fetch, from any valid Jira URL, any number of tickets 
-and then store everything inside an instance of BoltDB \cite{bolt}, which is a very simple yet powerful key-value pair 
+and then store everything inside an instance of BoltDB \cite{bolt}, a key-value pair 
 database. The whole process is parallelized with the possibility of scaling even up to hundreds of goroutines
 (i.e. lightweight threads) running concurrently. 
 
 The decision of choosing Bolt in favor of well tested, more traditional databases such as Postgres or MySQL came naturally when 
 we noticed that we did not need to query the database often, but rather get the whole array of tickets and manipulate them. Moreover, 
-a MongoDB or Postgres DB would have required a running server. Even though the server could have been running on the local machine, 
-Bolt instances are actually files with the extension \emph{db} saved on disk, thus it is trivial to create backups.
+a MongoDB or Postgres DB would have required a running server. 
 
-We have interacted with the Jira Server REST API which has very good documentation written by the Atlassian team. After getting
-familiar with all the features the REST API offers, we have opted for getting paginated issues from the server, which means 
+The goroutines interact with the Jira Server REST API. The goroutines exploit the pagination facility in the API, which means 
 slicing the whole set of tickets into multiple smaller arrays to improve performance and reduce the load on the server. We also
-specified to Jira exactly what set of issue fields to return and, eventually, while responses were retrieved from the instance,
+specified to Jira exactly what set of issue fields to return and, while responses were retrieved from the instance,
 we began storing them into our Bolt DB instance. 
 
 The way we chose to store them was to set the issue key (i.e. unique identifier that differentiates a ticket from all others across all 
-projects inside a Jira instance) as the key of the pair and the value is the JSON representation of the ticket. This helped us reduce 
-the size of the database once we reached hundreds of thousands of tickets.
+projects inside a Jira instance) as the key of the pair and the value is the JSON representation of the ticket. This storage method, in conjunction
+with how simple Bolt is designed, helped us reduce the size of the database significantly. For small databases, 
+using RDBMSs (e.g. Postgres, MySQL, Oracle) is not performance critical, but when the data set is large such as in our study, bottlenecks might start affecting 
+the progress of the project. This is mainly due to the structure of how Jira returns the tickets; for example, all issues have comments as 
+a field, consisting of an array of structs with body, author, created time etc. Then, each comment has a changelog history attached to it, 
+having in turn multiple changelog groups and also each group can have multiple changelog items. Therefore, this long pipeline became a serious 
+bottleneck for us once we reached a certain number of tickets because we had relations between all these tables, compared to Bolt which does not 
+link any key-value pair to another. Another major point when we decided to proceed with Bolt was that we did not need to query the data at all 
+as all our processing was too complex to convert the logic into an SQL query.
 
 \subsection{Analyse}
 
@@ -615,8 +620,9 @@ anything related to the ticket they belong to. Any popular issue tracking system
 any limit on any component of a comment, thus the number of words for a single comment can range from only 5 
 to well over 1,000. 
 
-We firstly concatenated all comments into a single large string in order to be analysed for total number of words.
-We ran our comments analysis on 201,786 tickets among which 113,344 had comments and 88,442 did not have any comments. 
+We concatenated all comments into a single large string in order to be analysed for total number of words. This step 
+was performed at the end of each ticket's lifecycle. We ran our comments analysis on 201,786 tickets among which 
+113,344 had comments and 88,442 did not have any comments. 
 
 In Figure \ref{comments} we present the correlations between the total number of words in comments per ticket and 
 the corresponding Time-To-Close for that ticket. We can observe in the scatter plot that most tickets tend to 
@@ -657,7 +663,7 @@ completing tasks quicker but also end users for feeling more involved and valuab
   \begin{center}
     \includegraphics[scale=0.23]{images/fields_complexity.png}
   \end{center}
-  \caption{\label{fields}Fields complexity analysis.}
+  \caption{\label{fields}Time-To-Close versus summary and description word count.}
 \end{figure}
 
 Summary and description are the two most important and most frequently completed fields in a ticket on any
@@ -669,7 +675,8 @@ they see fit.
 
 Figure \ref{fields} shows the scatter plot for the sum of numbers of words in summary and description, as well 
 as the Time-To-Close for the ticket. We have analysed a total number of 238,286 tickets, as they all have both 
-summaries and descriptions.
+summaries and descriptions. We concatenated the summary and description for every ticket at the end of the ticket 
+lifecycle.
 
 The Figure shows a very similar correlation to the one for comments complexity. A correlational analysis revealed 
 a weak positive relationship with $r = 0.178$ and $p < 0.01$. This implies both that our results are statistically 
@@ -731,7 +738,7 @@ tickets.
 This analysis type is called grammar correctness rather than spelling scores because the range of errors returned 
 by Bing Spell Check API are of many types, some of which are:
 \begin{itemize}
-  \item spelling errors - e.g. Hwo are you today? However, they go much further than a simple character mistyped - for example,
+  \item spelling errors; however, they go much further than a simple character mistyped - for example,
   if one would type Micrsft, it would automatically flag it as a grammar error because it also takes into account a large 
   database of words not in standard dictionaries, but also popular words in the tech world (e.g. company names) or 
   jargon language (e.g. dab dance);
@@ -827,12 +834,6 @@ reason was that we were time retricted, thus we wanted to have first a well test
 only after add support for other issue tracking systems. However, we already prepared for other potential systems by 
 adding interfaces for tickets and REST clients, making Bugzilla, Manuscript, YouTrack or any 
 other issue tracking system straightforward to add to the application.
-
-Another extension to the app could be adding the possibility of selecting what database provider to use 
-for storing tickets. As we previously mentioned, we currently provide only Bolt DB support, but adding others is 
-again straightforward, mainly because we already store tickets as arrays of bytes representing the JSON encoded 
-value. Thus, if we add a new database provider, if they allow us to store items as raw bytes (which most DBs already 
-do), then the necessary code changes would be minimal.
 
 One other improvement to the application could be adding more robust support for statistical analysis. At the moment, 
 our tool uses our own custom types and functions for generating Welch T Test and Spearman R Test results, and even if 
