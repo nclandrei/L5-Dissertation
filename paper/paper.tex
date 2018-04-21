@@ -202,14 +202,9 @@ poor design in issue tracking systems and how the ticket creation process could 
 The study conducted by Lamkanfi et. al \cite{lamkanfi2010predicting} looks at this aspect and
 shows how issue tracking systems could be extended in order to automatically generate the severity 
 of a ticket (e.g. assign story points to a Jira issue). The authors conducted their research on the Mozilla,
-GNOME and Eclipse and projects and split their approach into four steps:
-  \begin{itemize}
-    \item extract and organize tickets;
-    \item pre-process tickets (i.e. tokenization, stop word removal and stemming);
-    \item train the classifier on two datasets of tickets - 70\% 
-      training and 30\% evaluation;
-    \item apply the trained classifier on the evaluation set.
-  \end{itemize}
+GNOME and Eclipse and projects and split their approach into four steps: extract and organize tickets, 
+pre-process tickets (i.e. tokenization, stop word removal and stemming), train the classifier on two datasets 
+of tickets - 70\% training and 30\% evaluation and apply the trained classifier on the evaluation set.
 The conclusions they drew from running the evaluation process were rather 
 interesting:
   \begin{itemize}
@@ -247,11 +242,16 @@ fetching the tickets from any Jira instance, storing them into some form of data
 automatically plot the correlations between them and run statistical analysis on the data. After careful consideration, 
 we decided that Go was the best way to go for various reasons:
   \begin{itemize}
-    \item it is designed with simplicity in min, thus making it easier for others who might join the project to read 
-    and understand the codebase;
-    \item it is compiled, statically typed, which implies that it is a much faster candidate than other interpreted languages
-    such as Ruby or Python;
+    \item it is designed with simplicity in mind, thus making it easy for others who might join the project to read 
+    and understand the codebase; this would prove useful for us as developing the tool further is on our list of future 
+    work items;
+    \item it is a compiled, statically typed language that produces cross-platform executables when building the application;
+    this is helpful for our research as we can use any machine or cluster of computers regardless of the operating system 
+    running on them and collect even larger number of tickets than what we have collected so far;
     \item is is designed with concurrency in mind, thus it helps reduce times of execution and computing power considerably;
+    in our case, why it helps us is by allowing access to goroutines, very lightweight threads that can scale even up to 
+    millions; we use this powerful concept while fetching tickets from Jira or storing in the database - at one point, we had 
+    more than 30,000 goroutines running at the same time.
   \end{itemize}
 
 Throughout the entire application, we tried to apply the UNIX philosophy of creating small applications that do one thing, but 
@@ -295,19 +295,21 @@ fetches all the issues in the database. The next step is to filter out the ticke
 \begin{itemize}
   \item tickets are \emph{High Priority} - the ticket status was marked either Blocker, Critical, Major or High;
   \item tickets were closed and had a maximum \emph{Time-To-Close} value of 27,000 hours (roughly 3 years) (we added the 
-  higher bound as well in order to eliminate outliers produced by wrong data retrieved by Jira);
-  \item remove outliers for all categories - some fields for a small number of tickets that had wrong values (e.g. one ticket
+  higher bound as well in order to eliminate outliers retrieved by Jira);
+  \item remove outliers for all categories - some fields for a small number of tickets that had extreme values (e.g. one ticket
   had over 270,000 comments) introduced by the team behind the project and we needed to exclude them so that the analysis 
   produced correct results.
 \end{itemize}
 
-Then, it runs in parallel the \emph{seven types of analysis} for answering the research questions outlied in Section \ref{intro}, 
-each in its own separate goroutine in order to speed up the process:
+Then, the analysis routine runs in parallel the \emph{seven types of analysis} for answering the research questions 
+outlied in Section \ref{intro}, each in its own separate goroutine in order to speed up the process:
 \begin{itemize}
   \item \emph{attachments} - checks whether attachments influence Time-To-Close and also look at what types 
   of attachments (e.g. screenshots, archive, code snippets) influence quality the most;
   \item \emph{steps to reproduce} - performs a complex regex to detect steps to reproduce and then checks whether their presence
-  influence the quality of a ticket;
+  influence the quality of a ticket; the regular expression was adapted after the general guidelines elicited by 
+  Bettenburg et. al \cite{bettenburg2008extracting} on how to extract structured data, including enumerations (of which 
+  steps to reproduce are a subset);
   \item \emph{stack traces} - runs complex regex for detecting exception stack traces in either summary, description or comments 
   and verifies whether their presence influence Time-To-Close for the ticket; this analysis only inspects projects
   written in Java as it is the most popular proponent built-in of stack traces;
@@ -335,7 +337,7 @@ The application first checks Bolt for tickets and gets either all of them in mem
 but heavy on resource utilization) or slices them into smaller arrays to get processed afterwards (harder to parse as it 
 eventually requires re-creation of the whole array of tickets before inserting back into the database, but it is much 
 lighter on computing power). After having the tickets available, we start looping through them and perform all 
-analysis types mentioned above. Once some sort of value is computed (e.g. grammar correctness score), it gets set in 
+analysis types mentioned above. Once a value is computed (e.g. grammar correctness score), it gets set in 
 its corresponding field in the ticket struct and is subsequently stored back in the database. We chose this approach because 
 we do not want to run the analysis every time we want to plot correlations between variables, but rather have the data 
 already available there. Moreover, for analysis depending on third party services such as the Google Cloud Platform 
