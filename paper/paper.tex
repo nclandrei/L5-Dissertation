@@ -100,6 +100,12 @@ and present our conclusions in Section \ref{conclusions}.
 
 \section{Related Work}\label{related_work}
 
+In this section we will present what are the state-of-the art studies in the issue/ticket quality 
+field. More specifically, we will look at research papers that investigated what makes for a valuable ticket, 
+how can one extract structured/unstructured data from tickets (e.g. stack traces), ticket duplication and its 
+positive and negative outcomes, quality of modern issue tracking systems as well as automating the process 
+of summarizing tickets or the optimal assignee. 
+
 The study of Bettenburg et. al \cite{bettenburg2008makes} showed what 
 makes for a valuable bug report through qualitative analysis. 
 After conducting interviews with over 450 developers, Bettenburg et. al concluded that one of the main factors
@@ -139,8 +145,16 @@ The authors collected large amounts of data from the Eclipse open source project
 various kind of textual and statistical analysis on the data to find answers.
 After the results were computed, they concluded that usually bug duplicates contain 
 information that is not present in the master report (i.e. the original report that was 
-filed). Moreover, developers also specified that they have often found value in these 
-duplicate bug reports and that they can even aid automated triaging techniques.
+filed). Also, developers also specified that they have often found value in these 
+duplicate bug reports and that they can even aid automated triaging techniques. 
+
+%TODO: ADD HERE PROPER PAPER
+However, the study conducted by Cavalcanti et. al \cite{cavalcanti2013bug} shows completely 
+different results. The authors investigated around 280,000 tickets from multiple open and 
+closed source repositories and found that having bug duplicates
+97,000 tickets from the Mozilla repository in order to infer the quality of merging duplicate
+bug reports. Their results are statistically significant and they show that merging bug report 
+duplicates improved the overall quality of the project (i.e. ) 
 
 Bettenburg et. al \cite{bettenburg2012using} present in their work an application
 called infoZilla. This tool can
