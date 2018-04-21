@@ -313,9 +313,9 @@ Then, the analysis routine runs in parallel the \emph{seven types of analysis} f
 outlied in Section \ref{intro}, each in its own separate goroutine in order to speed up the process:
 \begin{itemize}
   \item \emph{attachments} - checks whether attachments influence Time-To-Close and also look at what types 
-  of attachments (e.g. screenshots, archive, code snippets) influence quality the most;
+  of attachments (e.g. screenshots, archive, code snippets) influence time-to-close the most;
   \item \emph{steps to reproduce} - performs a complex regex to detect steps to reproduce and then checks whether their presence
-  influence the quality of a ticket; the regular expression was adapted after the general guidelines elicited by 
+  influence the time-to-close of a ticket; the regular expression was adapted after the general guidelines elicited by 
   Bettenburg et. al \cite{bettenburg2008extracting} on how to extract structured data, including enumerations (of which 
   steps to reproduce are a subset);
   \item \emph{stack traces} - runs complex regex for detecting exception stack traces in either summary, description or comments 
@@ -470,13 +470,13 @@ corresponding subsection.
 
 The answers to our research questions are all statistically significant and they can summarised as follows:
 \begin{itemize}
-  \item having attachments improves the quality of a ticket;
-  \item having steps to reproduce improves the quality of a ticket;
-  \item having stack traces improves the quality of a ticket;
-  \item more grammar errors imply lower ticket quality;
-  \item lower sentiment scores result in lower ticket quality;
-  \item verbose comments result in lower ticket quality;
-  \item verbose summary and description imply lower ticket quality.
+  \item having attachments reduces time-to-close of a ticket;
+  \item having steps to reproduce reduces time-to-close of a ticket;
+  \item having stack traces reduces time-to-close of a ticket;
+  \item more grammar errors imply increase time-to-close values;
+  \item lower sentiment scores result in increased time-to-close values;
+  \item verbose comments result in increased time-to-close values;
+  \item verbose summary and description imply increased time-to-close values.
 \end{itemize}
 
 For every type of analysis, we also discuss possible reasons why certain correlations occured. Furthermore, for all 
@@ -635,7 +635,7 @@ around 25,000.
 From the figure we cannot clearly deduce whether increased number of words in comments influence 
 the Time-To-Close positively or negatively. However, a correlational analysis releaved a weak 
 positive relationship with $r = 0.271$ and $p < 0.01$. This implies a statistically significant finding - 
-as the number of comments increases, the quality of the ticket decreases. 
+as the number of comments increases, the time-to-close value of the ticket also increases. 
 
 Even though this might be surprising at first, we need to analyse the possible context where such large 
 number of words in comments occur. What if the bug was so hard to reproduce that the developers needed to 
@@ -736,7 +736,7 @@ However, in the work conducted by Schugerl et. al \cite{schugerl2008mining}, the
 can be found in both high and low quality tickets, thus should not be considered as a reliable factor for determining
 the Time-To-Close for a ticket. In the rest of this section we will demonstrate the contrary - tickets with more 
 grammar errors (spelling errors are just a subset of the types of errors we are investigating) imply lower quality
-tickets. 
+tickets (i.e. increased time-to-close). 
 
 This analysis type is called grammar correctness rather than spelling scores because the range of errors returned 
 by Bing Spell Check API are of many types, some of which are:
@@ -808,7 +808,7 @@ the task anymore. Also, rude language might be a driver for increased Times-To-C
 answering questions from the reporters (or vice versa), the other person might become rude or unpolite, which can 
 make them feel unwelcomed and start to lose interest in helping the project anymore. 
 
-On the other side of the spectrum, having a more positive score leads to higher quality in tickets. Calefato et. al 
+On the other side of the spectrum, having a more positive score leads to reduced time-to-close values for tickets. Calefato et. al 
 \cite{calefato2015mining} conducted a study where they show that a positive sentiment has the biggest impact on 
 the quality of an answer on Stack Overflow, one of the most popular websites related to programming in general. This 
 implies that when developers and triagers treat their reporters respectfully and offer support whenever possible, 
@@ -891,7 +891,7 @@ However, in this study we managed to create an application that can automaticall
 Jira instance, analyse them and compute statistical tests and graphs.
 
 We manager to answer all seven research questions and find factors that can posittively or 
-negatively affect the quality of a ticket. All of our results are statistically significant and we can summarise 
+negatively affect the time-to-close value of a ticket. All of our results are statistically significant and we can summarise 
 them as follows:
 \begin{itemize}
   \item the presence of steps to reproduce reduces the time-to-close for a ticket;
