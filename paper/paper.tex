@@ -487,7 +487,7 @@ and efficient as possible.
 
 \begin{figure}[ht]
   \begin{center}
-  \includegraphics[scale=0.23]{images/attachments.png}
+  \includegraphics[scale=0.25]{images/attachments.png}
   \end{center}
   \caption{\label{attachments}Attachments analysis.}
 \end{figure}
@@ -538,7 +538,7 @@ that uploading a screenshot or a code snippet can help reduce the time-to-close 
 
 \begin{figure}[ht]
   \begin{center}
-    \includegraphics[scale=0.23]{images/steps_to_reproduce.png}
+    \includegraphics[scale=0.25]{images/steps_to_reproduce.png}
   \end{center}
   \caption{\label{steps}Steps to reproduce analysis.}
 \end{figure}
@@ -582,7 +582,7 @@ when a ticket is created by reporters.
 
 \begin{figure}[ht]
   \begin{center}
-    \includegraphics[scale=0.23]{images/stack_traces.png}
+    \includegraphics[scale=0.25]{images/stack_traces.png}
   \end{center}
   \caption{\label{stack_traces}Stack traces analysis.}
 \end{figure}
@@ -612,7 +612,7 @@ for tickets without them.
 
 \begin{figure}[ht]
   \begin{center}
-    \includegraphics[scale=0.23]{images/comment_complexity.png}
+    \includegraphics[scale=0.25]{images/comment_complexity.png}
   \end{center}
   \caption{\label{comments}Comments complexity analysis.}
 \end{figure}
@@ -625,7 +625,8 @@ to well over 1,000.
 
 We concatenated all comments into a single large string in order to be analysed for total number of words. This step 
 was performed at the end of each ticket's lifecycle. We ran our comments analysis on 201,786 tickets among which 
-113,344 had comments and 88,442 did not have any comments. 
+113,344 had comments and 88,442 did not have any comments. What we calculated as being total number of words inside comments 
+is all the words inside all comments corresponding to a ticket summed up.
 
 In Figure \ref{comments} we present the correlations between the total number of words in comments per ticket and 
 the corresponding Time-To-Close for that ticket. We can observe in the scatter plot that most tickets tend to 
@@ -633,9 +634,13 @@ have up to around 3,200 words in total. However, there are tickets that have a t
 around 25,000. 
 
 From the figure we cannot clearly deduce whether increased number of words in comments influence 
-the Time-To-Close positively or negatively. However, a correlational analysis releaved a weak 
-positive relationship with $r = 0.271$ and $p < 0.01$. This implies a statistically significant finding - 
-as the number of comments increases, the time-to-close value of the ticket also increases. 
+the Time-To-Close positively or negatively. Actually, we can assume at first sight that there is a descending trend implying more 
+words produce smaller Time-To-Close values. However, the bulk of values plotted are in the range of 
+1 to 1,600 total comment words per ticket (76,633 tickets) and in this slice of tickets, the trend is descending.
+We did not generate the plot containing only these values because there would still be 36,711 tickets left out.
+
+A correlational analysis ran on all 201,786 tickets, however, releaved a weak positive relationship with $r = 0.271$ and $p < 0.01$. 
+This implies a statistically significant finding - as the number of comments increases, the time-to-close value of the ticket also increases. 
 
 Even though this might be surprising at first, we need to analyse the possible context where such large 
 number of words in comments occur. What if the bug was so hard to reproduce that the developers needed to 
@@ -664,7 +669,7 @@ completing tasks quicker but also end users for feeling more involved and valuab
 
 \begin{figure}[ht]
   \begin{center}
-    \includegraphics[scale=0.23]{images/fields_complexity.png}
+    \includegraphics[scale=0.25]{images/fields_complexity.png}
   \end{center}
   \caption{\label{fields}Time-To-Close versus summary and description word count.}
 \end{figure}
@@ -681,10 +686,14 @@ as the Time-To-Close for the ticket. We have analysed a total number of 238,286 
 summaries and descriptions. We concatenated the summary and description for every ticket at the end of the ticket 
 lifecycle.
 
-The Figure shows a very similar correlation to the one for comments complexity. A correlational analysis revealed 
-a weak positive relationship with $r = 0.178$ and $p < 0.01$. This implies both that our results are statistically 
-significant and also that as number of words in summary and description increase, the Time-To-Close increases, thus 
-the quality of the ticket decreases.
+The Figure shows a very similar correlation to the one for comments complexity - it seems that as the number of words 
+in summary and description increases, the Time-To-Close will decrease. This is true for the majority of the tickets 
+which are in the range of 2 to 290 words, but as in the case of comments complexity analysis, we did not generate 
+the plot only for those as we would have left 61,322 tickets out (out of a total of 201,786 tickets analysed). 
+
+However, a correlational analysis ran on all 201,786 tickets revealed a weak positive relationship with $r = 0.178$ and $p < 0.01$. 
+This implies both that our results are statistically significant and also that as number of words in summary and description increase, 
+the Time-To-Close increases, thus the quality of the ticket decreases.
 
 This is not a surprise - as previously mentioned, summary and description are the core components of any ticket. 
 As summary is described by Jira, it should represent a short textual description of the bug or the feature request. However,
@@ -724,7 +733,7 @@ unless they really have a very good reason to do so.
 
 \begin{figure}[ht]
   \begin{center}
-    \includegraphics[scale=0.23]{images/grammar_correctness.png}
+    \includegraphics[scale=0.25]{images/grammar_correctness.png}
   \end{center}
   \caption{\label{grammar}Grammar correctness score analysis.}
 \end{figure}
@@ -777,7 +786,7 @@ being LibreOffice's built-in spell checker.
 
 \begin{figure}[ht]
   \begin{center}
-    \includegraphics[scale=0.23]{images/sentiment_analysis.png}
+    \includegraphics[scale=0.25]{images/sentiment_analysis.png}
   \end{center}
   \caption{\label{sentiment}Sentiment score analysis.}
 \end{figure}
