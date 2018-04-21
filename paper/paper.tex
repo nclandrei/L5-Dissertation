@@ -438,6 +438,8 @@ More specifically, we computed the following numbers for the tickets we collecte
     \end{itemize}
   \item 270,907 tickets have comments;
   \item 39,988 tickets have steps to reproduce (i.e. sequence of steps specified by the bug reporter that would reproduce a certain bug); 
+  we applied the general guidelines described by Bettenburg et. al \cite{bettenburg2008extracting} on how to extract structured 
+  data (including steps to reproduce) from tickets in order to create a regular expression for capturing them;
   \item 1,942 tickets have Java stack traces - we have applied the technique described by Bettenburg et. al 
   \cite{bettenburg2008extracting} for extracting structured data from bug reports and even though the method proved to be efficient, 
   the total number of stack traces is so small due to the fact that many projects are actually written in languages other than Java;
@@ -508,6 +510,11 @@ found in such files and helps them lower the time-to-close for the ticket.
 On the other hand, having no attachments does not necessarily mean that the ticket will get closed after 
 a longer period of time. As it can be seen in the figure, the mean time-to-close value for tickets without 
 attachments is somewhat neutral in the entire data set.
+
+However, we need to take into consideration tickets that have code attachments which are a \emph{thread to validity}. 
+When a snippet of code is attached, it might result in more complex tickets due to developers spending more time on 
+understanding what is going on and reasoning about the attached code. Also, engineers might need to run or test 
+the code attached which can again increase the Time-To-Close.
 
 A Welch T Test was computed to test the difference between tickets with attachments and those 
 without attachments. The analysis revealed significant difference with $p > 0.01$ with an
