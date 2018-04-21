@@ -148,13 +148,16 @@ information that is not present in the master report (i.e. the original report t
 filed). Also, developers also specified that they have often found value in these 
 duplicate bug reports and that they can even aid automated triaging techniques. 
 
-%TODO: ADD HERE PROPER PAPER
-However, the study conducted by Cavalcanti et. al \cite{cavalcanti2013bug} shows completely 
-different results. The authors investigated around 280,000 tickets from multiple open and 
-closed source repositories and found that having bug duplicates
-97,000 tickets from the Mozilla repository in order to infer the quality of merging duplicate
-bug reports. Their results are statistically significant and they show that merging bug report 
-duplicates improved the overall quality of the project (i.e. ) 
+Another study that investigates duplicate bug reports is the work conducted by Prifti et. al \cite{prifti2011detecting}. 
+The authors first collected 75,000 bug reports from Bugzilla for the Firefox project. Then, they created a tool 
+for detecting bug report duplicates with an accuracy of 53\%. However, due to prior 
+findings showing both that duplicate reports can improve the quality \cite{bettenburg2008duplicate}
+but also decrease it \cite{cavalcanti2013bug}, this study tries to achieve a middle ground - 
+before the reporter can file the bug in the system, the duplicate detection tool previously 
+described runs and checks whether there are any duplicates. If there are, the user is presented 
+with the possibility of simply adding extra information, if suitable, to one of the duplicates 
+found. This is indeed a novel approach that can bring great benefits to the software engineering 
+community and the authors state that they wish to pursue future work on this idea.
 
 Bettenburg et. al \cite{bettenburg2012using} present in their work an application
 called infoZilla. This tool can
@@ -321,11 +324,11 @@ outlied in Section \ref{intro}, each in its own separate goroutine in order to s
   \item \emph{comments complexity} - loops through all comments and counts all words; then, the tool verifies whether 
   the number of words in comments has an impact on the Time-To-Close for the ticket;
   \item \emph{fields complexity} - same analysis as comments complexity, but only for summary and description wordiness;
-  \item \emph{grammar correctness} - it uses Azure Cloud Bing Spell Check API \cite{bing} to perform analysis on summary, 
+  \item \emph{grammar correctness} - it uses Azure Cloud Bing Spell Check API to perform analysis on summary, 
   description and comments; after concatenating everything and making it compatible with the API allowed formats, the tool 
   receives back in the JSON payload not only the number of flagged tokens (i.e. grammar errors), but also their types 
   (e.g. unknown token, misspell);
-  \item \emph{sentiment} - uses Google Cloud Platform's Natural Language Processing API \cite{gcp_nlp} to retrieve the 
+  \item \emph{sentiment} - uses Google Cloud Platform's Natural Language Processing API to retrieve the 
   sentiment score for summary, description and comments; it first concatenates everything and makes it conform to Google's 
   API and then sends the request, receiving a score from -1 to 1 inclusive (-1 means most negative, 1 means most 
   positive);
@@ -839,7 +842,7 @@ One other improvement to the application could be adding more robust support for
 our tool uses our own custom types and functions for generating Welch T Test and Spearman R Test results, and even if 
 it produces the expected \emph{p} and \emph{r coefficient} values, end users of the application might want to 
 analyse even more possible correlations. As the Go community lacks native libraries to perform statistical tests, 
-the users of our tool might miss the simplicity of running such tests in R. A solution can be to integrate the 
+the users of our tool might miss the simplicity of running such tests in R. A solution can be to integrate Senseye's 
 Roger library \cite{r_stats} inside the stats package, which basically allows any Go application to communicate with 
 R via TCP. 
 
