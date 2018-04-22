@@ -172,21 +172,21 @@ the request or bug being reported. In the study conducted by Rastkar et al. \cit
 the authors investigated whether tickets could be summarized automatically and efficiently. What 
 that implies is that developers would no longer be required to look at tickets on the whole, comprising of 
 a large number of fields, but rather at a simple summary of a couple of lines 
-encapsulating the whole information. The authors selected the Mozilla, Eclipse, Gnome and KDE 
-open source projects and then they asked volunteering university students to annotate 
-the tickets in the issue tracking systems. More specifically, they had to write a summary 
+encapsulating the whole information. The authors selected the Mozilla, Eclipse, GNOME and KDE 
+open source projects and they asked volunteering university students to annotate 
+the tickets in the issue tracking systems. More specifically, they wrote a summary 
 of maximum 250 words using both technical and non-technical terms, depending on their expertise. 
-Then, the study presents Machine Learning algorithms employed to parse these summaries and 
-learn how to efficiently create automated summaries for new bug reports. Afterwards, they asked 
-software developers to rate these auto-generated summaries against the original ones and 
+In parallel, Machine Learning algorithms were also employed to parse these summaries and 
+learn how to efficiently create automated summaries for new bug reports. After both methods had been run, 
+software developers were asked to rate these auto-generated summaries against the original ones; 
 the conclusion was that existing conversation-based extractive summary generators used 
 for software tickets produce the best results.
 
 The work of Just et al. \cite{just2008towards} examines a rather different aspect
 of quality in tickets - they are investigating the quality of the underlying issue 
 tracking systems instead. 
-The authors ran a survey on 175 developers from Eclipse, Apache and Mozilla
-Then, they applied a card sort in order to organize the comments into hierarchies to 
+After running a survey on 175 developers from Eclipse, Apache and Mozilla,
+the authors applied a card sort in order to organize the comments into hierarchies to 
 identify common patterns. Their findings can be summarized in the following top seven
 suggestions:
   \begin{itemize}
@@ -240,25 +240,24 @@ properly.
 \end{figure*}
 
 \section{Building the Data Set}\label{building}
-The first step towards building the data set was to create a tool that was able to execute all the commands that we required:
+The first step towards building the data set was to create a tool that was able to execute all the necessary commands:
 fetching the tickets from any Jira instance, storing them into some form of database, analyze the variables of interest, 
 automatically plot the correlations between them and run statistical analysis on the data. After careful consideration, 
 we decided that Go was the best way to go for various reasons:
   \begin{itemize}
     \item it is designed with simplicity in mind, thus making it easy for others who might join the project to read 
-    and understand the codebase; this would prove useful for us as developing the tool further is on our list of future 
-    work items;
+    and understand the codebase; this would prove useful for developing the tool further;
     \item it is a compiled, statically typed language that produces cross-platform executables when building the application;
     this is helpful for our research as we can use any machine or cluster of computers regardless of the operating system 
     running on them and collect even larger number of tickets than what we have collected so far;
-    \item is is designed with concurrency in mind, thus it helps reduce times of execution and computing power considerably;
-    in our case, why it helps us is by allowing access to goroutines, very lightweight threads that can scale even up to 
-    millions; we use this powerful concept while fetching tickets from Jira or storing in the database - at one point, we had 
+    \item it is designed with concurrency in mind, thus it helps reduce times of execution and computing power considerably;
+    in our case, it helps by allowing access to goroutines, very lightweight threads that can scale even up to 
+    millions; we use this powerful concept while fetching tickets from Jira or storing in the database - at one point, there were 
     more than 30,000 goroutines running at the same time.
   \end{itemize}
 
-Throughout the entire application, we tried to apply the UNIX philosophy of creating small applications that do one thing, but 
-do it well. Therefore, we implemented clean and simple packages where we tried to use the standard library as much as possible
+Throughout the entire application, we applied the UNIX philosophy of creating small applications that do one thing, but 
+do it well. Therefore, we implemented clean and simple packages where we used the standard library as much as possible
 so that potential contributors coming to the project would find it easy to start working directly on the code. Also, we designed 
 the tool with extensibility in mind, so that other database providers (e.g. CockroachDB) or issue tracking systems (e.g. Bugzilla) 
 could be easily implemented - this was achieved using the elegant Go interfaces and the idea of composition.  
