@@ -42,12 +42,12 @@ various information that can be filled in by the reporter (i.e. person who creat
 can be both an end user or a developer in the team), providing the developers
 a detailed view of what is requested or what went wrong.
 
-Even though tickets provide such comprehensive data regarding a specific task, studies have shown 
+Even though tickets provide such comprehensive data regarding a specific task, evidence shows 
 that fixing bugs is one of the most common and time consuming tasks performed by developers \cite{latoza2006maintaining}. One of
 the reasons for this is the communication friction between developers and end users \cite{Korkala2014WasteIdentification}
 as developers might need clarification regarding what information the users have provided (e.g. cannot reproduce the bug, 
 screenshot is unclear). Another main reason for this waste of effort on solving tickets, according to 
-Just et. al \cite{just2008towards} and Zimmermann et. al \cite{zimmermann2009improving}, is the generally poor design of issue 
+Just et al. \cite{just2008towards} and Zimmermann et al. \cite{zimmermann2009improving}, is the generally poor design of issue 
 tracking systems. This can lead to various issues, including increased costs for the company, wasted development effort, 
 decreased customer satisfaction and overall poor performance.
 
@@ -106,9 +106,9 @@ how can one extract structured/unstructured data from tickets (e.g. stack traces
 positive and negative outcomes, quality of modern issue tracking systems as well as automating the process 
 of summarizing tickets or the optimal assignee. 
 
-The study of Bettenburg et. al \cite{bettenburg2008makes} showed what 
+The study of Bettenburg et al. \cite{bettenburg2008makes} showed what 
 makes for a valuable bug report through qualitative analysis. 
-After conducting interviews with over 450 developers, Bettenburg et. al concluded that one of the main factors
+After conducting interviews with over 450 developers, Bettenburg et al. concluded that one of the main factors
 behind a quality ticket is grammar correctness in summary and description. Another
 aspect which was flagged as helpful by the interviewees was the presence of stack 
 traces and steps to reproduce in tickets. A further contribution brought by the
@@ -116,7 +116,7 @@ authors to the community is the creation of a tool called Cuezilla which is able
 to automatically predict the quality of a bug report with an accuracy of around 40\%.
 
 Another research paper that strenghtens the argument that readability is a quality 
-factor in software tickets is the one presented by Hooimeijer et. al \cite{hooimeijer2007modeling}.
+factor in software tickets is the one presented by Hooimeijer et al. \cite{hooimeijer2007modeling}.
 They conducted their analysis on over 25,000 bug reports from the Mozilla project, 
 investigating readability, daily load, submitter reputation, the whole changelog histories 
 and severity. They conclude that not only readability in the textual fields of a ticket
@@ -127,10 +127,10 @@ value to the quality of tickets.
 
 However, there are other types on information typically included in software tickets 
 which might prove beneficial for developers and subsequently improve the ticket quality.
-One such type is stack traces and Schroter et. al \cite{schroter2010stack} analyse how 
+One such type is stack traces and Schroter et al. \cite{schroter2010stack} analyse how 
 quickly tickets are closed when they either have stack traces included in their fields 
 (e.g. description) or not. They collected their data from the Eclipse project using 
-the InfoZilla tool proposed by Bettenburg et. al \cite{bettenburg2008extracting}.
+the InfoZilla tool proposed by Bettenburg et al. \cite{bettenburg2008extracting}.
 Then, they linked the stack traces to changes in source code by mining the Eclipse version 
 controlled repository. The results showed that 
 around 60\% of the bugs that contained stack traces in their reports were fixed
@@ -140,7 +140,7 @@ got fixed in the first stack frame.
 Software tickets can have duplicates, usually meaning that the most important fields, such 
 as summary or description, describe the same feature request or bug report. Even though 
 one might believe that they cannot bring any value to a software project, the work of 
-Bettenburg et. al \cite{bettenburg2008duplicate} shows the contrary.
+Bettenburg et al. \cite{bettenburg2008duplicate} shows the contrary.
 The authors collected large amounts of data from the Eclipse open source project and ran
 various kind of textual and statistical analysis on the data to find answers.
 After the results were computed, they concluded that usually bug duplicates contain 
@@ -148,7 +148,7 @@ information that is not present in the master report (i.e. the original report t
 filed). Also, developers also specified that they have often found value in these 
 duplicate bug reports and that they can even aid automated triaging techniques. 
 
-Another study that investigates duplicate bug reports is the work conducted by Prifti et. al \cite{prifti2011detecting}. 
+Another study that investigates duplicate bug reports is the work conducted by Prifti et al. \cite{prifti2011detecting}. 
 The authors first collected 75,000 bug reports from Bugzilla for the Firefox project. Then, they created a tool 
 for detecting bug report duplicates with an accuracy of 53\%. However, due to prior 
 findings showing both that duplicate reports can improve the quality \cite{bettenburg2008duplicate}
@@ -159,7 +159,7 @@ with the possibility of simply adding extra information, if suitable, to one of 
 found. This is indeed a novel approach that can bring great benefits to the software engineering 
 community and the authors state that they wish to pursue future work on this idea.
 
-Bettenburg et. al \cite{bettenburg2012using} present in their work an application
+Bettenburg et al. \cite{bettenburg2012using} present in their work an application
 called infoZilla. This tool can
 parse bug reports and correctly extract stack traces, patches and source code. 
 When evaluated on over 150,000 bug reports, it proved to have a very high rate of over 97\% accuracy.
@@ -168,7 +168,7 @@ retrieve stack traces as well with a great accuracy.
 
 The first information to be filled in by end users or developers on any issue tracking system
 is the summary field, which holds a small description, usually between 5 and 30 words, of 
-the request or bug being reported. In the study conducted by Rastkar et. al \cite{rastkar2010summarizing}, 
+the request or bug being reported. In the study conducted by Rastkar et al. \cite{rastkar2010summarizing}, 
 the authors investigated whether tickets could be summarized automatically and efficiently. What 
 that implies is that developers would not be required to look at complete tickets comprised 
 of a large number of fields, but rather at a simple summary of a couple of lines 
@@ -182,7 +182,7 @@ software developers to rate these auto-generated summaries against the original 
 the conclusion was that existing conversation-based extractive summary generators used 
 for software tickets produce the best results.
 
-The work of Just et. al \cite{just2008towards} examines a rather different aspect
+The work of Just et al. \cite{just2008towards} examines a rather different aspect
 of quality in tickets - they are investigating the quality of the underlying issue 
 tracking systems instead. 
 The authors ran a survey on 175 developers from Eclipse, Apache and Mozilla
@@ -202,7 +202,7 @@ suggestions:
 Having discussed about various factors that can influence the quality in software tickets, 
 we also need to take into account how can we apply this knowledge to solving the issue of 
 poor design in issue tracking systems and how the ticket creation process could be improved. 
-The study conducted by Lamkanfi et. al \cite{lamkanfi2010predicting} looks at this aspect and
+The study conducted by Lamkanfi et al. \cite{lamkanfi2010predicting} looks at this aspect and
 shows how issue tracking systems could be extended in order to automatically generate the severity 
 of a ticket (e.g. assign story points to a Jira issue). The authors conducted their research on the Mozilla,
 GNOME and Eclipse and projects and split their approach into four steps: extract and organize tickets, 
@@ -223,7 +223,7 @@ interesting:
 
 Another overall aspect of software tickets and issue tracking systems that could be improved through 
 determining the quality factors for tickets is automatically assigning a bug report or a feature request 
-to the most suitable developer (or team of developers). Anvik et. al \cite{anvik2011reducing}
+to the most suitable developer (or team of developers). Anvik et al. \cite{anvik2011reducing}
 propose a Machine Learning technique that could automatically assign a bug report to the developer 
 with the most expertise in that specific area. Firstly, the algorithm takes as input various types of information from 
 tickets: textual description and summary, operating system used when the bug occurred, developer 
@@ -316,7 +316,7 @@ outlied in Section \ref{intro}, each in its own separate goroutine in order to s
   of attachments (e.g. screenshots, archive, code snippets) influence time-to-close the most;
   \item \emph{steps to reproduce} - performs a complex regex to detect steps to reproduce and then checks whether their presence
   influence the time-to-close of a ticket; the regular expression was adapted after the general guidelines elicited by 
-  Bettenburg et. al \cite{bettenburg2008extracting} on how to extract structured data, including enumerations (of which 
+  Bettenburg et al. \cite{bettenburg2008extracting} on how to extract structured data, including enumerations (of which 
   steps to reproduce are a subset);
   \item \emph{stack traces} - runs complex regex for detecting exception stack traces in either summary, description or comments 
   and verifies whether their presence influence Time-To-Close for the ticket; this analysis only inspects projects
@@ -446,9 +446,9 @@ More specifically, we computed the following numbers for the tickets we collecte
     \end{itemize}
   \item 270,907 tickets have comments;
   \item 39,988 tickets have steps to reproduce (i.e. sequence of steps specified by the bug reporter that would reproduce a certain bug); 
-  we applied the general guidelines described by Bettenburg et. al \cite{bettenburg2008extracting} on how to extract structured 
+  we applied the general guidelines described by Bettenburg et al. \cite{bettenburg2008extracting} on how to extract structured 
   data (including steps to reproduce) from tickets in order to create a regular expression for capturing them;
-  \item 1,942 tickets have Java stack traces - we have applied the technique described by Bettenburg et. al 
+  \item 1,942 tickets have Java stack traces - we have applied the technique described by Bettenburg et al. 
   \cite{bettenburg2008extracting} for extracting structured data from bug reports and even though the method proved to be efficient, 
   the total number of stack traces is so small due to the fact that many projects are actually written in languages other than Java;
   \item 133,689 tickets have grammar correctness scores (i.e. number of grammar mistakes inside summary, description and comments) - 
@@ -600,8 +600,8 @@ the Apache Software Foundation projects (231 projects \cite{apache_projects}), m
 we collected (22) are also written in Java, thus we had a considerable chunk of data to analyze.
 
 For this analysis, we only looked at tickets of high priority, closed and the project they correspond 
-is written in Java. In total, we investigated looked at We then ran a complex regular expression derived from the works of Bettenburg et. al 
-\cite{bettenburg2012using} and Moreno et. al \cite{moreno2014use} and collected all the tickets that have 
+is written in Java. In total, we investigated looked at We then ran a complex regular expression derived from the works of Bettenburg et al. 
+\cite{bettenburg2012using} and Moreno et al. \cite{moreno2014use} and collected all the tickets that have 
 stack traces. In the end, we got a total number of 256 tickets that had at least an exception stack trace 
 attached in either summary, description or any of the comments.
 
@@ -654,7 +654,7 @@ ask more than one user how they experienced the issue in the tool? Another case 
 the comments start by discussing fixing or implementing a feature, the developers and end users might 
 engage in new conversations about the product in general or other features that they might want to see 
 implemented. Also, what if comments are a means of communication for developers in the team? There are studies, 
-such as the one conducted by Lotufo et. al \cite{lotufo2015modelling}, that show the importance of comments 
+such as the one conducted by Lotufo et al. \cite{lotufo2015modelling}, that show the importance of comments 
 in software tickets in relation to communication activities surrounding the project. Another possible explanation 
 for having increased number of comments increase the Time-To-Close value and, thus, decrease quality, is that 
 having many comments or very verbose comment can lead to more difficult information extraction. On the other 
@@ -705,7 +705,7 @@ This is not a surprise - as previously mentioned, summary and description are th
 As summary is described by Jira, it should represent a short textual description of the bug or the feature request. However,
 we have identified tickets having summaries with even more than 200 words. This is not optimal and might obfuscate
 the essential reason of filing that ticket from triagers and developers working on the project. One of the findings 
-Zimmermann et. al \cite{zimmermann2010makes} present in their study is that a good, succint summary can significantly 
+Zimmermann et al. \cite{zimmermann2010makes} present in their study is that a good, succint summary can significantly 
 reduce the effort invested by the developers. 
 
 Description, on the other hand, even though it is made to be a more detailed summary of the report, it should still be
@@ -749,7 +749,7 @@ unless they really have a very good reason to do so.
 Through calling Microsoft Azure's Bing Spell Check API, one of the best grammar analysis APIs in the industry, we 
 managed to calculate the total number of grammar errors in summary, description and comments for a total number 
 of 133,689 tickets. As shown in a number of studies, the number of spelling errors can influence the quality of a ticket. 
-However, in the work conducted by Schugerl et. al \cite{schugerl2008mining}, the authors found that spelling errors 
+However, in the work conducted by Schugerl et al. \cite{schugerl2008mining}, the authors found that spelling errors 
 can be found in both high and low quality tickets, thus should not be considered as a reliable factor for determining
 the Time-To-Close for a ticket. In the rest of this section we will demonstrate the contrary - tickets with more 
 grammar errors (spelling errors are just a subset of the types of errors we are investigating) imply lower quality
@@ -825,7 +825,7 @@ the task anymore. Also, rude language might be a driver for increased Times-To-C
 answering questions from the reporters (or vice versa), the other person might become rude or unpolite, which can 
 make them feel unwelcomed and start to lose interest in helping the project anymore. 
 
-On the other side of the spectrum, having a more positive score leads to reduced time-to-close values for tickets. Calefato et. al 
+On the other side of the spectrum, having a more positive score leads to reduced time-to-close values for tickets. Calefato et al. 
 \cite{calefato2015mining} conducted a study where they show that a positive sentiment has the biggest impact on 
 the quality of an answer on Stack Overflow, one of the most popular websites related to programming in general. This 
 implies that when developers and triagers treat their reporters respectfully and offer support whenever possible, 
@@ -872,7 +872,7 @@ with over 10 GB of RAM and 70\% CPU in usage.
 
 Furthermore, the project could greatly benefit from having access to closed source repositories in addition to the 
 open source ones. Most closed source projects have much more structured planning, tracking and management activities - as 
-Crowston et. al \cite{crowston2012free} present in their study, open source projects lack organized coordination which,
+Crowston et al. \cite{crowston2012free} present in their study, open source projects lack organized coordination which,
 in the context of our study, means that people do not invest much effort into properly creating tickets in issue tracking 
 systems, triaging efficiently, planning the work and tracking it. On the other hand, closed source projects follow 
 more strict guidelines: standard working hours (would make tracking and linking the source code changes to tickets easier), 
@@ -887,7 +887,7 @@ prove useful as their Spell Check API is the most efficient at the moment.
 
 A major future work candidate is availability of a technique to calculate the difficulty of a ticket based on the information
 inside it. Unfortunately, at the moment, the research community has not come up with such an approach. 
-Vijayakumar et. al \cite{vijayakumar2014much} proposed a method of predicting how much effort is required for fixing 
+Vijayakumar et al. \cite{vijayakumar2014much} proposed a method of predicting how much effort is required for fixing 
 a bug, but after running it on our data, it did not prove successful. After such a technique becomes available, we could 
 incorporate it inside our tool and group the tickets compared in all analysis types based on their difficulty in order to 
 have better results.
