@@ -452,29 +452,29 @@ More specifically, we computed the following numbers for the tickets we collecte
   \item 133,689 tickets have grammar correctness scores (i.e. number of grammar mistakes inside summary, description and comments) - 
   they were computed using Microsoft Azure Bing Spell Check API which is one of the best grammar checking tool in the industry; 
   \item 157,047 tickets have sentiment scores (i.e. positive/negative sentiment on a scale from -1 to 1 drawn from summary, description
-  and comments) - they have been collected using Google Cloud Platform Natural Language Processing APIs.
+  and comments) - they were calculated using Google Cloud Platform Natural Language Processing APIs.
 \end{itemize}
 
 All these numbers are also stored inside the database in a different bucket for easier access in the future. Moreover, the statistical 
-tests we ran on the tickets are saved as well in the database.
+tests that were run on the tickets are saved as well in the database.
 
 \section{Correlations}\label{correlations}
 
-In this section we present our results to the research questions we set to answer. We have computed charts for all 
+In this section we present our results to the research questions we set to answer. We computed charts for all 
 independent variables using either scatter plots for continuous variables (e.g. number of comments/\emph{Time-To-Close}) 
-or bar charts for categorical variables (e.g. presence of attachments). We also computed statistical analysis for 
+or bar charts for categorical variables (e.g. presence of attachments/\emph{Time-To-Close}). We also computed statistical analysis for 
 all variables to test their significance and rank correlation coefficient and we will present each of them in their 
 corresponding subsection. 
 
-The answers to our research questions are all statistically significant and they can summarised as follows:
+The answers to our research questions are all statistically significant and they can be summarised as follows:
 \begin{itemize}
   \item having attachments reduces \emph{Time-To-Close} of a ticket;
   \item having steps to reproduce reduces \emph{Time-To-Close} of a ticket;
   \item having stack traces reduces \emph{Time-To-Close} of a ticket;
-  \item more grammar errors imply increase \emph{Time-To-Close} values;
+  \item more grammar errors increase \emph{Time-To-Close} values;
   \item lower sentiment scores result in increased \emph{Time-To-Close} values;
   \item verbose comments result in increased \emph{Time-To-Close} values;
-  \item verbose summary and description imply increased \emph{Time-To-Close} values.
+  \item verbose summary and description increase \emph{Time-To-Close} values.
 \end{itemize}
 
 For every type of analysis, we also discuss possible reasons why certain correlations occured. Furthermore, for all 
@@ -493,15 +493,15 @@ and efficient as possible.
 \end{figure}
 
 Attachments are, as mentioned previously, files attached to software tickets that can take any form - from code 
-snippets written in Java to tar archives. We have analyzed all tickets that were both of high priority tickets and
-were marked as Closed by the time we collected the data. Then we split all these tickets into two main categories: 
+snippets written in Java to tar archives. We analysed all tickets that were both of high priority and
+were closed by the time we had collected the data. Then we split all these tickets into two main categories: 
 with attachments and without attachments. Furthermore, the tickets that were marked as having attachments were split 
 into the categories specified in Section \ref{characterising}. In total, we looked at 201,786 tickets, among which 
 98,311 had attachments and 103,475 without any attachments.
 
 Using the plot package in our Go tool, we automatically generated the bar chart shown in Figure \ref{attachments}. 
-As it can be seen, various types of attachments can produce completely different \emph{times-to-close}. For 
-tickets with archive we can see the longest \emph{Time-To-Close} mean while tickets having text attachments are at 
+As it can be seen, various types of attachments produce completely different \emph{times-to-close}. For 
+tickets with archive we can see the longest \emph{Time-To-Close} mean while tickets with text attachments are at 
 the other end of the spectrum. The smallest mean is for other attachments, which is represented by any file 
 that does not have an extension specified in one of the other categories. 
 
@@ -511,28 +511,28 @@ for tickets without attachments and tickets with screenshots is significantly in
 indicate that developers indeed find screenshots helpful in solving the ticket faster.
 
 Another insightful result is the fact that having text, config and spreadsheet attachments significantly 
-reduces the \emph{Time-To-Close} for the ticket. This can imply that developers find value in various steps to reproduce, 
-config values used by users when the bug encountered or data in a spreadsheet format (e.g. csv) that can be 
-found in such files and helps them lower the \emph{Time-To-Close} for the ticket.
+reduces the \emph{Time-To-Close} for the ticket. For example, when a config file is present, it might contain 
+several environment variables that would help developers recreate the bug quicker. Similarly, a markdown file 
+might have logging output which potentially directs engineers towards fixing the issue faster.
 
 On the other hand, having no attachments does not necessarily mean that the ticket will get closed after 
 a longer period of time. As it can be seen in the figure, the mean \emph{Time-To-Close} value for tickets without 
 attachments is somewhat neutral in the entire data set.
 
-However, we need to take into consideration tickets that have code attachments which are a \emph{thread to validity}. 
+However, we need to take into consideration tickets that have code attachments which are a \emph{threat to validity}. 
 When a snippet of code is attached, it might result in more complex tickets due to developers spending more time on 
 understanding what is going on and reasoning about the attached code. Also, engineers might need to run or test 
 the code attached which can again increase the Time-To-Close.
 
 A Welch T Test was computed to test the difference between tickets with attachments and those 
-without attachments. The analysis revealed significant difference with $p > 0.01$ with an
+without attachments. The analysis revealed significant difference with $p < 0.01$ with an
 average of $1380.551$ hours for tickets with attachments and an average of $3180.882$ hours
 for tickets without attachments. 
 
 Thus, our analysis shows that having attachments in most formats, ranging from markdown files to PNG screenshots 
-and snippets of code, can help developers solve the tickets faster. We believe that the solution of making attachments
-provide the most value to the software project would be if issue tracking systems would make explicit to the reporters 
-that uploading a screenshot or a code snippet can help reduce the \emph{Time-To-Close} for the ticket.
+and snippets of code, can help developers solve the tickets faster. We believe that a solution to maximising the value 
+of a ticket through attachments lies in issue tracking systems making it explicit to the reporters that uploading a screenshot 
+or a code snippet could help reduce the \emph{Time-To-Close} for the ticket.
 
 \vskip18pt
 
