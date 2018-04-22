@@ -336,8 +336,8 @@ outlied in Section \ref{intro}, each in its own separate goroutine in order to s
 We needed to be extra cautious when working with Google Cloud Platform and Bing Spell Check APIs, especially 
 regarding rate limiting. Google's NLP APIs have a maximum rate of 10 requests per second, while Microsoft APIs 
 have a maximum rate of  100 requests per second, thus we needed to conform to their guidelines and restrict our 
-application to send more than allowed, otherwise our IP addresses could have been blacklisted. We also did not want 
-to exceed our free trial credits, therefore we calculated in advance how many requests we had available and computed 
+application not to send more than allowed, otherwise our IP addresses could have been blacklisted. The number of free trial 
+credits was limited, therefore we calculated in advance how many requests we had available and computed 
 scores only for those tickets. 
 
 The application first checks Bolt for tickets and gets either all of them in memory (easier to parse, 
@@ -348,35 +348,35 @@ analysis types mentioned above. Once a value is computed (e.g. grammar correctne
 its corresponding field in the ticket struct and is subsequently stored back in the database. We chose this approach because 
 we do not want to run the analysis every time we want to plot correlations between variables, but rather have the data 
 already available there. Moreover, for analysis depending on third party services such as the Google Cloud Platform 
-Natural Processing Language API, we would incur costs, thus having everything saved in the database and running the 
-analysis only if the value has not been already computed allowed us to investigate the tickets without exceeding the 
+Natural Processing Language API, we would incur costs; thus having everything saved in the database and running the 
+analysis only if the value had not been already computed allowed us to investigate the tickets without exceeding the 
 free trial credits.
 
-\subsection{Plot and Statistical Tests}
+\subsection{Plots and Statistical Tests}
 
-Afterwards, we have created two extra commands for automatically generating plots (i.e. scatter plots and bar charts) and 
+Next, we created two extra commands for automatically generating plots (i.e. scatter plots and bar charts) and 
 running statistical tests on the collected data. 
 
 For plotting the data, we first connect again to the Bolt database instance and then filter out only the issues that have 
-the variable \emph{Time-To-Close} set (i.e. tickets marked as closed when they were fetched from the Jira instance). 
+the variable \emph{Time-To-Close} set (i.e. tickets marked as closed when they were fetched from the Jira instance; even though 
+we passed a filter for not fetching tickets still marked as Open, there was a small number erronously retrieved by Jira). 
 In order to compute correct results, we run the same checks on issues as the ones listed in the analyse command (e.g. plot 
-only tickets of high priority). Afterwards, we either save scatter plots or bar charts to disk presenting correlations 
+only tickets of high priority). Afterwards, we save either scatter plots or bar charts to disk presenting relationships 
 between all the variables we tested.
 
-In terms of technology used for plotting the data, we have used a library called go-chart \cite{go-chart} created by 
-Will Charczuk. It is an extensible library with a focus on extensability - it does not provide the end user a large number 
+In terms of technology used for plotting the data, we used a library called go-chart \cite{go-chart} created by 
+Will Charczuk. It is an extensible library with a focus on extensibility - it does not provide the end user a large number 
 of default options, but rather let him/her extend their graphs as much as it is needed (e.g. add specific labels for axes, 
 plot a secondary Y axis).
 
 Also, in order to validate our findings, the statistics command fetches all the data from the database and runs two types of 
 tests: Welch's T Test \cite{welch1947generalization} for analysing categorical data (e.g. has/does not have attachments)
-and Spearman's rank correlation coefficient \cite{spearman1904proof} for investigating continuous data (e.g. how do different 
-grammar correctness scores change \emph{Time-To-Close}). For computing Spearman R Tests we made use of a simple 
+and Spearman's rank correlation coefficient \cite{spearman1904proof} for investigating continuous data (e.g. grammar correctness score 
+based on number of grammatical mistakes). For computing Spearman R Tests we made use of a simple 
 statistics library created by Damian Gryski called onlinestats \cite{onlinestats}, while for Welch T Tests we created our 
 own custom types and functions. 
 
-They have both been created with extensability in mind - we believe that in the future work we proposed to conduct on the 
-project, we might need to use other statistical tests as well, such as Mann-Whitney U tests \cite{mann1947test}. Also, before
+They have both been created with extensibility in mind. Also, before
 we ran both statistical tests and the plotting command, we tested them thoroughly and checked whether the libraries compute 
 stable and robust results.
 
