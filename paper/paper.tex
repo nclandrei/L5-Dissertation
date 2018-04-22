@@ -402,11 +402,11 @@ JSON encoded representation of the ticket. The tickets stored have the following
 Another component of issues that we stored and proved to be crucial in our analysis is changelog histories together with their 
 corresponding items. They represent the whole history of a ticket and can show status transitions, story points modifications, 
 summary/description editing etc. What made them useful for our study was that we needed to see when tickets were marked closed and, 
-as Jira does not provide this in a separate field, we looped through all changelog history items and saved when the transition to 
+as Jira does not provide this in a separate field, we looped through the changelog history items and saved when the transition to 
 Closed or a similar status was made. 
 
 There are other fields that can be configured inside Jira, including custom fields, but we did not collect them as they would not 
-have been helpful in conducting the analysis. However, in addition to the fields we saved, we also stored grammar correctness scores, 
+have been relevant for the analysis. However, in addition to the fields we saved, we also stored grammar correctness scores, 
 sentiment scores, whether they have steps to reproduce, if stack traces are present and number of words in comments, summary and description. 
 Even though all of them, apart from grammar and sentiment scores, can be computed locally, we store them because of performance issues
 due to the very large size of the database. 
@@ -416,8 +416,8 @@ Hadoop, Kafka, Apache Infrastructure project, Tika, Solr, ActiveMQ, ZooKeeper, V
 Beam, Aurora, Bigtop, Camel, CarbonData, Cloudstack, Flex, Flink, Ignite, HBase, Mesos, Ambari, Cordova, Avalon, Atlas, 
 Cactus, Flume, Felix, Geode, Ivy and Phoenix. These projects are using a large varieties of programming languages, ranging from Java, C, 
 Go to Python and Ruby \cite{apache_projects}. Moreover, in terms of contributors, the projects we selected range from small teams of people
-such as Tika to large numbers of developers spread across the globe, such as the people working on Kafka. We came to this final number 
-and range of tickets and projects because of a couple of reasons: 
+such as Tika to large numbers of developers spread across the globe, such as Kafka. We came to this final number 
+and range of tickets and projects due to the following reasons: 
 \begin{itemize}
   \item the study needed as much diversity as possible in order to correctly analyse and validate the data;
   \item these are the most important, up-to-date and contributed to Apache projects by the open source world;
@@ -427,7 +427,7 @@ and range of tickets and projects because of a couple of reasons:
 
 More specifically, we computed the following numbers for the tickets we collected:
 \begin{itemize}
-  \item out of the 303,138 tickets, 236,383 tickets have been closed (i.e. marked Closed, Resolved, Done or Completed) by the time we 
+  \item out of the 303,138 tickets, 236,383 tickets were closed (i.e. marked Closed, Resolved, Done or Completed) by the time we 
   fetched them from the Jira instance;
   \item 287,120 tickets are of high priority (i.e. marked as Blocker, Critical, Major or High);
   \item 201,786 tickets have all our requirements for running the analysis: were closed by the time we fetched the data, 
@@ -447,11 +447,10 @@ More specifically, we computed the following numbers for the tickets we collecte
   \item 39,988 tickets have steps to reproduce (i.e. sequence of steps specified by the bug reporter that would reproduce a certain bug); 
   we applied the general guidelines described by Bettenburg et al. \cite{bettenburg2008extracting} on how to extract structured 
   data (including steps to reproduce) from tickets in order to create a regular expression for capturing them;
-  \item 1,942 tickets have Java stack traces - we have applied the technique described by Bettenburg et al. 
-  \cite{bettenburg2008extracting} for extracting structured data from bug reports and even though the method proved to be efficient, 
-  the total number of stack traces is so small due to the fact that many projects are actually written in languages other than Java;
+  \item 1,942 tickets have Java stack traces - we applied the technique described by Bettenburg et al. 
+  \cite{bettenburg2008extracting} for extracting structured data from bug reports;
   \item 133,689 tickets have grammar correctness scores (i.e. number of grammar mistakes inside summary, description and comments) - 
-  they have been collected using Microsoft Azure Bing Spell Check API which is one of the best grammar checking tool in the industry; 
+  they were computed using Microsoft Azure Bing Spell Check API which is one of the best grammar checking tool in the industry; 
   \item 157,047 tickets have sentiment scores (i.e. positive/negative sentiment on a scale from -1 to 1 drawn from summary, description
   and comments) - they have been collected using Google Cloud Platform Natural Language Processing APIs.
 \end{itemize}
