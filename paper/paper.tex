@@ -52,32 +52,32 @@ tracking systems. This can lead to various issues, including increased costs for
 decreased customer satisfaction and overall poor performance.
 
 Therefore, there is a need in the community to find the answer to what makes for a high quality, valuable software ticket 
-that would improve the overall performance of the development team and, inherently, the company. As there are many 
-fields in a ticket, there are numerous unanswered questions, such as whether stack traces have an influence on the quality
-of a ticket? 
+that would improve the overall performance of the development team and, inherently, the company. Considering the many fields of 
+a ticket, there are numerous elements that could influence its quality, such as the presence of stack traces.
 
 In this research paper, we present and discuss our findings after running a quantitative data analysis 
-on over 3200,000 tickets taken from more than 15 open source projects. We have implemented a Go application 
+on over 300,000 tickets taken from more than 38 open source projects. To this aim, we implemented a Go application 
 with multiple commands (i.e. store, analyze, plot, statistics) that can automatically fetch any number of tickets 
 from a Jira instance, analyze them, generate plots and run statistical tests. 
 
-During the analysis part, we investigate several variables in correlation with \emph{Time-To-Close}, 
-which we define as the \emph{metric of quality}. \emph{Time-To-Close} represents the period of time between the creation 
+For the analysis we investigate several variables in correlation with \emph{Time-To-Close}, 
+which we define as the \emph{indicator of quality}. More specifically, an inverse relationship was assigned between the 
+two: as \emph{Time-To-Close} increases, the quality decreases. \emph{Time-To-Close} represents the period of time between the creation 
 and the closing of a ticket; more specifically, the creation of the ticket is marked when the status of the ticket is set to 
 \emph{Open} and the closing of a ticket is considered when the ticket status is set to \emph{Closed} (or some similar status, 
 such as \emph{Fixed}, \emph{Resolved}). \emph{Time-To-Close} is our dependent variable, and as independent variables 
-(i.e. variables controlled in order to test the effects on the dependent variable) we have set a number of ticket fields. 
+(i.e. variables controlled in order to test the effects on the dependent variable) we set a number of ticket fields. 
 
-In order to provide answers to what factors influence quality in a software ticket, we answer the following seven research 
+In order to provide answers to what factors influence quality in a software ticket, we investigated the following seven research 
 questions in this paper (Section \ref{correlations}):
 \begin{itemize}
   \item does the presence of attachments and their type (e.g. code snippet, screenshot) influence the \emph{Time-To-Close} for 
   a ticket?
-  \item does the presence of stack traces improve the ticket quality?
+  \item does the presence of stack traces reduce \emph{Time-To-Close}?
   \item does the presence of steps to reproduce reduce the \emph{Time-To-Close}?
   \item is there a relationship between the number of words in comments and \emph{Time-To-Close}?
   \item does the total number of words in summary and description have an impact on \emph{Time-To-Close}?
-  \item does the number of grammar errors in summary, description and comments have an effect on the quality of a ticket?
+  \item does the number of grammar errors in summary, description and comments have an effect on \emph{Time-To-Close}?
   \item does a positive or negative ticket influence its \emph{Time-To-Close}?
 \end{itemize}
 
@@ -100,9 +100,9 @@ and present our conclusions in Section \ref{conclusions}.
 
 \section{Related Work}\label{related_work}
 
-In this section we will present what are the state-of-the art studies in the issue/ticket quality 
-field. More specifically, we will look at research papers that investigated what makes for a valuable ticket, 
-how can one extract structured/unstructured data from tickets (e.g. stack traces), ticket duplication and its 
+In this section we will present some of the state-of-the art studies in the issue/ticket quality 
+field. More specifically, we will look at research papers that investigated what makes for a high quality ticket, 
+how one can extract structured/unstructured data from tickets (e.g. stack traces), ticket duplication and its 
 positive and negative outcomes, quality of modern issue tracking systems as well as automating the process 
 of summarizing tickets or the optimal assignee. 
 
@@ -120,15 +120,15 @@ factor in software tickets is the one presented by Hooimeijer et al. \cite{hooim
 They conducted their analysis on over 25,000 bug reports from the Mozilla project, 
 investigating readability, daily load, submitter reputation, the whole changelog histories 
 and severity. They conclude that not only readability in the textual fields of a ticket
-influence the \emph{Time-To-Close}, but also that the presence of attachments and 
-the number of comments have a clear effect on the duration of triaging. On the 
+influences the \emph{Time-To-Close}, but also that the presence of attachments and 
+the number of comments have a clear lowering effect on the duration of triaging. On the 
 other hand, the patch count and other similar fields did not provide significant 
 value to the quality of tickets.
 
-However, there are other types on information typically included in software tickets 
+However, there are other types of information typically included in software tickets 
 which might prove beneficial for developers and subsequently improve the ticket quality.
-One such type is stack traces and Schroter et al. \cite{schroter2010stack} analyse how 
-quickly tickets are closed when they either have stack traces included in their fields 
+One such type is stack traces - Schroter et al. \cite{schroter2010stack} analyse how 
+quickly tickets are closed depending on whether they have stack traces included in their fields 
 (e.g. description) or not. They collected their data from the Eclipse project using 
 the InfoZilla tool proposed by Bettenburg et al. \cite{bettenburg2008extracting}.
 Then, they linked the stack traces to changes in source code by mining the Eclipse version 
@@ -142,10 +142,10 @@ as summary or description, describe the same feature request or bug report. Even
 one might believe that they cannot bring any value to a software project, the work of 
 Bettenburg et al. \cite{bettenburg2008duplicate} shows the contrary.
 The authors collected large amounts of data from the Eclipse open source project and ran
-various kind of textual and statistical analysis on the data to find answers.
+various kinds of textual and statistical analysis on the data to find answers.
 After the results were computed, they concluded that usually bug duplicates contain 
 information that is not present in the master report (i.e. the original report that was 
-filed). Also, developers also specified that they have often found value in these 
+filed). The developers also specified that they have often found value in these 
 duplicate bug reports and that they can even aid automated triaging techniques. 
 
 Another study that investigates duplicate bug reports is the work conducted by Prifti et al. \cite{prifti2011detecting}. 
@@ -170,8 +170,8 @@ The first information to be filled in by end users or developers on any issue tr
 is the summary field, which holds a small description, usually between 5 and 30 words, of 
 the request or bug being reported. In the study conducted by Rastkar et al. \cite{rastkar2010summarizing}, 
 the authors investigated whether tickets could be summarized automatically and efficiently. What 
-that implies is that developers would not be required to look at complete tickets comprised 
-of a large number of fields, but rather at a simple summary of a couple of lines 
+that implies is that developers would no longer be required to look at tickets on the whole, comprising of 
+a large number of fields, but rather at a simple summary of a couple of lines 
 encapsulating the whole information. The authors selected the Mozilla, Eclipse, Gnome and KDE 
 open source projects and then they asked volunteering university students to annotate 
 the tickets in the issue tracking systems. More specifically, they had to write a summary 
