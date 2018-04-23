@@ -847,8 +847,8 @@ revolving around the project might be more inclined to be friendly.
 
 The first extension to the Go tool we created would be to add support for Bugzilla. We already achieved this 
 when we were first prototyping the application, but we decided to proceed exclusively with Jira mainly because 
-the APIs proved to be more reliable and also versatile in terms of what data you could collect. Another 
-reason was that we were time retricted, thus we wanted to have first a well tested and stable solution for Jira and 
+the APIs proved to be more reliable and also versatile in terms of what data could be collected. Another 
+reason was that we were time restricted, thus we wanted to have first a well tested and stable solution for Jira and 
 only after add support for other issue tracking systems. However, we already prepared for other potential systems by 
 adding interfaces for tickets and REST clients, making Bugzilla, Manuscript, YouTrack or any 
 other issue tracking system straightforward to add to the application.
@@ -862,7 +862,7 @@ Roger library \cite{r_stats} inside the stats package, which basically allows an
 R via TCP. 
 
 There is also room for future work in terms of the data collected. Even though the database we collected 
-is large, there is never enough tickets to analyse. Thus, the store command of the tool could be run against 
+is large, there are never too many tickets to analyse. Thus, the store command of the tool could be run against 
 other Jira instances apart from Apache's and collect tickets from other projects, thus improving the diversity 
 and the total number of tickets to be analysed. As we did not have access to any cluster or virtual machines in 
 the cloud, we ran all our analyses on local machines (laptops) and it could still take well over two hours to complete 
@@ -878,8 +878,8 @@ adding story points (i.e. adding estimated difficulty or time to complete) and p
 starts on the task, tickets properly distributed to developers based on availability and expertise etc. These benefits 
 of closed source projects would prove helpful for our analysis.
 
-Another aspect that could be improved is having access to funds in order to buy Google Cloud Platform credits. This 
-would be required to use the Natural Language Processing APIs on large amounts of data. We used the credits provided 
+Another aspect that could be improved is allocating a budget for Google Cloud Platform credits. This 
+would be required for running the Natural Language Processing APIs on large amounts of data. We used the credits provided 
 in the free trial but quickly ran out completely after only 160,000 tickets. Also, credits on Microsoft Azure would 
 prove useful as their Spell Check API is the most efficient at the moment.
 
@@ -905,7 +905,7 @@ Deriving a quality score only from textual information and other non-structured 
 However, in this study we managed to create an application that can automatically fetch and store tickets from any 
 Jira instance, analyse them and compute statistical tests and graphs.
 
-We manager to answer all seven research questions and find factors that can posittively or 
+We managed to answer all seven research questions and find factors that can positively or 
 negatively affect the \emph{Time-To-Close} value of a ticket. All of our results are statistically significant and we can summarise 
 them as follows:
 \begin{itemize}
@@ -928,16 +928,16 @@ for other studies investigating this particular field of software engineering.
 I would first like to thank Dr. Storer for the amazing work he has put in helping me go through with finishing 
 this project. I would definitely not have been able to achieve what we've achieved with any other supervisor, so 
 thank you, Tim, for all the support, kindness and advice you have given me throughout this academic year. I would 
-also like to thank you for being the lecturer who has taught me the most throughout all my years at the university
-and whose advice and ideas I have applied at all my work places and my personal projects.
+also like to thank you for being the lecturer who has taught me the most throughout all my years at university
+and whose advice and ideas I have applied in all my work places and my personal projects.
 
-The next huge thank you would have to go to my parents, the most amazing family in the world! Without them I would 
-not be here and I wouldn't have had anything of what I have now, both personally and professionally. 
-I will always treasure the unconditional support you have always offered me! Thank you for being my parents, Mom and Dad!
+The next huge thank you would have to go to my parents! Without them I would 
+not be here and I wouldn't have accomplished so much, both in my personal and professional lives. 
+I will always treasure the unconditional support you have offered me! Thank you for being the parents that you are!
 
-And last but not least, I want to thank my partner in \"crime\" and in life, Corina! Without her, I would not be who I 
+And last but not least, I want to thank my partner in "crime" and in life, Corina! Without her, I would not be who I 
 am today. You have been with me through thick and thin, in both bad moments (such as the endless nights working 
-on ticket statistics) and best moments in my life! Thank you for everything! I will always love you!
+on ticket statistics) and best moments in my life! Thank you for everything!
 
 \bibliographystyle{abbrv}
 \bibliography{paper}
