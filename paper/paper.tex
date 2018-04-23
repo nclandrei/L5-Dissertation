@@ -552,30 +552,30 @@ extracted with a regular expression.
 
 Figure \ref{steps} shows the bar chart representing all closed, high priority tickets with or without steps 
 to reproduce in either the description field or in any of the comments. We looked in total at 201,786 tickets 
-among which 31,732 tickets had steps to reproduce and 170,054 did not have.
+among which 39,988 tickets had steps to reproduce and 161,798 did not.
 
-As it can be shown in the figure, having steps to reproduce can significantly reduce the \emph{Time-To-Close} 
-for the ticket. Even though the data collected does not have such many tickets with steps to reproduce 
-(39,988 compared to the total number of 238,286 closed tickets), it is still a valuable finding which shows 
+As it is shown in the figure, having steps to reproduce significantly reduces the \emph{Time-To-Close} 
+for the ticket. Even though the data collected does not have many tickets with steps to reproduce 
+(39,988 compared to the total number of 201,786 tickets), it is still a valuable finding which shows 
 that steps to reproduce are indeed a quality factor for software tickets. 
 
 What we can infer from this result is that steps to reproduce reduce the communication friction between 
 the reporters and the developers - in the case of a bug which is harder to reproduce (e.g. maybe the 
 bug occurs only on Linux and the developer is running MacOS, but the reporter did not specify his/her 
-operating system in the ticket), the developer might need to contact the reported either directly or 
-through commenting on the issue. What this implies is waiting time until the reporter comes back on the 
-issue tracking system or sees the notification that he/she received a new message, which subsequently makes 
-the ticket remain open for a longer period of time. 
+operating system in the ticket), the developer might need to contact the reporter either directly or 
+through commenting on the issue. This consequently implies a waiting time until the reporter comes back on the 
+issue tracking system or sees the notification that he/she received a new message, which subsequently causes 
+the ticket to remain open for a longer period of time. 
 
 A Welch T Test was computed to test the difference between tickets with steps to reproduce 
 and those without steps to reproduce. The analysis revealed significant difference with 
-$p < 0.01$ with an average of $1596.714$ for tickets with steps to reproduce and an average of 
-$2609.142$ for tickets without steps to reproduce.
+$p < 0.01$ with an average of $1596.714$ hours for tickets with steps to reproduce and an average of 
+$2609.142$ hours for tickets without steps to reproduce.
 
 Thus, the answer to our research question is that the presence of steps to reproduce in tickets 
-has a positive influence on the \emph{Time-To-Close}. One solution that we propose for maximizing their benefit 
-is that issue tracking systems should include hints on the ticket creation form specifying that 
-steps to reproduce should be included as developers would be able to fix the bug faster. Moreover, 
+has a positive influence on the \emph{Time-To-Close}. One solution that we propose for maximising their benefit 
+is that issue tracking systems require steps to reproduce, or at least indicate on the ticket creation form, 
+that adding them would aid developers fix the bug faster. Moreover, 
 issue tracking systems could also automatically add a new system field (like summary or description) 
 for any project created and the project maintainers or administrators could make them mandatory for 
 when a ticket is created by reporters.
@@ -598,9 +598,9 @@ the Apache Software Foundation projects (231 projects \cite{apache_projects}), m
 we collected (22) are also written in Java, thus we had a considerable chunk of data to analyze.
 
 For this analysis, we only looked at tickets of high priority, closed and the project they correspond 
-is written in Java. In total, we investigated looked at We then ran a complex regular expression derived from the works of Bettenburg et al. 
+is written in Java. We then ran a complex regular expression derived from the works of Bettenburg et al. 
 \cite{bettenburg2012using} and Moreno et al. \cite{moreno2014use} and collected all the tickets that have 
-stack traces. In the end, we got a total number of 256 tickets that had at least an exception stack trace 
+stack traces. In the end, we got a total number of 1,942 tickets that had at least an exception stack trace 
 attached in either summary, description or any of the comments.
 
 As shown in Figure \ref{stack_traces}, we can see that the presence of exception stack traces can 
@@ -609,7 +609,7 @@ developers working on the project localise the code that is running exceptions
 
 We computed a Welch T Test to test the difference between tickets with stack traces and tickets that 
 do not have stack traces. The analysis revealed significant difference with $p < 0.01$ with an
-average of $1475.074$ for tickets with stack traces and an average of $2441.877$
+average of $1475.074$ hours for tickets with stack traces and an average of $2441.877$ hours
 for tickets without them.
 
 \subsection{Comments}
@@ -629,11 +629,11 @@ to well over 1,000.
 
 We concatenated all comments into a single large string in order to be analysed for total number of words. This step 
 was performed at the end of each ticket's lifecycle. We ran our comments analysis on 201,786 tickets among which 
-113,344 had comments and 88,442 did not have any comments. What we calculated as being total number of words inside comments 
+113,344 had comments and 88,442 did not have any comments. What we calculated as number of words inside comments 
 is all the words inside all comments corresponding to a ticket summed up.
 
-In Figure \ref{comments} we present the correlations between the total number of words in comments per ticket and 
-the corresponding Time-To-Close for that ticket. We can observe in the scatter plot that most tickets tend to 
+In Figure \ref{comments} we illustrate the relationship between the total number of words in comments per ticket and 
+the corresponding \emph{Time-To-Close}. We can observe in the scatter plot that most tickets tend to 
 have up to around 3,200 words in total. However, there are tickets that have a total number of words as high as 
 around 25,000. 
 
@@ -641,33 +641,35 @@ From the figure we cannot clearly deduce whether increased number of words in co
 the Time-To-Close positively or negatively. Actually, we can assume at first sight that there is a descending trend implying more 
 words produce smaller Time-To-Close values. However, the bulk of values plotted are in the range of 
 1 to 1,600 total comment words per ticket (76,633 tickets) and in this slice of tickets, the trend is descending.
-We did not generate the plot containing only these values because there would still be 36,711 tickets left out.
+We did not generate the plot containing solely these values because there would still be 36,711 tickets left out. 
+Therefore, the curve is skewed to the right, although the bulk of tickets that dictate the trend, are on the left side.
 
-A correlational analysis ran on all 201,786 tickets, however, releaved a weak positive relationship with $r = 0.271$ and $p < 0.01$. 
-This implies a statistically significant finding - as the number of comments increases, the \emph{Time-To-Close} value of the ticket also increases. 
+A correlational analysis run on all 201,786 tickets, however, releaved a weak positive relationship with $r = 0.271$ and $p < 0.01$. 
+This implies a statistically significant finding - as the number of comments increases, the \emph{Time-To-Close} value of the ticket 
+also increases. 
 
 Even though this might be surprising at first, we need to analyse the possible context where such large 
-number of words in comments occur. What if the bug was so hard to reproduce that the developers needed to 
+number of words in comments occur. What if the bug was so difficult to reproduce that the developers needed to 
 ask more than one user how they experienced the issue in the tool? Another case might be that even though 
 the comments start by discussing fixing or implementing a feature, the developers and end users might 
 engage in new conversations about the product in general or other features that they might want to see 
 implemented. Also, what if comments are a means of communication for developers in the team? There are studies, 
 such as the one conducted by Lotufo et al. \cite{lotufo2015modelling}, that show the importance of comments 
 in software tickets in relation to communication activities surrounding the project. Another possible explanation 
-for having increased number of comments increase the Time-To-Close value and, thus, decrease quality, is that 
-having many comments or very verbose comment can lead to more difficult information extraction. On the other 
-hand, if there would be a light discussion, the developers would be able to quickly analyse all the comments 
+for having increased number of comments increase the \emph{Time-To-Close} value and, thus, decrease quality, is that 
+having many comments or very verbose comments can lead to more difficult information extraction. On the other 
+hand, if there was a light discussion, the developers would be able to quickly analyse all the comments 
 and collect whatever is necessary to resolve the ticket.
 
-One possible solution that we propose to this correlation is to have the ability to limit the number of 
+One possible solution that we propose to this manifested trend is to have the ability to limit the number of 
 comments per ticket. As to our knowledge, one cannot do this in neither Jira nor Bugzilla. However, if it were 
 possible, we believe that this might help developers find the information they need quicker. But what happens 
-if the treshold is reached and there is still a need for clarifying certain aspects? We believe that having 
+if the threshold is reached and there is still a need for clarifying certain aspects? We believe that having 
 a button redirecting anyone still interesting in commenting on the ticket to a messaging tool, such as 
-Slack, would be beneficial for the project overall. Thus, if they were redirected to let's say Slack, a small 
-tool could automatically be run that creates a new channel specifically for that ticket with the name set 
+Slack, would be beneficial for the project overall. Thus, if they were redirected to Slack, a small 
+tool could automatically be run that created a new channel specifically for that ticket with the name set 
 to the unique ticket key (e.g. LUCENE-2901). We believe that such a solution could aid both developers in 
-completing tasks quicker but also end users for feeling more involved and valuable to the project.
+completing tasks quicker but also end users to feel more involved and valuable to the project.
 
 \subsection{Summary and Description}
 
@@ -675,7 +677,7 @@ completing tasks quicker but also end users for feeling more involved and valuab
   \begin{center}
     \includegraphics[scale=0.25]{images/fields_complexity.png}
   \end{center}
-  \caption{\label{fields}Time-To-Close versus summary and description word count.}
+  \caption{\label{fields}Summary and Description Complexity Analysis.}
 \end{figure}
 
 Summary and description are the two most important and most frequently completed fields in a ticket on any
@@ -690,13 +692,13 @@ as the Time-To-Close for the ticket. We have analysed a total number of 238,286 
 summaries and descriptions. We concatenated the summary and description for every ticket at the end of the ticket 
 lifecycle.
 
-The Figure shows a very similar correlation to the one for comments complexity - it seems that as the number of words 
+The figure shows a very similar correlation to the one for comments complexity - graphically, it seems that as the number of words 
 in summary and description increases, the Time-To-Close will decrease. This is true for the majority of the tickets 
 which are in the range of 2 to 290 words, but as in the case of comments complexity analysis, we did not generate 
 the plot only for those as we would have left 61,322 tickets out (out of a total of 201,786 tickets analysed). 
 
-However, a correlational analysis ran on all 201,786 tickets revealed a weak positive relationship with $r = 0.178$ and $p < 0.01$. 
-This implies both that our results are statistically significant and also that as number of words in summary and description increase, 
+However, a correlational analysis run on all 201,786 tickets revealed a weak positive relationship with $r = 0.178$ and $p < 0.01$. 
+This implies both that our results are statistically significant and also that as the number of words in summary and description increases, 
 the Time-To-Close increases, thus the quality of the ticket decreases.
 
 This is not a surprise - as previously mentioned, summary and description are the core components of any ticket. 
