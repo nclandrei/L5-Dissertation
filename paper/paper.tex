@@ -709,7 +709,7 @@ Zimmermann et al. \cite{zimmermann2010makes} present in their study is that a go
 reduce the effort invested by the developers. 
 
 Description, on the other hand, even though it is made to be a more detailed summary of the report, it should still be
-in some reasonable parameters. During our analysis process, we identified more than 50 tickets having descriptions 
+within some reasonable parameters. During our analysis process, we identified more than 50 tickets having descriptions 
 with more than 4,000 words. Even though they included various types of information, including steps to reprodce, 
 we believe that the reason why Jira and the other popular issue tracking systems created so many fields for bug reports 
 is that the information that could all be put in description should be split across these fields: 
@@ -718,13 +718,13 @@ is that the information that could all be put in description should be split acr
   created exclusively for them; 
   \item if the end user is an experienced one and has reported numerous bugs or feature requests for the project, 
   they might also be able to provide an estimate for the difficulty of the task; however, that should be stored in the 
-  Jira system field called \"Story Points\";
+  Jira system field called Story Points;
   \item the user might also want to provide excerpts of code or previous discussions with other end users/developers; 
   however, they should not upload it inside the description field, but rather create a text attachment (e.g. markdown
   document) and attach it separately so that they keep the description clean and easy to follow.
 \end{itemize}
 
-A solution for this issue could be the freedom of easily selecting the total number of words allowed for summary and 
+A solution for this issue could be a setting to cap the total number of words allowed for summary and 
 description. Even though this is possible with Jira, the process of configuring it is not trivial, thus many 
 administrators do not perform this step. An even better approach would be to have a tool automatically generating 
 word limits based on, for example, the experience of the reporter - if he/she has significant knowledge regarding 
@@ -746,7 +746,7 @@ unless they really have a very good reason to do so.
   \caption{\label{grammar}Grammar correctness score analysis.}
 \end{figure}
 
-Through calling Microsoft Azure's Bing Spell Check API, one of the best grammar analysis APIs in the industry, we 
+By calling Microsoft Azure's Bing Spell Check API, one of the best grammar analysis APIs in the industry, we 
 managed to calculate the total number of grammar errors in summary, description and comments for a total number 
 of 133,689 tickets. As shown in a number of studies, the number of spelling errors can influence the quality of a ticket. 
 However, in the work conducted by Schugerl et al. \cite{schugerl2008mining}, the authors found that spelling errors 
@@ -765,7 +765,7 @@ by Bing Spell Check API are of many types, some of which are:
   \item contextual errors - e.g. I ate a book today; even though this is not a misspell, the API will return \emph{book} as 
   a grammar error due to the fact that it is used in the wrong context;
   \item it can detect the wrong usage of a verb tense in a specific context;
-  \item it can flag wrong conjugations of verbs;
+  \item it can flag wrong conjugations of verbs.
 \end{itemize}
 
 After concatenating the strings for all comments, summary and description, we ran our analysis and then plotted the 
@@ -778,12 +778,12 @@ to be done in order to fix a ticket. As it can be seen in the graph, most ticket
 0 to 40 grammar errors per ticket. Having 40 grammar errors in a ticket is quite a large number, considering the fact 
 that many tickets don't have comments at all and summary and description are not large in general. 
 
-However, we can not automatically change this through automation like the solutions we presented in the previous 
+However, we can not change this through automation like the solutions we presented in the previous 
 analysis types. We cannot call, for example, the Bing Spell Check API every couple of seconds on the text the user 
-is inputting in the ticket as the costs would become unbearable very soon. Thus, what can be done to fix this? It is, 
-after all, in the human nature to make mistakes, and typing is no exception. If we, for example, have some hint or a rule
-in the code of conduct for the project stating that everything should be 100\% gramatically correct, many reporters not 
-having English as their primary language would feel unwelcomed and they might not get involved in the project anymore. 
+is inputting in the ticket as the costs would become unbearable very rapidly. Thus, what can be done to fix this? It is, 
+after all, in the human nature to make mistakes, and mistyping is no exception. If we, for example, have some hint or a rule
+in the code of conduct for the project stating that everything should be 100\% gramatically correct, many reporters with a 
+different language than English as their primary one would feel unwelcome and they might not get involved in the project anymore. 
 
 The solution we are proposing implies a local, lightweight spell checker that is run automatically as the user types. 
 This tool would not make any external calls, so there would be no costs and the load on the server would also be lower. 
