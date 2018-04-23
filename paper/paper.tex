@@ -56,8 +56,8 @@ a ticket, there are numerous elements that could influence its quality, such as 
 
 In this research paper, we present and discuss our findings after running a quantitative data analysis 
 on over 300,000 tickets taken from more than 38 open source projects. To this aim, we implemented a Go application 
-with multiple commands (i.e. store, analyze, plot, statistics) that can automatically fetch any number of tickets 
-from a Jira instance, analyze them, generate plots and run statistical tests. 
+with multiple commands (i.e. store, analyse, plot, statistics) that can automatically fetch any number of tickets 
+from a Jira instance, analyse them, generate plots and run statistical tests. 
 
 For the analysis we investigate several variables in correlation with \emph{Time-To-Close}, 
 which we define as the \emph{indicator of quality}. More specifically, an inverse relationship was assigned between the 
@@ -114,7 +114,7 @@ traces and steps to reproduce in tickets. A further contribution brought by the
 authors to the community is the creation of a tool called Cuezilla which is able 
 to automatically predict the quality of a bug report with an accuracy of around 40\%.
 
-Another research paper that strenghtens the argument that readability is a quality 
+Another research paper that strengthens the argument that readability is a quality 
 factor in software tickets is the one presented by Hooimeijer et al. \cite{hooimeijer2007modeling}.
 They conducted their analysis on over 25,000 bug reports from the Mozilla project, 
 investigating readability, daily load, submitter reputation, the whole changelog histories 
@@ -168,7 +168,7 @@ retrieve stack traces as well with a great accuracy.
 The first information to be filled in by end users or developers on any issue tracking system
 is the summary field, which holds a small description, usually between 5 and 30 words, of 
 the request or bug being reported. In the study conducted by Rastkar et al. \cite{rastkar2010summarizing}, 
-the authors investigated whether tickets could be summarized automatically and efficiently. What 
+the authors investigated whether tickets could be summarised automatically and efficiently. What 
 that implies is that developers would no longer be required to look at tickets on the whole, comprising of 
 a large number of fields, but rather at a simple summary of a couple of lines 
 encapsulating the whole information. The authors selected the Mozilla, Eclipse, GNOME and KDE 
@@ -185,8 +185,8 @@ The work of Just et al. \cite{just2008towards} examines a rather different aspec
 of quality in tickets - they are investigating the quality of the underlying issue 
 tracking systems instead. 
 After running a survey on 175 developers from Eclipse, Apache and Mozilla,
-the authors applied a card sort in order to organize the comments into hierarchies to 
-identify common patterns. Their findings can be summarized in the following top seven
+the authors applied a card sort in order to organise the comments into hierarchies to 
+identify common patterns. Their findings can be summarised in the following top seven
 suggestions: create differentiation between bug report difficulty levels between 
 novices and experiences reporters, encourage users to input as much information as possible, 
 add ability to merge tickets when needed, recognise and reward valuable bug reporters, integrate 
@@ -198,7 +198,7 @@ poor design in issue tracking systems and how the ticket creation process could 
 The study conducted by Lamkanfi et al. \cite{lamkanfi2010predicting} looks at this aspect and
 shows how issue tracking systems could be extended in order to automatically generate the severity 
 of a ticket (e.g. assign story points to a Jira issue). The authors conducted their research on the Mozilla,
-GNOME and Eclipse and projects and split their approach into four steps: extract and organize tickets, 
+GNOME and Eclipse and projects and split their approach into four steps: extract and organise tickets, 
 pre-process tickets (i.e. tokenization, stop word removal and stemming), train the classifier on two datasets 
 of tickets - 70\% training and 30\% evaluation and apply the trained classifier on the evaluation set.
 The conclusions they drew from running the evaluation process were rather 
@@ -233,7 +233,7 @@ helping us build the data set as we will elaborate in the following section.
 
 \section{Building the Data Set}\label{building}
 The first step towards building the data set was to create a tool that was able to execute all the necessary commands:
-fetching the tickets from any Jira instance, storing them into some form of database, analyze the variables of interest, 
+fetching the tickets from any Jira instance, storing them into some form of database, analyse the variables of interest, 
 automatically plot the correlations between them and run statistical analysis on the data. After careful consideration, 
 we decided that Go was the best way to go for various reasons:
   \begin{itemize}
@@ -262,9 +262,9 @@ In the following three subsections we describe how we designed and implemented t
 
 \subsection{Fetch and Store}
 
-This is the first command implemented in our tool - it is desgined to fetch, from any valid Jira URL, any number of tickets 
+This is the first command implemented in our tool - it is designed to fetch, from any valid Jira URL, any number of tickets 
 and then store everything inside an instance of BoltDB \cite{bolt}, a key-value pair 
-database. The whole process is parallelized with the possibility of scaling even up to hundreds of goroutines
+database. The whole process is parallelised with the possibility of scaling even up to hundreds of goroutines
 (i.e. lightweight threads) running concurrently. 
 
 The decision of choosing Bolt in favor of well tested, more traditional databases such as Postgres or MySQL came naturally when 
@@ -289,7 +289,7 @@ as processing was too complex to convert the logic into an SQL query.
 
 \subsection{Analyse}
 
-Once the Bolt DB instance is completely populated with all the tickets we were interested in, the analyze command first 
+Once the Bolt DB instance is completely populated with all the tickets we were interested in, the analyse command first 
 fetches all the issues in the database. The next step is to filter out the tickets based on the following criteria:
 \begin{itemize}
   \item tickets are \emph{High Priority} - the ticket status marked as either Blocker, Critical, Major or High;
@@ -301,7 +301,7 @@ fetches all the issues in the database. The next step is to filter out the ticke
 \end{itemize}
 
 Then, the analysis routine runs in parallel the \emph{seven types of analysis} for answering the research questions 
-outlied in Section \ref{intro}, each in its own separate goroutine in order to speed up the process:
+outlined in Section \ref{intro}, each in its own separate goroutine in order to speed up the process:
 \begin{itemize}
   \item \emph{attachments} - checks whether attachments influence \emph{Time-To-Close} and also look at what types 
   of attachments (e.g. screenshots, archive, code snippets) influence \emph{Time-To-Close} the most;
@@ -351,7 +351,7 @@ running statistical tests on the collected data.
 
 For plotting the data, we first connect again to the Bolt database instance and then filter out only the issues that have 
 the variable \emph{Time-To-Close} set (i.e. tickets marked as closed when they were fetched from the Jira instance; even though 
-we passed a filter for not fetching tickets still marked as Open, there was a small number erronously retrieved by Jira). 
+we passed a filter for not fetching tickets still marked as Open, there was a small number erroneously retrieved by Jira). 
 In order to compute correct results, we run the same checks on issues as the ones listed in the analyse command (e.g. plot 
 only tickets of high priority). Afterwards, we save either scatter plots or bar charts to disk presenting relationships 
 between all the variables we tested.
@@ -384,7 +384,7 @@ JSON encoded representation of the ticket. The tickets stored have the following
   \item time estimate - estimated number of hours to complete the task (set by triagers or developers);
   \item time spent - time period between opening the ticket and a specific point in time;
   \item created timestamp;
-  \item issue status - jira specific statuses, including Open, Closed, Awaiting Review, Patch Submitted;
+  \item issue status - Jira specific statuses, including Open, Closed, Awaiting Review, Patch Submitted;
   \item due date - optional deadline for when the ticket should get closed;
   \item comments - discussion around the ticket conducted by developers, end users, triagers;
   \item priority - it can range from low priority (minor) to critical/blocker;
@@ -469,7 +469,7 @@ The answers to our research questions are all statistically significant and they
   \item verbose summary and description increase \emph{Time-To-Close} values.
 \end{itemize}
 
-For every type of analysis, we also discuss possible reasons why certain correlations occured. Furthermore, for all 
+For every type of analysis, we also discuss possible reasons why certain correlations occurred. Furthermore, for all 
 of them we give possible solutions that could be implemented in order to maximise the ticket quality as cost-effective 
 and efficient as possible.
 
@@ -583,7 +583,7 @@ Stack traces are active stack frames at a certain point in time while the progra
 Many programming languages provide stack traces through their standard libraries, but the most 
 popular proponents are Java and C\#. As Java is the main programming language used throughout 
 the Apache Software Foundation projects (231 projects \cite{apache_projects}), many of the projects 
-we collected (22) are also written in Java, thus we had a considerable chunk of data to analyze.
+we collected (22) are also written in Java, thus we had a considerable chunk of data to analyse.
 
 For this analysis, we only looked at tickets of high priority, closed and the project they correspond 
 is written in Java. We then ran a complex regular expression derived from the works of Bettenburg et al. 
@@ -600,7 +600,7 @@ do not have stack traces. The analysis revealed significant difference with $p <
 average of $1475.074$ hours for tickets with stack traces and an average of $2441.877$ hours
 for tickets without them.
 
-\vskip23pt
+\vskip35pt
 
 \subsection{Comments}
 
@@ -630,11 +630,11 @@ around 25,000.
 From the figure we cannot clearly deduce whether increased number of words in comments influence 
 the Time-To-Close positively or negatively. Actually, we can assume at first sight that there is a descending trend implying more 
 words produce smaller Time-To-Close values. However, the bulk of values plotted are in the range of 
-1 to 1,600 total comment words per ticket (76,633 tickets) and in this slice of tickets, the trend is descending.
-We did not generate the plot containing solely these values because there would still be 36,711 tickets left out. 
+1 to 1,600 total comment words per ticket (76,633 tickets) and for this majority of tickets, the trend is ascending.
+We could not generate the plot based solely on these values as there would have been 36,711 tickets left out. 
 Therefore, the curve is skewed to the right, although the bulk of tickets that dictate the trend, are on the left side.
 
-A correlational analysis run on all 201,786 tickets, however, releaved a weak positive relationship with $r = 0.271$ and $p < 0.01$. 
+A correlational analysis run on all 201,786 tickets, however, revealed a weak positive relationship with $r = 0.271$ and $p < 0.01$. 
 This implies a statistically significant finding - as the number of comments increases, the \emph{Time-To-Close} value of the ticket 
 also increases. 
 
@@ -683,9 +683,10 @@ summaries and descriptions. We concatenated the summary and description for ever
 lifecycle.
 
 The figure shows a very similar correlation to the one for comments complexity - graphically, it seems that as the number of words 
-in summary and description increases, the Time-To-Close will decrease. This is true for the majority of the tickets 
-which are in the range of 2 to 290 words, but as in the case of comments complexity analysis, we did not generate 
-the plot only for those as we would have left 61,322 tickets out (out of a total of 201,786 tickets analysed). 
+in summary and description increases, the Time-To-Close will decrease. However, when numbers are run, the opposite trend 
+surfaces. The majority of the tickets are in the range of 2 to 290 words, but as in the case of comments complexity analysis, 
+we could not generate the plot only for those as we would have left 61,322 tickets out (out of a total of 201,786 tickets analysed). 
+Therefore, the curve is skewed to the right, although the bulk of tickets that dictate the trend, are on the left side.
 
 However, a correlational analysis run on all 201,786 tickets revealed a weak positive relationship with $r = 0.178$ and $p < 0.01$. 
 This implies both that our results are statistically significant and also that as the number of words in summary and description increases, 
@@ -695,12 +696,12 @@ This is not a surprise - as previously mentioned, summary and description are th
 As summary is described by Jira, it should represent a short textual description of the bug or the feature request. However,
 we have identified tickets having summaries with even more than 200 words. This is not optimal and might obfuscate
 the essential reason of filing that ticket from triagers and developers working on the project. One of the findings 
-Zimmermann et al. \cite{zimmermann2010makes} present in their study is that a good, succint summary can significantly 
+Zimmermann et al. \cite{zimmermann2010makes} present in their study is that a good, succinct summary can significantly 
 reduce the effort invested by the developers. 
 
 Description, on the other hand, even though it is made to be a more detailed summary of the report, it should still be
 within some reasonable parameters. During our analysis process, we identified more than 50 tickets having descriptions 
-with more than 4,000 words. Even though they included various types of information, including steps to reprodce, 
+with more than 4,000 words. Even though they included various types of information, including steps to reproduce, 
 we believe that the reason why Jira and the other popular issue tracking systems created so many fields for bug reports 
 is that the information that could all be put in description should be split across these fields: 
 \begin{itemize}
@@ -722,7 +723,7 @@ the project, they should be allowed to include lengthier summaries or descriptio
 to know that without a very good reason, following this approach is not the most optimal way. 
 
 Another simple and straightforward solution can be the simple addition of hints below or above the text boxes for summary 
-and description where administrators can write succint messages adivising reporters to not write verbose paragraphs 
+and description where administrators can write succinct messages advising reporters to not write verbose paragraphs 
 unless they really have a very good reason to do so.
 
 \subsection{Grammar Correctness}
@@ -770,7 +771,7 @@ However, we can not change this through automation like the solutions we present
 analysis types. We cannot call, for example, the Bing Spell Check API every couple of seconds on the text the user 
 is inputting in the ticket as the costs would become unbearable very rapidly. Thus, what can be done to fix this? It is, 
 after all, in the human nature to make mistakes, and mistyping is no exception. If we, for example, have some hint or a rule
-in the code of conduct for the project stating that everything should be 100\% gramatically correct, many reporters with a 
+in the code of conduct for the project stating that everything should be 100\% grammatically correct, many reporters with a 
 different language than English as their primary one would feel unwelcome and they might not get involved in the project anymore. 
 
 The solution we are proposing implies a local, lightweight spell checker that is run automatically as the user types. 
@@ -825,7 +826,7 @@ on that specific tool and reporters will be more willing to contribute in the fu
 
 A solution for pushing towards this ideal scenario would be expensive for the company, but the most efficient - have a 
 sentiment analysis tool running in the background as the user is typing in any text box. If they reach a certain low 
-threshold and it is believed that they are becoming rude or unpolite, there could be a warning/pop-up on the screen advising 
+threshold and it is believed that they are becoming rude or impolite, there could be a warning/pop-up on the screen advising 
 them against submitting the comment and encouraging them to be polite, engaging and friendly. One other solution
 is a much more cost-effective one, but less efficient - the issue tracking system administrators could include a section 
 in the code of conduct for the project stating that promoting a positive environment will help everyone. This way, people 
@@ -858,7 +859,7 @@ with over 10 GB of RAM and 70\% CPU in usage.
 
 Furthermore, the project could greatly benefit from having access to closed source repositories in addition to the 
 open source ones. Most closed source projects have much more structured planning, tracking and management activities - as 
-Crowston et al. \cite{crowston2012free} present in their study, open source projects lack organized coordination which,
+Crowston et al. \cite{crowston2012free} present in their study, open source projects lack organised coordination which,
 in the context of our study, means that people do not invest much effort into properly creating tickets in issue tracking 
 systems, triaging efficiently, planning the work and tracking it. On the other hand, closed source projects follow 
 more strict guidelines: standard working hours (would make tracking and linking the source code changes to tickets easier), 
