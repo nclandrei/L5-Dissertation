@@ -12,9 +12,8 @@
 Issue tracking systems have become the defacto standard for tracking work items in 
 software projects - they guide engineers towards better planning and 
 managing their progress throughout complex projects. However, there
-are few studies that investigate what makes for a high quality,
-valuable ticket. This can lead to multiple issues in a company, such as 
-increased communication friction between developers and end users filing bug
+are few studies that investigate what makes for a high quality ticket. This can lead to 
+multiple issues in a company, such as increased communication friction between developers and end users filing bug
 reports, as well as increased overall costs due to waste of development effort. 
 In this research paper, we present our findings after 
 investigating a large number of variables surrounding software tickets.
@@ -51,7 +50,7 @@ Just et al. \cite{just2008towards} and Zimmermann et al. \cite{zimmermann2009imp
 tracking systems. This can lead to various issues, including increased costs for the company, wasted development effort, 
 decreased customer satisfaction and overall poor performance.
 
-Therefore, there is a need in the community to find the answer to what makes for a high quality, valuable software ticket 
+Therefore, there is a need in the community to find the answer to what makes for a high quality software ticket 
 that would improve the overall performance of the development team and, inherently, the company. Considering the many fields of 
 a ticket, there are numerous elements that could influence its quality, such as the presence of stack traces.
 
@@ -107,7 +106,7 @@ positive and negative outcomes, quality of modern issue tracking systems as well
 of summarizing tickets or the optimal assignee. 
 
 The study of Bettenburg et al. \cite{bettenburg2008makes} showed what 
-makes for a valuable bug report through qualitative analysis. 
+makes for a high quality bug report through qualitative analysis. 
 After conducting interviews with over 450 developers, Bettenburg et al. concluded that one of the main factors
 behind a quality ticket is grammar correctness in summary and description. Another
 aspect which was flagged as helpful by the interviewees was the presence of stack 
@@ -188,16 +187,10 @@ tracking systems instead.
 After running a survey on 175 developers from Eclipse, Apache and Mozilla,
 the authors applied a card sort in order to organize the comments into hierarchies to 
 identify common patterns. Their findings can be summarized in the following top seven
-suggestions:
-  \begin{itemize}
-    \item create differentiation between bug report difficulty levels between 
-    novices and experiences reporters;
-    \item encourage users to input as much information as possible;
-    \item add ability to merge tickets when needed;
-    \item recognise and reward valuable bug reporters;
-    \item integrate reputation into user profiles to mark experienced reporters;
-    \item to be able to easily and expressively search through tickets.
-  \end{itemize}
+suggestions: create differentiation between bug report difficulty levels between 
+novices and experiences reporters, encourage users to input as much information as possible, 
+add ability to merge tickets when needed, recognise and reward valuable bug reporters, integrate 
+reputation into user profiles to mark experienced reporters and ensure the ability to expressively search through tickets.
 
 Having discussed about various factors that can influence the quality in software tickets, 
 we also need to take into account how can we apply this knowledge to solving the issue of 
@@ -209,17 +202,12 @@ GNOME and Eclipse and projects and split their approach into four steps: extract
 pre-process tickets (i.e. tokenization, stop word removal and stemming), train the classifier on two datasets 
 of tickets - 70\% training and 30\% evaluation and apply the trained classifier on the evaluation set.
 The conclusions they drew from running the evaluation process were rather 
-interesting:
-  \begin{itemize}
-    \item terms such as segfault, deadlock, crash, hand or memory typically indicate
-      a severe bug;
-    \item when analyzing the textual description they found that using simple
-      one line summaries resulted in less false positives and increased precision
-      levels;
-    \item the classifier needs a large number of tickets in order to predict correctly;
-    \item depending on how well a software project is modularised, one can 
-      use a predictor per module rather than a universal one.
-  \end{itemize}
+interesting: terms such as segfault, deadlock, crash, hand or memory typically indicate
+a severe bug, when analyzing the textual description they found that using simple
+one line summaries resulted in less false positives and increased precision
+levels, the classifier needs a large number of tickets in order to predict correctly, 
+depending on how well a software project is modularised and, lastly, one can 
+use a predictor per module rather than a universal one.
 
 Another overall aspect of software tickets and issue tracking systems that could be improved through 
 determining the quality factors for tickets is automatically assigning a bug report or a feature request 
@@ -801,7 +789,7 @@ being LibreOffice's built-in spell checker.
 
 Sentiment analysis is a technique of employing Machine Learning algorithms in order to infer a sentiment 
 score from textual information. These algorithms need to be trained on very large data sets in order to 
-produce valuable results. Moreover, we would have also needed an already annotated data set, which means 
+produce valid results. Moreover, we would have also needed an already annotated data set, which means 
 a number of strings where we compute the score by hand given a mathematical formula we define. Even though 
 there are open source libraries that can help with creating and employing the algorithms, such as TensorFlow, 
 we would still have needed tickets where we defined what is meant by positive/negative tickets, as well as
@@ -831,7 +819,7 @@ the users will feel more welcomed and willing to help report other bugs in the f
 over 0.9, meaning that the actors participating in the discussion (or the reported summary/description) might compliment 
 each other for doing a great job.
 
-We strongly believe that having a positive sentiment score for tickets is valuable for absolutely everyone: the company
+We strongly believe that having a positive sentiment score for tickets is beneficial for everyone: the company
 behind the projects sees increased overall performance and productivity, developers feel better working in the team or
 on that specific tool and reporters will be more willing to contribute in the future with other tickets.
 
