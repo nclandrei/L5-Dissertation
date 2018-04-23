@@ -803,27 +803,25 @@ Sentiment analysis is a technique of employing Machine Learning algorithms in or
 score from textual information. These algorithms need to be trained on very large data sets in order to 
 produce valuable results. Moreover, we would have also needed an already annotated data set, which means 
 a number of strings where we compute the score by hand given a mathematical formula we define. Even though 
-there are open source libraries that can help creating and employing the algorithms, such as TensorFlow, 
-we would still have needed tickets where we defined what do we mean by positive/negative tickets, as well as
+there are open source libraries that can help with creating and employing the algorithms, such as TensorFlow, 
+we would still have needed tickets where we defined what is meant by positive/negative tickets, as well as
 manually computing the scores for a large range of them. Therefore, we ended using a third party API - Google 
 Cloud Platform Natural Language Processing, considered the best such service at the moment. This API returns 
 a score between -1 (most negative) and +1 (most positive) for any text encoded in the HTTP request.
 
-After we concatenated summaries, descriptions and all the comments for every ticket, we started sending our 
+After we concatenated summaries, descriptions and all the comments for every ticket, we sent our 
 requests to Google and we plotted the data shown in Figure \ref{sentiment}. A correlational analysis revealed a 
 weak negative relationship with $r = -0.114$, $p < 0.01$. Therefore, we obtained statistically significant 
 results implying that as the sentiment decreases (i.e. becomes more negative), the Time-To-Close increases, thus 
 decreasing the quality of a ticket.
 
-We can see in the Figure that neutral scores (i.e. between -0.42 and 0.42) show rather neutral results, which 
-was expectable: this most probably implies that the discussions and descriptions for these tickets revolved 
-completely around the ticket and nothing else. 
+We can see in Figure \ref{sentiment} that neutral scores (i.e. between -0.42 and 0.42) correspond to rather 
+average \emph{Times-To-Close}, as was expected.
 
-However, as the sentiment decreases, we can clearly observe that the sentiment scores increase significantly. 
-This might signify that once the discussion becomes \"heated\", the developers might lose interest in solving 
-the task anymore. Also, rude language might be a driver for increased Times-To-Close because when developers are 
-answering questions from the reporters (or vice versa), the other person might become rude or unpolite, which can 
-make them feel unwelcomed and start to lose interest in helping the project anymore. 
+However, as the sentiment decreases, we can clearly observe that the \emph{Time-To-Close} increases significantly. 
+This might signify that once the discussion becomes "heated", the developers might lose interest in solving 
+the task anymore. Also, rude language might be a driver for increased \emph{Times-To-Close}: the engineer might become 
+rude or impolite, which can make the interlocutor feel unwelcome and start to lose interest in helping the project anymore. 
 
 On the other side of the spectrum, having a more positive score leads to reduced \emph{Time-To-Close} values for tickets. Calefato et al. 
 \cite{calefato2015mining} conducted a study where they show that a positive sentiment has the biggest impact on 
@@ -839,8 +837,8 @@ on that specific tool and reporters will be more willing to contribute in the fu
 
 A solution for pushing towards this ideal scenario would be expensive for the company, but the most efficient - have a 
 sentiment analysis tool running in the background as the user is typing in any text box. If they reach a certain low 
-treshold and it is believed that they are becoming rude or unpolite, there could be a warning/pop-up on the screen advising 
-them to not do that as it wouldn't help any party, but rather try to be polite, engaging and friendly. One other solution
+threshold and it is believed that they are becoming rude or unpolite, there could be a warning/pop-up on the screen advising 
+them against submitting the comment and encouraging them to be polite, engaging and friendly. One other solution
 is a much more cost-effective one, but less efficient - the issue tracking system administrators could include a section 
 in the code of conduct for the project stating that promoting a positive environment will help everyone. This way, people 
 revolving around the project might be more inclined to be friendly.
